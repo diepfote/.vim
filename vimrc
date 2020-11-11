@@ -205,39 +205,32 @@ set mouse=a
 
 " ------------------------
 "  focus related
-au FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
+autocmd FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
 "au FocusLost * :wa " save on focus loss
 
 
 " ------------------------
 " change to directory of current file automatically
-autocmd BufEnter * lcd %:p:h
+autocmd FocusGained,BufEnter * lcd %:p:h
 
 " ------------------------
 " start custom tab settings
 
 " default
 function! DefaultTabSettings()
-    " Don't set custom tab settings
-    " for these filetypes:
-    "
-    "if &ft =~ 'markdown\|somethingelse'
-    if &ft =~ 'go'
+    if &ft =~ 'go\|python\|c\|haskell'
+      " Do not set custom tab settings!
         return
+    elseif &ft =~ 'groovy\|asm'
+        set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+    elseif &ft =~ 'cfg'
+      set tabstop=2 softtabstop=0 !expandtab shiftwidth=2  smartab
+    else
+      set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
     endif
-
-  set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 endfunction
-au bufenter * call DefaultTabSettings()
+autocmd BufEnter,FocusGained * call DefaultTabSettings()
 
-" misc
-autocmd filetype py,c,haskell,groovy set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" assembly
-au bufenter *.asm,*.S,*.s set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" do not expand tabs
-au bufenter *.cfg set tabstop=2 softtabstop=0 expandtab! shiftwidth=2 smarttab
 
 " end custom tab settings
 " ------------------------

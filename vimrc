@@ -221,7 +221,7 @@ function! DefaultTabSettings()
     if &ft =~ 'go\|python\|c\|haskell'
       " Do not set custom tab settings!
         return
-    elseif &ft =~ 'groovy\|asm'
+    elseif &ft =~ 'groovy\|asm\|yaml'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
     elseif &ft =~ 'cfg'
       set tabstop=2 softtabstop=0 !expandtab shiftwidth=2  smartab

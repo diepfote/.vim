@@ -101,7 +101,7 @@ if has("nvim")
   highlight Search guibg='LightBlue' guifg='NONE'
 else
   set viminfo=
-end
+endif
 
 
 

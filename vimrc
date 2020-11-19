@@ -503,7 +503,7 @@ function! s:AppendCharAtEndOfLine(isRepeat)
     let s:append_val = nr2char(getchar())
   endif
   execute 'normal! mz$a' . s:append_val . '`z'
-  silent! call repeat#set("\<plug>AppendCharAtEndOfLineRepeat");
+  silent! call repeat#set("\<plug>AppendCharAtEndOfLineRepeat")
 endfunction
 
 nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
@@ -566,7 +566,10 @@ let g:rainbow_active = 0
 " if ft=fish
 "
 Plug 'dag/vim-fish'
+
 Plug 'vim-syntastic/syntastic'
+let g:syntastic_vim_checkers = ['vint']
+
 Plug 'tpope/vim-endwise'
 
 Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line

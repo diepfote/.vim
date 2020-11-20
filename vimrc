@@ -251,6 +251,7 @@ autocmd BufRead,BufNewFile *.conf set ft=sh
 autocmd BufRead,BufNewFile *.hook set ft=sh
 
 
+autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
 
 autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
 autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail

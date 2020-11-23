@@ -697,6 +697,6 @@ call plug#end()
 
 " set search highlight color
 " hi Search cterm=NONE ctermfg=black ctermbg=white
-highlight Search gui=bold guifg=black guibg=green2
+highlight Search gui=bold guifg=black guibg=yellow
 highlight IncSearch gui=underline,bold guifg=white guibg=red3
 

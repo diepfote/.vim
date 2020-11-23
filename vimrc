@@ -97,8 +97,6 @@ if has("nvim")
 
   set termguicolors
   colorscheme lingodirector  "-> 'flazz/vim-colorschemes'
-  " set search highlight color
-  highlight Search guibg='LightBlue' guifg='NONE'
 else
   set viminfo=
 endif
@@ -696,4 +694,9 @@ if has('nvim')
 endif
 
 call plug#end()
+
+" set search highlight color
+" hi Search cterm=NONE ctermfg=black ctermbg=white
+highlight Search gui=bold guifg=black guibg=green2
+highlight IncSearch gui=underline,bold guifg=white guibg=red3
 

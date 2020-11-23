@@ -220,7 +220,7 @@ function! DefaultTabSettings()
       " Do not set custom tab settings!
         echom "Default tab settings!"
         return
-    elseif &ft =~ 'groovy\|asm\|yaml'
+    elseif &ft =~ 'asm\|yaml'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
     else
       set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab

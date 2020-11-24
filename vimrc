@@ -142,8 +142,8 @@ nmap <leader>ss  :call ToggleListCharsOptions()<cr>
 " --------------------------------
 
 
-" wrapping settings
-set colorcolumn=85 " display vertical line to show 85 character limit
+" wrap settings
+set colorcolumn=72 " display vertical line to show character limit
 
 
 " -----------

@@ -218,7 +218,6 @@ autocmd FocusGained,BufEnter * lcd %:p:h
 function! DefaultTabSettings()
     if &ft =~ 'go\|python\|^c$\|haskell'
       " Do not set custom tab settings!
-        echom "Default tab settings!"
         return
     elseif &ft =~ 'asm\|yaml'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab

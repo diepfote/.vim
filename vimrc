@@ -669,11 +669,11 @@ if has('nvim')
     hi semshiLocal           ctermfg=209 guifg=#55c186
     hi semshiGlobal          ctermfg=214 guifg=#fc6620
     hi semshiImported        ctermfg=214 guifg=#eaac27 cterm=bold gui=bold
-    hi semshiParameter       ctermfg=75  guifg=#55c186
+    hi semshiParameter       ctermfg=75  guifg=#58b080
     hi semshiParameterUnused ctermfg=117 guifg=#15d3b3 cterm=underline gui=underline
     hi semshiFree            ctermfg=218 guifg=#ffafd7
     hi semshiBuiltin         ctermfg=207 guifg=#ba16ba
-    hi semshiAttribute       ctermfg=49  guifg=#00ffaf
+    hi semshiAttribute       ctermfg=49  guifg=#0091ff
     hi semshiSelf            ctermfg=249 guifg=#b2b2b2
     hi semshiUnresolved      ctermfg=226 guifg=#000000 guibg=#f94d75 cterm=underline gui=underline
     hi semshiSelected        ctermfg=231 guifg=#000000 ctermbg=161 guibg=#f0e8a5

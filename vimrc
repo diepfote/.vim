@@ -608,9 +608,10 @@ let g:mwDefaultHighlightingPalette = 'extended'
 " -----------------
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
+Plug 'itspriddle/vim-shellcheck'
+
 
 if has('nvim')
-
   " --------------
   "  ncm2
   "

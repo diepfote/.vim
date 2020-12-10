@@ -5,9 +5,7 @@
 if &shell =~# 'fish$'
     set shell=bash
 endif
-
-" set lead key to space
-" leave this at the top!!!
+" set lead key to space " leave this at the top!!!
 "
 let mapleader = "\<space>"
 
@@ -149,11 +147,15 @@ set colorcolumn=72 " display vertical line to show character limit
 " -----------
 " statusline start
 
-set statusline =%F\ %r%m%{ObsessionStatus()}
+" %c ->
+" %r -> readonly flag
+set statusline =\ %c
+set statusline +=\ %r
+set statusline +=\ %{ObsessionStatus()}
 
-set statusline +=%=%c
 " display character value for the character the cursor is hovering over
-"set statusline +=%=%c%=cv:%b,0x%B
+set statusline +=%=cv:%b,0x%B
+
 
 set statusline +=%=ft=%y
 
@@ -609,6 +611,10 @@ let g:mwDefaultHighlightingPalette = 'extended'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
 Plug 'itspriddle/vim-shellcheck'
+
+Plug 'mkitt/tabline.vim'
+" always display...
+set showtabline=2
 
 
 if has('nvim')

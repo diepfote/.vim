@@ -599,6 +599,8 @@ Plug 'tpope/vim-repeat'  " support native repeat operation '.' for plugins that 
 
 Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
+
+
 " -----------------
 " vim-mark
 "
@@ -608,13 +610,19 @@ Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 Plug 'inkarkat/vim-mark'
 let g:mwDefaultHighlightingPalette = 'extended'
 " -----------------
+
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
+
 Plug 'itspriddle/vim-shellcheck'
+
 
 Plug 'mkitt/tabline.vim'
 " always display...
 set showtabline=2
+
+
+Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
 
 if has('nvim')

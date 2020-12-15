@@ -613,9 +613,15 @@ let g:mwDefaultHighlightingPalette = 'extended'
 
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
-
 Plug 'itspriddle/vim-shellcheck'
 
+
+" ------------------------
+" Plug 'ingydotnet/yaml-vim'
+Plug 'florianbegusch/yaml-vim'
+
+let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
+" ------------------------
 
 Plug 'mkitt/tabline.vim'
 " always display...

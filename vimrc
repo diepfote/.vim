@@ -392,10 +392,6 @@ vnoremap <leader>e64 y:let @"=system('base64 -w0', @")<cr>gvP
 
 
 
-" set shorcut for tagbar plugin
-nmap <f8> :TagbarToggle<cr>
-" set path to tags file
-set tags=.git/tags
 
 
 " --------------------------------------------------
@@ -534,10 +530,24 @@ Plug 'tpope/vim-commentary'
 autocmd FileType firejail setlocal commentstring=#\ %s
 " -----------------
 
+" ----------------------
+" tagbar
+"
+
 Plug 'majutsushi/tagbar'
+" let g:tagbar_left = 1
+
+" set shorcut for tagbar plugin
+nmap <f8> :TagbarToggle<cr>
+
+" set path to tags file
+set tags=.git/tags
+" ----------------------
+
 
 " tmux-resurrect dependency (do :mksession automatically...)
 Plug 'tpope/vim-obsession'
+
 
 Plug 'mileszs/ack.vim'
 " replace ack by ag

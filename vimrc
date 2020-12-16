@@ -149,13 +149,13 @@ set colorcolumn=72 " display vertical line to show character limit
 
 " %c ->
 " %r -> readonly flag
-set statusline =\ %c
+set statusline =%f
+set statusline +=\ \ \ col:%c
 set statusline +=\ %r
 set statusline +=\ %{ObsessionStatus()}
 
 " display character value for the character the cursor is hovering over
 set statusline +=%=cv:%b,0x%B
-
 
 set statusline +=%=ft=%y
 
@@ -633,9 +633,17 @@ Plug 'florianbegusch/yaml-vim'
 let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
 " ------------------------
 
-Plug 'mkitt/tabline.vim'
+
+" ------------------------
+"  tabline
+"
+" DISABLED
+"
+
+" Plug 'mkitt/tabline.vim'
 " always display...
-set showtabline=2
+" set showtabline=2
+" ------------------------
 
 
 Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias

@@ -276,8 +276,14 @@ fun! StripTrailingWhitespace()
     "if &ft =~ 'markdown\|somethingelse'
 
     if &ft =~ 'markdown'
-        return
+      return
+    elseif &ft =~ 'yaml'
+      " remove trailing new lines to pass zuul jobs
+      %s/\($\n\s*\)\+\%$//e
+      return
     endif
+
+    " default behavior, trim trailing whitespace in lines
     %s/\s\+$//e
 endfun
 

@@ -706,8 +706,8 @@ if has('nvim')
 
   function CustomSemshiHighlightingColor()
     hi semshiLocal           ctermfg=209 guifg=#55c186
-    hi semshiGlobal          ctermfg=214 guifg=#fc6620
-    hi semshiImported        ctermfg=214 guifg=#eaac27 cterm=bold gui=bold
+    hi semshiGlobal          ctermfg=214 guifg=#aa58fc
+    hi semshiImported        ctermfg=214 guifg=#f2a7a7 cterm=bold gui=bold
     hi semshiParameter       ctermfg=75  guifg=#58b080
     hi semshiParameterUnused ctermfg=117 guifg=#15d3b3 cterm=underline gui=underline
     hi semshiFree            ctermfg=218 guifg=#ffafd7

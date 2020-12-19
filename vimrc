@@ -94,10 +94,11 @@ if has("nvim")
 
 
   set termguicolors
-  colorscheme lingodirector  "-> 'flazz/vim-colorschemes'
+  " colorscheme lingodirector  "-> 'flazz/vim-colorschemes'
 else
   set viminfo=
 endif
+
 
 
 
@@ -305,19 +306,6 @@ set ignorecase   " change behavior with \C
 " set smartcase    " but become case sensitive if you type uppercase characters
 " -----------------
 
-
-"colorscheme seti "https://www.archlinux.org/packages/community/any/vim-seti/  or   https://github.com/trusktr/seti.vim
-"colorscheme PaperColor "curl -L 'https://raw.githubusercontent.com/NLKNguyen/papercolor-theme/master/colors/PaperColor.vim' -o ~/.vim/colors/PaperColor.vim
-"colorscheme artesanal "https://raw.githubusercontent.com/wimstefan/vim-artesanal/master/colors/artesanal.vim
-"colorscheme github "curl -L 'https://raw.githubusercontent.com/acarapetis/vim-colors-github/master/colors/github.vim' -o ~/.vim/colors/github.vim
-"-- solarized themes start --
-"colorscheme solarized8_flat "git clone --depth=1 https://github.com/lifepillar/vim-solarized8 --> extract colors/ into ~/.vim/colors
-"colorscheme solarized8
-"colorscheme solarized8_high
-"-- solarized themes end --
-"colorscheme elflord  " used in the artofexploitation vm
-"colorscheme luna  " curl -L 'https://raw.githubusercontent.com/notpratheek/vim-luna/master/colors/luna-term.vim' -o ~/.vim/colors/luna.vim
-"colorscheme breve  " curl -L 'https://raw.githubusercontent.com/AlessandroYorba/Breve/master/colors/breve.vim' -o ~/.vim/colors/breve.vim
 
 
 
@@ -574,9 +562,37 @@ endif
 " -----------------------------------
 
 
+" --------------------------------
+" rainbow plugin
+"
+
 Plug 'luochen1990/rainbow'
+" highlight corresponding parentheses
 " :RainbowToggle
-let g:rainbow_active = 0
+let g:rainbow_active = 1  " enabled
+
+let g:rainbow_conf = {
+\ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\ 'guis': [''],
+\ 'cterms': [''],
+\ 'operators': '_,_',
+\ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold']
+\}
+
+" --------------------------------
+
+
+" --------------------------------
+" colorscheme almost without color
+"
+
+Plug 'pbrisbin/vim-colors-off'
+
+set background=light
+colorscheme off
+" --------------------------------
+
 
 " TODO: vim-endwise or vim-fish causes end statements to outdent all the way
 " if ft=fish

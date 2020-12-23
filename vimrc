@@ -586,11 +586,11 @@ let g:rainbow_conf = {
 " --------------------------------
 " colorscheme almost without color
 "
-
 Plug 'pbrisbin/vim-colors-off'
 
-set background=light
-colorscheme off
+" ! On mac we cannot call this in the plugin section
+"   it won't find the colorscheme that way.
+
 " --------------------------------
 
 
@@ -754,6 +754,12 @@ if has('nvim')
 endif
 
 call plug#end()
+
+
+" pbrisbin/vim-colors-off
+set background=light
+colorscheme off
+
 
 " set search highlight color
 " hi Search cterm=NONE ctermfg=black ctermbg=white

@@ -562,6 +562,9 @@ endif
 " -----------------------------------
 
 
+Plug 'airblade/vim-gitgutter'
+
+
 " --------------------------------
 " rainbow plugin
 "
@@ -607,7 +610,24 @@ Plug 'tpope/vim-endwise'
 Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line
 autocmd FileType yaml,markdown LocalIndentGuide +hl -cc
 
+
+" ---------------------------------
 Plug 'christoomey/vim-sort-motion'  " type gs then the rest of your text objects & motions
+
+
+function SortYamlArray()
+  echom '... activating sortyamlarray'
+  " join two lines where the first indicates an array element
+  normal! '<,'>g/- / :join!
+  " sort the selection
+  normal gs
+  " split array element members
+  '<,'> s#\v([^-])(\s+)([0-9a-zA-Z_-]+:)#\1\2\3#
+
+
+endfunction
+
+
 
 " --------------------------------
 " vim tmux runner settings

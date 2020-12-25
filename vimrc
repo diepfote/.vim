@@ -565,6 +565,18 @@ endif
 Plug 'airblade/vim-gitgutter'
 
 
+
+" ---------------------
+"  fzf integration
+"
+
+Plug 'junegunn/fzf.vim'
+map ; :Files<CR>
+let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
+" ---------------------
+
+
+
 " --------------------------------
 " rainbow plugin
 "

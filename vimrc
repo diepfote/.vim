@@ -703,6 +703,9 @@ let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
 Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
 
+Plug 'tpope/vim-fugitive'  " git from vim
+
+
 if has('nvim')
   " --------------
   "  ncm2

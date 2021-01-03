@@ -627,19 +627,6 @@ autocmd FileType yaml,markdown LocalIndentGuide +hl -cc
 Plug 'christoomey/vim-sort-motion'  " type gs then the rest of your text objects & motions
 
 
-function SortYamlArray()
-  echom '... activating sortyamlarray'
-  " join two lines where the first indicates an array element
-  normal! '<,'>g/- / :join!
-  " sort the selection
-  normal gs
-  " split array element members
-  '<,'> s#\v([^-])(\s+)([0-9a-zA-Z_-]+:)#\1\2\3#
-
-
-endfunction
-
-
 
 " --------------------------------
 " vim tmux runner settings
@@ -680,12 +667,7 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'itspriddle/vim-shellcheck'
 
 
-" ------------------------
-" Plug 'ingydotnet/yaml-vim'
-Plug 'florianbegusch/yaml-vim'
-
-let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
-" ------------------------
+Plug 'florianbegusch/vim-primitive-yamlsort'
 
 
 " ------------------------

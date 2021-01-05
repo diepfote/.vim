@@ -385,6 +385,15 @@ vnoremap <leader>d64 y:let @"=system('base64 -d', @")<cr>gvP
 vnoremap <leader>e64 y:let @"=system('base64 -w0', @")<cr>gvP
 
 
+" ------------------
+" edit vimrc helpers
+" nicked from Steve Slosh: Learn Vimscript the Hard Way
+
+nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
+nnoremap <leader>sv :source ~/.vim/vimrc<cr>
+
+" ------------------
+
 
 
 
@@ -675,11 +684,12 @@ Plug 'florianbegusch/vim-primitive-yamlsort'
 " clam
 Plug 'sjl/clam.vim'
 
+
+
 " type ! in normal or visual mode to run Clam quickly
 nnoremap ! :Clam<space>source<space>~/.sh_functions;<space>
 vnoremap ! :ClamVisual<space>source<space>~/.sh_functions;<space>
 " ------------------------
-
 
 " ------------------------
 "  tabline

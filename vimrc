@@ -437,6 +437,9 @@ nnoremap H <c-f>
 nnoremap L <c-b>
 
 
+" clear line
+nnoremap <leader>c ddO<esc>
+
 
 " --------------------------------------------------
 " vimscript functions not dependend on plugins start

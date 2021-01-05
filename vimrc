@@ -691,10 +691,9 @@ Plug 'florianbegusch/vim-primitive-yamlsort'
 Plug 'sjl/clam.vim'
 
 
-
 " type ! in normal or visual mode to run Clam quickly
-nnoremap ! :Clam<space>source<space>~/.sh_functions;<space>
-vnoremap ! :ClamVisual<space>source<space>~/.sh_functions;<space>
+nnoremap ! :Clam<space>source<space>~/.vim/source-me;<space>
+vnoremap ! :ClamVisual<space>source<space>~/.vim/source-me;<space>
 " ------------------------
 
 " ------------------------

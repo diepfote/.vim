@@ -810,3 +810,13 @@ colorscheme off
 highlight Search gui=bold guifg=black guibg=yellow
 highlight IncSearch gui=underline,bold guifg=white guibg=red3
 
+
+
+" -------------
+" Abbreviations
+
+cabbrev rclf rclone_fastmail_sync_cheatsheets_from_remote
+cabbrev rclt rclone_fastmail_sync_cheatsheets_to_remote
+
+" -------------
+

@@ -690,6 +690,8 @@ Plug 'florianbegusch/vim-primitive-yamlsort'
 " clam
 Plug 'sjl/clam.vim'
 
+" open below current window (horizontally)
+let g:clam_winpos = 'belowright'
 
 " type ! in normal or visual mode to run Clam quickly
 nnoremap ! :Clam<space>source<space>~/.vim/source-me;<space>

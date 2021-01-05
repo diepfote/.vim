@@ -204,15 +204,19 @@ set nomodeline
 set mouse=a
 
 
-" ------------------------
-"  focus related
-autocmd FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
-"au FocusLost * :wa " save on focus loss
+augroup focusChanges
+  " do not duplicate autocmds on reload
+  autocmd!
 
+  " ------------------------
+  "  focus related
+  autocmd FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
+  "au FocusLost * :wa " save on focus loss
 
-" ------------------------
-" change to directory of current file automatically
-autocmd FocusGained,BufEnter * lcd %:p:h
+  " ------------------------
+  " change to directory of current file automatically
+  autocmd FocusGained,BufEnter * lcd %:p:h
+augroup END
 
 " ------------------------
 " start custom tab settings
@@ -228,7 +232,12 @@ function! DefaultTabSettings()
       set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
     endif
 endfunction
-autocmd BufEnter,FocusGained * call DefaultTabSettings()
+augroup default_tab_settings
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufEnter,FocusGained * call DefaultTabSettings()
+augroup END
 
 
 " end custom tab settings
@@ -237,32 +246,42 @@ autocmd BufEnter,FocusGained * call DefaultTabSettings()
 
 " spell checking for latex files (de-AT)
 "
-autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=de_at
+augroup spell_lang
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=de_at
+augroup END
 
 " -----------------
 " set ft
-autocmd BufRead,BufNewFile config-* set ft=sshconfig
-autocmd BufRead,BufNewFile *.bib set ft=tex
-autocmd BufRead,BufNewFile *.rc set ft=sh
-autocmd BufRead,BufNewFile *.envrc set ft=sh
-autocmd BufRead,BufNewFile *.custom-envrc set ft=sh
-autocmd BufRead,BufNewFile *.service set ft=sh
-autocmd BufRead,BufNewFile *.conf set ft=sh
-autocmd BufRead,BufNewFile *.hook set ft=sh
+augroup set_custom_filetype_for_extensions
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufRead,BufNewFile config-* set ft=sshconfig
+  autocmd BufRead,BufNewFile *.bib set ft=tex
+  autocmd BufRead,BufNewFile *.rc set ft=sh
+  autocmd BufRead,BufNewFile *.envrc set ft=sh
+  autocmd BufRead,BufNewFile *.custom-envrc set ft=sh
+  autocmd BufRead,BufNewFile *.service set ft=sh
+  autocmd BufRead,BufNewFile *.conf set ft=sh
+  autocmd BufRead,BufNewFile *.hook set ft=sh
 
 
-autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
+  autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
 
-autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
-autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail
-autocmd BufNewFile,BufRead /etc/firejail/*.inc          set filetype=firejail
-autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set filetype=firejail
-autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set filetype=firejail
-autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set filetype=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.inc          set filetype=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set filetype=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set filetype=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set filetype=firejail
 
-autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.profile set filetype=firejail
-autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.local   set filetype=firejail
-autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.inc     set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.profile set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.local   set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.inc     set filetype=firejail
+augroup END
 
 " -----------------
 
@@ -288,14 +307,21 @@ fun! StripTrailingWhitespace()
     %s/\s\+$//e
 endfun
 
-autocmd BufWritePre * call StripTrailingWhitespace()
+augroup trailing_whitespace
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufWritePre * call StripTrailingWhitespace()
+augroup END
 " -----------------
 
 
 " -------------------------
 " create directory if it does not exist
 augroup Mkdir
+  " do not duplicate autocmds on reload
   autocmd!
+
   autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
 augroup END
 " -------------------------
@@ -312,7 +338,12 @@ set ignorecase   " change behavior with \C
 " -----------------
 " vim-fish start
 " Set up :make to use fish for syntax checking.
-autocmd FileType fish compiler fish
+augroup fish_compiler
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd FileType fish compiler fish
+augroup END
 " vim-fish end
 " -----------------
 
@@ -540,8 +571,14 @@ Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
 Plug 'tpope/vim-commentary'
 
 " custom comment strings
-autocmd FileType firejail setlocal commentstring=#\ %s
+augroup firejail_commentstring
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd FileType firejail setlocal commentstring=#\ %s
+augroup END
 " -----------------
+
 
 " ----------------------
 " tagbar
@@ -639,7 +676,12 @@ let g:syntastic_vim_checkers = ['vint']
 Plug 'tpope/vim-endwise'
 
 Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line
-autocmd FileType yaml,markdown LocalIndentGuide +hl -cc
+augroup highlight_indentation
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd FileType yaml,markdown LocalIndentGuide +hl -cc
+augroup END
 
 
 " ---------------------------------
@@ -740,7 +782,13 @@ if has('nvim')
   "Plug 'l04m33/vlime'  "https://github.com/l04m33/vlime#quickstart
 "
   if has("nvim")
-    autocmd BufEnter * call ncm2#enable_for_buffer()
+    augroup ncm2_for_buffer
+      " do not duplicate autocmds on reload
+      autocmd!
+
+      autocmd BufEnter * call ncm2#enable_for_buffer()
+    augroup END
+
 
     " IMPORTANT: :help Ncm2PopupOpen for more information
     set completeopt=noinsert,menuone,noselect
@@ -792,7 +840,12 @@ if has('nvim')
     hi semshiErrorChar       ctermfg=231 guifg=#000000 ctermbg=160 guibg=#d70000
     sign define semshiError text=E> texthl=semshiErrorSign
   endfunction
-  autocmd FileType python call CustomSemshiHighlightingColor()
+  augroup semshi_colors
+    " do not duplicate autocmds on reload
+    autocmd!
+
+    autocmd FileType python call CustomSemshiHighlightingColor()
+  augroup END
 
 
   "  semshi - semantic python highlighting end

@@ -401,9 +401,9 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 " ------------------
 
 " page up
-nnoremap K <c-f>
+nnoremap H <c-f>
 " page down
-nnoremap J <c-b>
+nnoremap L <c-b>
 
 
 

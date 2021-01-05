@@ -503,9 +503,9 @@ nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>:silent! call repeat#set("\
 
 
 " copy clipboard to no-name register
-nmap <leader>gr :let @"=@+<cr>
+nmap <leader>gr" :let @"=@+<cr>
 " copy no-name register to clipboard
-nmap <leader>gR :let @+=@"<cr>
+nmap <leader>gr+ :let @+=@"<cr>
 
 " Delete to Black Hole Register | Delete to Blackhole Register | Delete into the Void
 " normal mode; combine with any textobject

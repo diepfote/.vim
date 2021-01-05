@@ -389,7 +389,13 @@ vnoremap <leader>e64 y:let @"=system('base64 -w0', @")<cr>gvP
 " edit vimrc helpers
 " nicked from Steve Slosh: Learn Vimscript the Hard Way
 
-nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
+function! VsplitVimrcRight()
+  :vsplit
+  execute "normal \<c-w>l"
+  :e ~/.vim/vimrc
+endfunction
+
+nnoremap <leader>ev :call VsplitVimrcRight()<cr>
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 " ------------------

@@ -670,6 +670,17 @@ Plug 'itspriddle/vim-shellcheck'
 Plug 'florianbegusch/vim-primitive-yamlsort'
 
 
+
+" ------------------------
+" clam
+Plug 'sjl/clam.vim'
+
+" type ! in normal or visual mode to run Clam quickly
+nnoremap ! :Clam<space>source<space>~/.sh_functions;<space>
+vnoremap ! :ClamVisual<space>source<space>~/.sh_functions;<space>
+" ------------------------
+
+
 " ------------------------
 "  tabline
 "

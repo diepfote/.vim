@@ -405,10 +405,14 @@ vnoremap <right> <NOP>
 
 
 " window management
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+vnoremap <C-h> <C-w>h
+vnoremap <C-j> <C-w>j
+vnoremap <C-k> <C-w>k
+vnoremap <C-l> <C-w>l
+inoremap <C-h> <esc><C-w>ha
+inoremap <C-j> <esc><C-w>ja
+inoremap <C-k> <esc><C-w>ka
+inoremap <C-l> <esc><C-w>la
 
 
 " base64 encoding and decoding

@@ -300,7 +300,8 @@ fun! StripTrailingWhitespace()
     elseif &ft =~ 'yaml'
       " remove trailing new lines to pass zuul jobs
       %s/\($\n\s*\)\+\%$//e
-      return
+
+      " no return --> fall through
     endif
 
     " default behavior, trim trailing whitespace in lines

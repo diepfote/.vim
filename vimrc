@@ -864,6 +864,10 @@ call plug#end()
 " pbrisbin/vim-colors-off
 set background=light
 colorscheme off
+" set statusline color
+highlight StatusLine gui=bold,reverse
+" do not highlight current line
+highlight CursorLine guifg=NONE guibg=NONE
 
 
 " set search highlight color

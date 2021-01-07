@@ -851,7 +851,7 @@ if has('nvim')
   "  semshi - semantic python highlighting start
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
-  function CustomSemshiHighlightingColor()
+  function! CustomSemshiHighlightingColor()
     hi semshiLocal           ctermfg=209 guifg=#55c186
     hi semshiGlobal          ctermfg=214 guifg=#aa58fc
     hi semshiImported        ctermfg=214 guifg=#f2a7a7 cterm=bold gui=bold

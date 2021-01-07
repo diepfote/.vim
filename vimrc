@@ -76,11 +76,16 @@ if has("nvim")
   "  %    :  saves and restores the buffer list
   "  n... :  where to save the viminfo files
   set viminfo='10,\"100,:20,%,n~/.viminfo
-" ----------
 
 
+  " ---------------------
   " jump to last location
   function! ResCur()
+    if &ft =~ 'netrw'
+      " do not run for netrw list
+      return
+    endif
+
     if line("'\"") <= line("$")
       normal! g`"
       return 1
@@ -91,6 +96,7 @@ if has("nvim")
     autocmd!
     autocmd BufWinEnter * call ResCur()
   augroup END
+  " ---------------------
 
 
   set termguicolors

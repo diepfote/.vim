@@ -417,19 +417,44 @@ vnoremap <leader>e64 y:let @"=system('base64 -w0', @")<cr>gvP
 
 
 " ------------------
-" edit vimrc helpers
+" vimrc helpers
 " nicked from Steve Slosh: Learn Vimscript the Hard Way
-
-function! VsplitVimrcRight()
-  :vsplit
-  execute "normal \<c-w>l"
+function! VimrcSplit()
+  :call VerticalSplitAndSwitch()
   :e ~/.vim/vimrc
 endfunction
 
-nnoremap <leader>ev :call VsplitVimrcRight()<cr>
+" open vimrc for editing
+nnoremap <leader>ev :call VimrcSplit()<cr>
+
+" source vimrc
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 " ------------------
+
+
+" ---------------------------
+" horizontal split and switch
+"
+function! SplitAndSwitch()
+  :split
+  execute "normal \<c-w>j"
+endfunction
+
+nnoremap <leader>ss :call SplitAndSwitch()<cr>
+" ---------------------------
+" ---------------------------
+" vertical split and switch
+"
+function! VerticalSplitAndSwitch()
+  :vsplit
+  execute "normal \<c-w>l"
+endfunction
+
+nnoremap <leader>vss :call VerticalSplitAndSwitch()<cr>
+" ---------------------------
+
+
 
 " page up
 nnoremap H <c-f>

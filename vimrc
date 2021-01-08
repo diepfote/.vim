@@ -664,8 +664,8 @@ Plug 'airblade/vim-gitgutter'
 " ---------------------
 "  fzf integration
 "
-
 Plug 'junegunn/fzf.vim'
+
 map ; :Files<space>
 let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
 " ---------------------
@@ -904,6 +904,9 @@ colorscheme off
 highlight StatusLine gui=bold,reverse
 " do not highlight current line
 highlight CursorLine guifg=NONE guibg=NONE
+" change color for vertical line indicating character limit
+highlight ColorColumn guifg=NONE guibg=seashell2
+
 
 
 " set search highlight color

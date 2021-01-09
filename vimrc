@@ -157,12 +157,12 @@ set colorcolumn=72 " display vertical line to show character limit
 " %c ->
 " %r -> readonly flag
 set statusline =%f
-set statusline +=\ \ \ col:%c
-set statusline +=\ %r
-set statusline +=\ %{ObsessionStatus()}
+set statusline +=\ \ \ col:%-3c
+set statusline +=%4r
+set statusline +=\ %-3{ObsessionStatus()}
 
 " display character value for the character the cursor is hovering over
-set statusline +=%=cv:%b,0x%B
+set statusline +=%=cv:%3b,0x%2B
 
 set statusline +=%=ft=%y
 

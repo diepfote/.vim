@@ -624,7 +624,7 @@ augroup END
 "
 
 Plug 'majutsushi/tagbar'
-" let g:tagbar_left = 1
+let g:tagbar_left = 1
 
 " set shorcut for tagbar plugin
 nmap <f8> :TagbarToggle<cr>

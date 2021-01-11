@@ -700,7 +700,7 @@ let g:rainbow_conf = {
 \     'parentheses_options': 'containedin=vimFuncBody'
 \   },
 \   'sh': {
-  \     'parentheses_options': 'containedin=Function,shFunction,shFunctionOne,shDoubleQuote,shSetList,shSingleQuote,shConditional,shRange,shIf,shSet,shRainbow_lv0_r1 contained',
+  \     'parentheses_options': 'containedin=Function,shFunction,shFunctionOne,shTestDoubleQuote,shDoubleQuote,shSetList,shSingleQuote,shConditional,shRange,shIf,shSet,shDblBrace contained',
 \   },
 \ }
 \}

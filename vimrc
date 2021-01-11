@@ -11,7 +11,7 @@ let mapleader = "\<space>"
 
 set hidden  " do not require buffer writes before switching buffers
 
-map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+
 
 " resize windows with arrow keys
 nnoremap <c-down>  :resize +2<cr>
@@ -397,7 +397,7 @@ nnoremap <down> gj
 nnoremap <up> gk
 " disable help
 inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
+" nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " disable arrow keys in all modes
@@ -699,8 +699,21 @@ let g:rainbow_conf = {
 \   'vim': {
 \     'parentheses_options': 'containedin=vimFuncBody'
 \   },
+\   'sh': {
+  \     'parentheses_options': 'contains=shFunction,shFunction>One,shCmdSubRegion,shCommandSub containedin=shShellVariables,shCmdSubRegion,shCommandSub,shDoubleQuote,shSetList,shSingleQuote,shConditional,shRange,shIf,shFunction,shSet,Delimiter,shFunctionOne,shRainbow_lv0_r1',
+\   },
 \ }
 \}
+
+
+  " check the syntax name and definitions under the cursor
+nnoremap <f1> :echo synIDattr(synID(line('.'), col('.'), 0), 'name')<cr>
+nnoremap <f2> :echo ("hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">")<cr>
+nnoremap <f3> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
+nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')<cr>
+
 " --------------------------------
 
 

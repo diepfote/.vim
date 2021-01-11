@@ -474,9 +474,9 @@ nnoremap <leader>vss :call VerticalSplitAndSwitch()<cr>
 
 
 " page up
-nnoremap H <c-f>
+nnoremap H <c-b>
 " page down
-nnoremap L <c-b>
+nnoremap L <c-f>
 
 
 " clear line

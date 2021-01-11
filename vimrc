@@ -221,7 +221,13 @@ augroup focusChanges
 
   " ------------------------
   " change to directory of current file automatically
-  autocmd FocusGained,BufEnter * lcd %:p:h
+  function! ChangeToDirOfFile()
+    let l:absolute_dir_to_file = '%:p:h'
+    if isdirectory(expand(l:absolute_dir_to_file))
+      execute 'lcd' . l:absolute_dir_to_file
+    endif
+  endfunction
+  autocmd FocusGained,BufEnter * :call ChangeToDirOfFile()
 augroup END
 
 " ------------------------

@@ -702,6 +702,9 @@ let g:rainbow_conf = {
 \   'sh': {
   \     'parentheses_options': 'containedin=Function,shFunction,shFunctionOne,shTestDoubleQuote,shDoubleQuote,shSetList,shSingleQuote,shConditional,shRange,shIf,shSet,shDblBrace contained',
 \   },
+\   'yaml': {
+  \     'parentheses_options': 'containedin=yamlFlowString contained',
+\   },
 \ }
 \}
 

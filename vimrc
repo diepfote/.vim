@@ -156,7 +156,7 @@ set colorcolumn=72 " display vertical line to show character limit
 
 " %c ->
 " %r -> readonly flag
-set statusline =%f
+set statusline =%-10f
 set statusline +=\ \ \ col:%-3c
 set statusline +=%4r
 set statusline +=\ %-3{ObsessionStatus()}

@@ -673,7 +673,7 @@ Plug 'airblade/vim-gitgutter'
 "
 Plug 'junegunn/fzf.vim'
 
-map ; :Files<space>
+nnoremap M :Files<space>
 let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
 " ---------------------
 

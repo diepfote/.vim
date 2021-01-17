@@ -455,7 +455,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 "
 function! SplitAndSwitch()
   :split
-  execute "normal \<c-w>j"
+  execute "normal! \<c-w>j"
 endfunction
 
 nnoremap <leader>ss :call SplitAndSwitch()<cr>
@@ -465,7 +465,7 @@ nnoremap <leader>ss :call SplitAndSwitch()<cr>
 "
 function! VerticalSplitAndSwitch()
   :vsplit
-  execute "normal \<c-w>l"
+  execute "normal! \<c-w>l"
 endfunction
 
 nnoremap <leader>vss :call VerticalSplitAndSwitch()<cr>

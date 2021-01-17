@@ -37,7 +37,7 @@ let g:netrw_list_hide='^\.\(pyc\|pyo\)$'
 
 
 " sudo write this, no use with firejail obviously
-cmap W! w !sudo tee % >/dev/null
+cnoremap W! w !sudo tee % >/dev/null
 
 
 " Small helper that inserts a random uuid4 on ^U
@@ -143,7 +143,7 @@ function! ToggleListCharsOptions()
   endif
 endfunction
 
-nmap <leader>ss  :call ToggleListCharsOptions()<cr>
+nnoremap <leader>lc :call ToggleListCharsOptions()<cr>
 " --------------------------------
 
 
@@ -176,11 +176,10 @@ set formatoptions=qrn1  " refer to https://neovim.io/doc/user/change.html#fo-tab
 
 
 
-com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-nmap <leader>f :FormatXML<Cr>
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())" nnoremap <leader>f :FormatXML<Cr>
 
 com! FormatJSON :%!python3 -m json.tool
-nmap <leader>F :FormatJSON<Cr>
+nnoremap <leader>F :FormatJSON<Cr>
 
 
 "  formatting start
@@ -531,8 +530,8 @@ function! PrependSeparator()
   normal yyP^v$r-xxgclj
 endfunction
 
-nmap <leader>sa  :call AppendSeparator()<cr>
-nmap <leader>sp  :call PrependSeparator()<cr>
+nnoremap <leader>sa  :call AppendSeparator()<cr>
+nnoremap <leader>sp  :call PrependSeparator()<cr>
 " -----------------------------------
 
 
@@ -546,9 +545,9 @@ nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>:silent! call repeat#set("\
 
 
 " copy clipboard to no-name register
-nmap <leader>gr" :let @"=@+<cr>
+nnoremap <leader>gr" :let @"=@+<cr>
 " copy no-name register to clipboard
-nmap <leader>gr+ :let @+=@"<cr>
+nnoremap <leader>gr+ :let @+=@"<cr>
 
 " Delete to Black Hole Register | Delete to Blackhole Register | Delete into the Void
 " normal mode; combine with any textobject
@@ -578,7 +577,7 @@ endfunction
 
 nnoremap <silent> <plug>ReplaceCharAtEndOfLineRepeat :<c-u>call <sid>ReplaceCharAtEndOfLine(1)<cr>
 nnoremap <silent> <plug>ReplaceCharAtEndOfLine :<c-u>call <sid>ReplaceCharAtEndOfLine(0)<cr>
-nmap <leader>R <plug>ReplaceCharAtEndOfLine
+nnoremap <leader>R <plug>ReplaceCharAtEndOfLine
 " ---------------------------------------------------------------------
 
 
@@ -594,7 +593,7 @@ endfunction
 
 nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
 nnoremap <silent> <plug>AppendCharAtEndOfLine :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
-nmap <leader>sA <plug>AppendCharAtEndOfLine
+nnoremap <leader>sA <plug>AppendCharAtEndOfLine
 " ---------------------------------------------------------------------
 
 " vimscript functions not dependend on plugins end
@@ -634,7 +633,7 @@ Plug 'majutsushi/tagbar'
 let g:tagbar_left = 1
 
 " set shorcut for tagbar plugin
-nmap <f8> :TagbarToggle<cr>
+nnoremap <f8> :TagbarToggle<cr>
 
 " set path to tags file
 set tags=.git/tags

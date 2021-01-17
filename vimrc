@@ -310,6 +310,7 @@ fun! StripTrailingWhitespace()
     if &ft =~ 'markdown'
       return
     elseif &ft =~ 'yaml'
+      " return " Disable all whitespace removal
       " remove trailing new lines to pass zuul jobs
       %s/\($\n\s*\)\+\%$//e
 

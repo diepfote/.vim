@@ -58,10 +58,10 @@ set nowritebackup
 
 
 let os=substitute(system('uname'), '\n', '', '')
-if os == 'Darwin' || os == 'Mac'
+if os ==# 'Darwin' || os ==# 'Mac'
   " If installed using Homebrew
   set rtp+=/usr/local/opt/fzf
-elseif os == 'Linux'
+elseif os ==# 'Linux'
   " to use :FZF
   set rtp+=/usr/bin/fzf
 endif

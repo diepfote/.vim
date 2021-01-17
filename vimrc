@@ -428,9 +428,53 @@ inoremap <C-k> <esc><C-w>ka
 inoremap <C-l> <esc><C-w>la
 
 
+" ----------------------------
 " base64 encoding and decoding
-vnoremap <leader>d64 y:let @"=system('base64 -d', @")<cr>gvP
-vnoremap <leader>e64 y:let @"=system('base64 -w0', @")<cr>gvP
+
+function! CommonBase64Operator(type)
+  " echom a:type
+  if a:type ==# 'v'
+    execute "normal! `<v`>y"
+  elseif a:type ==# 'char'
+    execute "normal! `[v`]y"
+  else
+    " TODO custom operator functionality
+    " for line- and blockwise visual mode & linewise motions
+    return
+  endif
+
+  " echom @"
+endfunction
+
+function! Base64DecodeOperator(type)
+  let saved_unnamed_register = @"
+
+  call CommonBase64Operator(a:type)  " selects and copies motion
+  let @"=system('base64 -d', @")
+  normal! gvP
+
+  let @" = saved_unnamed_register
+endfunction
+
+function! Base64EncodeOperator(type)
+  let saved_unnamed_register = @"
+
+  call CommonBase64Operator(a:type)  " selects and copies motion
+  let @"=system('base64 -w0', @")
+  normal! gvP
+
+  let @" = saved_unnamed_register
+endfunction
+
+
+" custom operator mappings
+" TODO custom op mappings for line- and blockwise visual mode & linewise motions
+nnoremap <leader>d64 :set operatorfunc=Base64DecodeOperator<cr>g@
+vnoremap <leader>d64 :<c-u>call Base64DecodeOperator(visualmode())<cr>
+nnoremap <leader>e64 :set operatorfunc=Base64EncodeOperator<cr>g@
+vnoremap <leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
+
+" ----------------------------
 
 
 " ------------------

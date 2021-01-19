@@ -688,9 +688,16 @@ set tags=.git/tags
 Plug 'tpope/vim-obsession'
 
 
+" ----------------------------
+" check with `set runtimepath?
+" let &runtimepath = '<path-to-ack.vim>,' . &runtimepath
+  " e.g.
+  " let &runtimepath = '/root/.vim/plugged/ack.vim,' . &runtimepath
+
 Plug 'mileszs/ack.vim'
 " replace ack by ag
 let g:ackprg = 'ag --vimgrep'
+" ----------------------------
 
 
 " -----------------------------------

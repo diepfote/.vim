@@ -696,7 +696,9 @@ Plug 'tpope/vim-obsession'
 
 Plug 'mileszs/ack.vim'
 " replace ack by ag
-let g:ackprg = 'ag --vimgrep'
+" let g:ackprg = 'ag --vimgrep'
+" if only grep available
+let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.venv --exclude-dir=venv'
 " ----------------------------
 
 

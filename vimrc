@@ -176,10 +176,11 @@ set formatoptions=qrn1  " refer to https://neovim.io/doc/user/change.html#fo-tab
 
 
 
-com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())" nnoremap <leader>f :FormatXML<Cr>
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+nnoremap <leader>f :FormatXML<cr>
 
 com! FormatJSON :%!python3 -m json.tool
-nnoremap <leader>F :FormatJSON<Cr>
+nnoremap <leader>F :FormatJSON<cr>
 
 
 "  formatting start

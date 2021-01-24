@@ -879,7 +879,24 @@ vnoremap ! :ClamVisual<space>source<space>~/.vim/source-me;<space>
 Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
 
+" ---------------------------------------
 Plug 'tpope/vim-fugitive'  " git from vim
+
+function! <sid>FugitiveAddGoToParentTreeMapping()
+  if !exists('b:fugitive_type')
+    return
+  endif
+
+  if b:fugitive_type =~# '^\%(tree\|blob\)$'
+    nnoremap <buffer> .. :edit %:h<CR>
+  endif
+
+endfunction
+augroup fugitiveVim
+  autocmd!
+  autocmd BufEnter * :call <sid>FugitiveAddGoToParentTreeMapping()
+augroup end
+" ---------------------------------------
 
 
 if has('nvim')

@@ -237,14 +237,16 @@ augroup END
 
 " default
 function! DefaultTabSettings()
-    if &ft =~ 'go\|python\|^c$\|haskell'
+    if &ft =~ 'python\|^c$\|haskell'
       " Do not set custom tab settings!
         return
+    elseif &ft =~ 'go'
+      set tabstop=4 shiftwidth=4
     elseif &ft =~ 'asm'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-    else
+    else"
       set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
-    endif
+      endif
 endfunction
 augroup default_tab_settings
   " do not duplicate autocmds on reload

@@ -436,7 +436,7 @@ inoremap <C-l> <esc><C-w>la
 " ----------------------------
 " base64 encoding and decoding
 
-function! CommonBase64Operator(type)
+function! CommonOperator(type)
   " echom a:type
   if a:type ==# 'v'
     execute "normal! `<v`>y"
@@ -454,7 +454,7 @@ endfunction
 function! Base64DecodeOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonBase64Operator(a:type)  " selects and copies motion
+  call CommonOperator(a:type)  " selects and copies motion
   let @"=system('base64 -d', @")
   normal! gvP
 
@@ -464,7 +464,7 @@ endfunction
 function! Base64EncodeOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonBase64Operator(a:type)  " selects and copies motion
+  call CommonOperator(a:type)  " selects and copies motion
   let @"=system('base64 -w0', @")
   normal! gvP
 
@@ -480,6 +480,39 @@ nnoremap <leader>e64 :set operatorfunc=Base64EncodeOperator<cr>g@
 vnoremap <leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
 
 " ----------------------------
+
+" --------------------------------------------------------------------
+" json to yaml or back
+"
+function! ToJsonOperator(type)
+  let saved_unnamed_register = @"
+
+  call CommonOperator(a:type)  " selects and copies motion
+  let @"=system('yq read - --prettyPrint --tojson', @")
+  normal! gvP
+
+  let @" = saved_unnamed_register
+endfunction
+
+function! ToYamlOperator(type)
+  let saved_unnamed_register = @"
+
+  call CommonOperator(a:type)  " selects and copies motion
+  let @"=system('yq read - --prettyPrint', @")
+  normal! gvP
+
+  let @" = saved_unnamed_register
+endfunction
+
+
+" custom operator mappings
+" TODO custom op mappings for line- and blockwise visual mode & linewise motions
+nnoremap <leader>toj :set operatorfunc=ToJsonOperator<cr>g@
+vnoremap <leader>toj :<c-u>call ToJsonOperator(visualmode())<cr>
+nnoremap <leader>toy :set operatorfunc=ToYamlOperator<cr>g@
+vnoremap <leader>toy :<c-u>call ToYamlOperator(visualmode())<cr>
+
+" --------------------------------------------------------------------
 
 
 " ------------------

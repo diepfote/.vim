@@ -1036,9 +1036,9 @@ call plug#end()
 set background=light
 colorscheme off
 " set statusline color
-highlight StatusLine gui=bold,reverse
+highlight StatusLine gui=bold,reverse cterm=bold,reverse
 " do not highlight current line
-highlight CursorLine guifg=NONE guibg=NONE
+highlight CursorLine guifg=NONE guibg=NONE cterm=NONE ctermbg=NONE ctermfg=NONE
 " change color for vertical line indicating character limit
 highlight ColorColumn guifg=NONE guibg=seashell2
 
@@ -1046,8 +1046,13 @@ highlight ColorColumn guifg=NONE guibg=seashell2
 
 " set search highlight color
 " hi Search cterm=NONE ctermfg=black ctermbg=white
-highlight Search gui=bold guifg=black guibg=yellow
-highlight IncSearch gui=underline,bold guifg=white guibg=red3
+"
+set hlsearch  "to highlight in cterm
+set incsearch
+"
+highlight Search gui=bold guifg=black guibg=LightYellow cterm=bold term=NONE ctermfg=black ctermbg=LightYellow
+highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
+
 
 
 

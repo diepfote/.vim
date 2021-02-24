@@ -550,15 +550,17 @@ function! VerticalSplitAndSwitch()
   execute "normal! \<c-w>l"
 endfunction
 
-nnoremap <leader>vss :call VerticalSplitAndSwitch()<cr>
+nnoremap <leader>vs :call VerticalSplitAndSwitch()<cr>
 " ---------------------------
 
 
 
 " page up
 nnoremap H <c-b>
+vnoremap H <c-b>
 " page down
 nnoremap L <c-f>
+vnoremap L <c-f>
 
 
 " clear line

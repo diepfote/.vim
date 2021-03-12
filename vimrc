@@ -156,7 +156,7 @@ set colorcolumn=72 " display vertical line to show character limit
 
 " %c ->
 " %r -> readonly flag
-set statusline =%-10f
+set statusline =ft=%y
 set statusline +=\ \ \ col:%-3c
 set statusline +=%4r
 set statusline +=\ %-3{ObsessionStatus()}
@@ -166,7 +166,7 @@ set statusline +=%=cv:%3b,0x%2B
 
 set statusline +=%=\ %{fugitive#statusline()}
 
-set statusline +=\ \ ft=%y
+set statusline +=\ \ %-10f
 
 " statusline end
 " -----------

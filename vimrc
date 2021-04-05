@@ -20,6 +20,13 @@ nnoremap <c-left>  :vertical resize -2<cr>
 nnoremap <c-right>  :vertical resize +2<cr>
 
 
+" swap movement commands
+nnoremap (  :normal! {<cr>
+nnoremap )  :normal! }<cr>
+nnoremap {  :normal! (<cr>
+nnoremap }  :normal! )<cr>
+
+
 "disable compatibility
 set nocompatible
 " 'faster' backspace behavior I guess?

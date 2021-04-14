@@ -244,11 +244,9 @@ augroup END
 
 " default
 function! DefaultTabSettings()
-    if &ft =~ 'python\|^c$\|haskell'
+    if &ft =~ 'python\|^c$\|haskell\|make\|^go$'
       " Do not set custom tab settings!
-        return
-    elseif &ft =~ 'go'
-      set tabstop=4 shiftwidth=4
+        set tabstop=4 shiftwidth=4
     elseif &ft =~ 'asm'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
     else"

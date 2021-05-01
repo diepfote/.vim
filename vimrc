@@ -75,7 +75,7 @@ endif
 
 
 
-if has("nvim")
+if has('nvim')
   " Tell vim to remember certain things when we exit
   "  '10  :  marks will be remembered for up to 10 previously edited files
   "  "100 :  will save up to 100 lines for each register
@@ -88,7 +88,7 @@ if has("nvim")
   " ---------------------
   " jump to last location
   function! ResCur()
-    if &ft =~ 'netrw'
+    if &ft =~? 'netrw'
       " do not run for netrw list
       return
     endif
@@ -197,7 +197,7 @@ nnoremap <leader>F :FormatJSON<cr>
 
 
 
-if exists("loaded_less")  " make vim behave like less
+if exists('loaded_less')  " make vim behave like less
   set nonumber
 else
   " useful for motion commands
@@ -244,11 +244,13 @@ augroup END
 
 " default
 function! DefaultTabSettings()
-    if &ft =~ 'python\|^c$\|haskell\|make\|^go$'
+    if &ft =~? 'python\|^c$\|haskell\|make\|^go$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
-    elseif &ft =~ 'asm'
+    elseif &ft =~? 'asm'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+    elseif &ft =~? 'fstab'
+        set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab
     else"
       set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
       endif
@@ -316,18 +318,18 @@ fun! StripTrailingWhitespace()
     "
     "if &ft =~ 'markdown\|somethingelse'
 
-    if &ft =~ 'markdown'
+    if &ft =~? 'markdown'
       return
-    elseif &ft =~ 'yaml'
+    elseif &ft =~? 'yaml'
       " return " Disable all whitespace removal
       " remove trailing new lines to pass zuul jobs
-      %s/\($\n\s*\)\+\%$//e
+      normal! %s/\($\n\s*\)\+\%$//e
 
       " no return --> fall through
     endif
 
     " default behavior, trim trailing whitespace in lines
-    %s/\s\+$//e
+    normal! %s/\s\+$//e
 endfun
 
 augroup trailing_whitespace
@@ -387,7 +389,7 @@ augroup END
   inoremap jj <ESC>
 
 
-  if has("nvim")
+  if has('nvim')
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -444,9 +446,9 @@ inoremap <C-l> <esc><C-w>la
 function! CommonOperator(type)
   " echom a:type
   if a:type ==# 'v'
-    execute "normal! `<v`>y"
+    execute 'normal! `<v`>y'
   elseif a:type ==# 'char'
-    execute "normal! `[v`]y"
+    execute 'normal! `[v`]y'
   else
     " TODO custom operator functionality
     " for line- and blockwise visual mode & linewise motions
@@ -583,26 +585,26 @@ vnoremap <silent>ai :<C-U>cal <SID>IndTxtObj(0)<CR><Esc>gv
 vnoremap <silent>ii :<C-U>cal <SID>IndTxtObj(1)<CR><Esc>gv
 
 function! s:IndTxtObj(inner)
-  let curline = line(".")
-  let lastline = line("$")
-  let i = indent(line(".")) - &shiftwidth * (v:count1 - 1)
+  let curline = line('.')
+  let lastline = line('$')
+  let i = indent(line('.')) - &shiftwidth * (v:count1 - 1)
   let i = i < 0 ? 0 : i
-  if getline(".") !~ "^\\s*$"
-    let p = line(".") - 1
-    let nextblank = getline(p) =~ "^\\s*$"
+  if getline('.') !~? '^\\s*$'
+    let p = line('.') - 1
+    let nextblank = getline(p) =~? '^\\s*$'
     while p > 0 && ((i == 0 && !nextblank) || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner)) || (nextblank && !a:inner))))
       -
-      let p = line(".") - 1
-      let nextblank = getline(p) =~ "^\\s*$"
+      let p = line('.') - 1
+      let nextblank = getline(p) =~? "^\\s*$"
     endwhile
     normal! 0V
     call cursor(curline, 0)
-    let p = line(".") + 1
-    let nextblank = getline(p) =~ "^\\s*$"
+    let p = line('.') + 1
+    let nextblank = getline(p) =~? '^\\s*$'
     while p <= lastline && ((i == 0 && !nextblank) || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner)) || (nextblank && !a:inner))))
       +
-      let p = line(".") + 1
-      let nextblank = getline(p) =~ "^\\s*$"
+      let p = line('.') + 1
+      let nextblank = getline(p) =~? '^\\s*$'
     endwhile
     normal! $
   endif
@@ -962,7 +964,7 @@ if has('nvim')
     "connection to vlime server)
   "Plug 'l04m33/vlime'  "https://github.com/l04m33/vlime#quickstart
 "
-  if has("nvim")
+  if has('nvim')
     augroup ncm2_for_buffer
       " do not duplicate autocmds on reload
       autocmd!

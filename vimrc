@@ -321,15 +321,14 @@ fun! StripTrailingWhitespace()
     if &ft =~? 'markdown'
       return
     elseif &ft =~? 'yaml'
-      " return " Disable all whitespace removal
       " remove trailing new lines to pass zuul jobs
-      execute 'normal! :%s/\($\n\s*\)\+\%$//e'
+      %s/\($\n\s*\)\+\%$//e
 
       " no return --> fall through
     endif
 
     " default behavior, trim trailing whitespace in lines
-    execute 'normal! :%s/\s\+$//e'
+    %s/\s\+$//e
 endfun
 
 augroup trailing_whitespace

@@ -751,12 +751,17 @@ let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.ven
 " -----------------------------------
 " coc language server
 
-" Use <c-space> to trigger completion.
 if has('nvim')
   Plug 'neoclide/coc.nvim'
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 
+  " Symbol renaming.
+  nmap <leader>rn <Plug>(coc-rename)
+
+  " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
 else
+  " Trigger completion.
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 " -----------------------------------
@@ -1008,7 +1013,7 @@ if has('nvim')
   function! CustomSemshiHighlightingColor()
     hi semshiLocal           ctermfg=209 guifg=#55c186
     hi semshiGlobal          ctermfg=214 guifg=#aa58fc
-    hi semshiImported        ctermfg=214 guifg=#f2a7a7 cterm=bold gui=bold
+    hi semshiImported        ctermfg=214 guifg=#ce8c8c cterm=bold gui=bold
     hi semshiParameter       ctermfg=75  guifg=#58b080
     hi semshiParameterUnused ctermfg=117 guifg=#15d3b3 cterm=underline gui=underline
     hi semshiFree            ctermfg=218 guifg=#ffafd7

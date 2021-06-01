@@ -772,6 +772,7 @@ if has('nvim')
 
   " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
+
 else
   " Trigger completion.
   inoremap <silent><expr> <c-@> coc#refresh()
@@ -1079,6 +1080,8 @@ highlight Search gui=bold guifg=black guibg=LightYellow cterm=bold term=NONE cte
 highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
 
 
+" Remove gray background which makes CoC hints etc. hard to read
+highlight CocFloating ctermbg=white guibg=white
 
 
 " -------------

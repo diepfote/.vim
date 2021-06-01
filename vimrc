@@ -855,6 +855,7 @@ Plug 'dag/vim-fish'
 
 Plug 'vim-syntastic/syntastic'
 let g:syntastic_vim_checkers = ['vint']
+let g:syntastic_python_checkers = ['']  " disable syntastic for python
 
 Plug 'tpope/vim-endwise'
 

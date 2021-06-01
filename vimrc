@@ -186,10 +186,10 @@ set formatoptions=qrn1  " refer to https://neovim.io/doc/user/change.html#fo-tab
 
 
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-nnoremap <leader>f :FormatXML<cr>
+nnoremap <leader>fxml :FormatXML<cr>
 
 com! FormatJSON :%!python3 -m json.tool
-nnoremap <leader>F :FormatJSON<cr>
+nnoremap <leader>fjson :FormatJSON<cr>
 
 
 "  formatting start
@@ -753,10 +753,18 @@ let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.ven
 
 if has('nvim')
   Plug 'neoclide/coc.nvim'
-  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 
+  let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-jedi', 'coc-diagnostic']
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
+
+  " GoTo code navigation.
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gr <Plug>(coc-references)
+
+  " Mappings for CoCList
+  " Show all diagnostics.
+  nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
 
   " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()

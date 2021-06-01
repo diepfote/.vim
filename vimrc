@@ -765,6 +765,10 @@ if has('nvim')
   " Mappings for CoCList
   " Show all diagnostics.
   nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+  " Show commands.
+  nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+  " Find symbol of current document.
+  nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 
   " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()

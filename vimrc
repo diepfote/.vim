@@ -546,7 +546,7 @@ function! SplitAndSwitch()
   execute "normal! \<c-w>j"
 endfunction
 
-nnoremap <leader>ss :call SplitAndSwitch()<cr>
+nnoremap <leader>sh :call SplitAndSwitch()<cr>
 " ---------------------------
 " ---------------------------
 " vertical split and switch
@@ -556,7 +556,7 @@ function! VerticalSplitAndSwitch()
   execute "normal! \<c-w>l"
 endfunction
 
-nnoremap <leader>vs :call VerticalSplitAndSwitch()<cr>
+nnoremap <leader>sv :call VerticalSplitAndSwitch()<cr>
 " ---------------------------
 
 

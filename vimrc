@@ -533,7 +533,7 @@ endfunction
 nnoremap <leader>ev :call VimrcSplit()<cr>
 
 " source vimrc
-nnoremap <leader>sv :source ~/.vim/vimrc<cr>
+nnoremap <leader>sc :source ~/.vim/vimrc<cr>
 
 " ------------------
 
@@ -760,7 +760,7 @@ if has('nvim')
 
   " GoTo code navigation.
   nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gR <Plug>(coc-references)
 
   " Mappings for CoCList
   " Show all diagnostics.

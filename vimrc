@@ -755,20 +755,25 @@ if has('nvim')
   Plug 'neoclide/coc.nvim'
 
   let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-jedi', 'coc-diagnostic']
-  " Symbol renaming.
-  nmap <leader>rn <Plug>(coc-rename)
 
-  " GoTo code navigation.
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gR <Plug>(coc-references)
 
-  " Mappings for CoCList
-  " Show all diagnostics.
-  nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
-  " Show commands.
-  nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-  " Find symbol of current document.
-  nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+  if &ft =~? 'python'
+
+    " Symbol renaming.
+    nmap <leader>rn <Plug>(coc-rename)
+
+    " GoTo code navigation.
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gR <Plug>(coc-references)
+    " Mappings for CoCList
+    " Show all diagnostics.
+    nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+    " Show commands.
+    nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+    " Find symbol of current document.
+    nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+
+  endif
 
   " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()

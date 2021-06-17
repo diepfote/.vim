@@ -757,23 +757,24 @@ if has('nvim')
   let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-jedi', 'coc-diagnostic']
 
 
-  if &ft =~? 'python'
+  augroup highlight_indentation
+    " do not duplicate autocmds on reload
+    autocmd!
 
     " Symbol renaming.
-    nmap <leader>rn <Plug>(coc-rename)
+    autocmd FileType python nnoremap <leader>rn <Plug>(coc-rename)
 
     " GoTo code navigation.
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gR <Plug>(coc-references)
+    autocmd FileType python nnoremap <silent> gd <Plug>(coc-definition)
+    autocmd FileType python nnoremap <silent> gR <Plug>(coc-references)
     " Mappings for CoCList
     " Show all diagnostics.
-    nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+    autocmd FileType python nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
     " Show commands.
-    nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+    autocmd FileType python nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
     " Find symbol of current document.
-    nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-
-  endif
+    autocmd FileType python nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+  augroup END
 
   " Trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()

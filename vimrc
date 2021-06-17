@@ -1058,7 +1058,28 @@ if has('nvim')
   " -----------------------------------
 
   Plug 'flazz/vim-colorschemes'
+
+
+  " -----------------------------------
+  "  vim-go settings start
+
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+  augroup vim-go-mappings
+    " do not duplicate autocmds on reload
+    autocmd!
+
+      " Symbol renaming.
+      au FileType go nnoremap <leader>rn <Plug>(go-rename)
+
+      " GoTo code navigation.
+      au FileType go nnoremap <silent>gd <Plug>(go-def)
+      au FileType go nnoremap <leader>gR :GoReferrers<cr>
+  augroup END
+
+  "  vim-go settings end
+  " -----------------------------------
+
 endif
 
 call plug#end()

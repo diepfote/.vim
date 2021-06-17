@@ -1070,11 +1070,11 @@ if has('nvim')
     autocmd!
 
       " Symbol renaming.
-      au FileType go nnoremap <leader>rn <Plug>(go-rename)
+      au FileType go nnoremap <leader>rn :GoRename<cr>
 
       " GoTo code navigation.
       au FileType go nnoremap <silent>gd <Plug>(go-def)
-      au FileType go nnoremap <leader>gR :GoReferrers<cr>
+      au FileType go nnoremap <silent>gR :GoReferrers<cr>
   augroup END
 
   "  vim-go settings end

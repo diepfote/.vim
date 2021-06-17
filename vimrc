@@ -754,7 +754,7 @@ let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.ven
 if has('nvim')
   Plug 'neoclide/coc.nvim'
 
-  let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-jedi', 'coc-diagnostic']
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
 
 
   augroup highlight_indentation

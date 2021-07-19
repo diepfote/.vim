@@ -697,6 +697,44 @@ call plug#begin('~/.vim/plugged')
 "    'github_user/repo_name'
 
 
+" -----------------------------------
+" coc language server
+
+if has('nvim')
+  Plug 'neoclide/coc.nvim'
+
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
+
+
+  augroup coc_mappings
+    " do not duplicate autocmds on reload
+    autocmd!
+
+    " Symbol renaming.
+    autocmd BufEnter,FocusGained *.py nmap <leader>rn <Plug>(coc-rename)
+
+    " GoTo code navigation.
+    autocmd BufEnter,FocusGained *.py nmap <silent> gd <Plug>(coc-definition)
+    autocmd BufEnter,FocusGained *.py nmap <silent> gR <Plug>(coc-references)
+    " Mappings for CoCList
+    " Show all diagnostics.
+    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+    " Show commands.
+    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+    " Find symbol of current document.
+    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+  augroup END
+
+  " Trigger completion.
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+else
+  " Trigger completion.
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+" -----------------------------------
+
+
 Plug 'tpope/vim-vinegar'  " improve vim's netrw
 
 Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
@@ -746,44 +784,6 @@ Plug 'mileszs/ack.vim'
 " if only grep available
 let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.venv --exclude-dir=venv'
 " ----------------------------
-
-
-" -----------------------------------
-" coc language server
-
-if has('nvim')
-  Plug 'neoclide/coc.nvim'
-
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
-
-
-  augroup highlight_indentation
-    " do not duplicate autocmds on reload
-    autocmd!
-
-    " Symbol renaming.
-    autocmd FileType python nnoremap <leader>rn <Plug>(coc-rename)
-
-    " GoTo code navigation.
-    autocmd FileType python nnoremap <silent> gd <Plug>(coc-definition)
-    autocmd FileType python nnoremap <silent> gR <Plug>(coc-references)
-    " Mappings for CoCList
-    " Show all diagnostics.
-    autocmd FileType python nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
-    " Show commands.
-    autocmd FileType python nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-    " Find symbol of current document.
-    autocmd FileType python nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-  augroup END
-
-  " Trigger completion.
-  inoremap <silent><expr> <c-space> coc#refresh()
-
-else
-  " Trigger completion.
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-" -----------------------------------
 
 
 Plug 'airblade/vim-gitgutter'

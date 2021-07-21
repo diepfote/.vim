@@ -715,7 +715,14 @@ if has('nvim')
 
     " GoTo code navigation.
     autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gd <Plug>(coc-definition)
+    " Show References
     autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gR <Plug>(coc-references)
+    " Show function signature
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gs :call CocActionAsync('doHover')<cr>
+
+
+
+
     " Mappings for CoCList
     " Show all diagnostics.
     autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>

@@ -703,7 +703,7 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'neoclide/coc.nvim'
 
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy']
 
 
   augroup coc_mappings
@@ -711,18 +711,18 @@ if has('nvim')
     autocmd!
 
     " Symbol renaming.
-    autocmd BufEnter,FocusGained *.py nmap <leader>rn <Plug>(coc-rename)
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <leader>rn <Plug>(coc-rename)
 
     " GoTo code navigation.
-    autocmd BufEnter,FocusGained *.py nmap <silent> gd <Plug>(coc-definition)
-    autocmd BufEnter,FocusGained *.py nmap <silent> gR <Plug>(coc-references)
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gd <Plug>(coc-definition)
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gR <Plug>(coc-references)
     " Mappings for CoCList
     " Show all diagnostics.
-    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
     " Show commands.
-    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
     " Find symbol of current document.
-    autocmd BufEnter,FocusGained *.py nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
   augroup END
 
   " Trigger completion.

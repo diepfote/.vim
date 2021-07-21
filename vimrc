@@ -1110,6 +1110,8 @@ highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bol
 
 " Remove gray background which makes CoC hints etc. hard to read
 highlight CocFloating ctermbg=white guibg=white
+" Disable underlining for Coc warnings
+highlight CocWarningHighlight ctermbg=white guibg=white
 
 
 " -------------

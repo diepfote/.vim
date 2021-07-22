@@ -789,7 +789,17 @@ Plug 'mileszs/ack.vim'
 " replace ack by ag
 " let g:ackprg = 'ag --vimgrep'
 " if only grep available
-let g:ackprg = 'grep -n --exclude-dir=.tox --exclude-dir=.git --exclude-dir=.venv --exclude-dir=venv'
+let g:ackprg = 'grep -n --exclude-dir=.git
+                      \ --exclude-dir=.tox
+                      \ --exclude-dir=.mypy_cache
+                      \ --exclude-dir=.eggs
+                      \ --exclude-dir=*.egg-info
+                      \ --exclude-dir=*venv*
+                      \ --exclude-dir=*build*
+                      \ --exclude-dir=__pycache__
+                      \ --exclude-dir=.pytest_cache
+                      \ --exclude-dir=htmlcov
+                      \ --exclude=Session.vim'
 " ----------------------------
 
 

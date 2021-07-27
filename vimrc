@@ -703,22 +703,28 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'neoclide/coc.nvim'
 
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy']
-
+  if os ==# 'Darwin' || os ==# 'Mac'
+    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy']
+    let g:coc_buffers_to_apply_to = '*.py,*.groovy'
+  elseif os ==# 'Linux'
+    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
+    let g:coc_buffers_to_apply_to = '*.py'
+  endif
 
   augroup coc_mappings
     " do not duplicate autocmds on reload
     autocmd!
 
+
     " Symbol renaming.
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <leader>rn <Plug>(coc-rename)
+    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <leader>rn <Plug>(coc-rename)'
 
     " GoTo code navigation.
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gd <Plug>(coc-definition)
+    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gd <Plug>(coc-definition)'
     " Show References
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gR <Plug>(coc-references)
+    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gR <Plug>(coc-references)'
     " Show function signature
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent> gs :call CocActionAsync('doHover')<cr>
+    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . " nmap <silent> gs :call CocActionAsync('doHover')<cr>"
 
 
 

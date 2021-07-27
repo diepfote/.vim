@@ -1050,41 +1050,6 @@ if has('nvim')
 
 
   " -----------------------------------
-  "  semshi - semantic python highlighting start
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-  function! CustomSemshiHighlightingColor()
-    hi semshiLocal           ctermfg=209 guifg=#55c186
-    hi semshiGlobal          ctermfg=214 guifg=#aa58fc
-    hi semshiImported        ctermfg=214 guifg=#ce8c8c cterm=bold gui=bold
-    hi semshiParameter       ctermfg=75  guifg=#58b080
-    hi semshiParameterUnused ctermfg=117 guifg=#15d3b3 cterm=underline gui=underline
-    hi semshiFree            ctermfg=218 guifg=#ffafd7
-    hi semshiBuiltin         ctermfg=207 guifg=#ba16ba
-    hi semshiAttribute       ctermfg=49  guifg=#0091ff
-    hi semshiSelf            ctermfg=249 guifg=#b2b2b2
-    hi semshiUnresolved      ctermfg=226 guifg=#000000 guibg=#f94d75 cterm=underline gui=underline
-    hi semshiSelected        ctermfg=231 guifg=#000000 ctermbg=161 guibg=#f0e8a5
-
-    hi semshiErrorSign       ctermfg=231 guifg=#000000 ctermbg=160 guibg=#d70000
-    hi semshiErrorChar       ctermfg=231 guifg=#000000 ctermbg=160 guibg=#d70000
-    sign define semshiError text=E> texthl=semshiErrorSign
-  endfunction
-  augroup semshi_colors
-    " do not duplicate autocmds on reload
-    autocmd!
-
-    autocmd FileType python call CustomSemshiHighlightingColor()
-  augroup END
-
-
-  "  semshi - semantic python highlighting end
-  " -----------------------------------
-
-  Plug 'flazz/vim-colorschemes'
-
-
-  " -----------------------------------
   "  vim-go settings start
 
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }

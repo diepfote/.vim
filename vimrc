@@ -318,7 +318,7 @@ fun! StripTrailingWhitespace()
     "
     "if &ft =~ 'markdown\|somethingelse'
 
-    if &ft =~? 'markdown'
+    if &ft =~? 'markdown\|diff'
       return
     elseif &ft =~? 'yaml'
       " remove trailing new lines to pass zuul jobs

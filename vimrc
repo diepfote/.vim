@@ -782,6 +782,7 @@ set tags=.git/tags
 
 
 " tmux-resurrect dependency (do :mksession automatically...)
+" :Obsession <path-to-store>
 Plug 'tpope/vim-obsession'
 
 

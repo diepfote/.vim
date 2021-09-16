@@ -797,6 +797,7 @@ Plug 'mileszs/ack.vim'
 " let g:ackprg = 'ag --vimgrep'
 " if only grep available
 let g:ackprg = 'grep -n --exclude-dir=.git
+                      \ --exclude-dir=.helm
                       \ --exclude-dir=.tox
                       \ --exclude-dir=.mypy_cache
                       \ --exclude-dir=.eggs

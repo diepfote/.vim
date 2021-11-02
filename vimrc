@@ -294,16 +294,16 @@ augroup set_custom_filetype_for_extensions
 
   autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
 
+
   autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.inc          set filetype=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set filetype=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set filetype=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set filetype=firejail
-
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.profile set filetype=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.local   set filetype=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/*.inc     set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.profile set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.local   set filetype=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.inc     set filetype=firejail
 augroup END
 
 " -----------------

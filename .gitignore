@@ -5,3 +5,5 @@
 !/syntax/*
 !LICENSE
 !vimrc
+!coc-settings.json
+!init.vim

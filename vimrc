@@ -793,6 +793,12 @@ Plug 'tpope/vim-obsession'
   " let &runtimepath = '/root/.vim/plugged/ack.vim,' . &runtimepath
 
 Plug 'mileszs/ack.vim'
+
+" Page up/down bindings
+let g:ack_mappings = {
+      \ 'H': '<c-b>',
+      \ 'L': '<c-f>' }
+
 " replace ack by ag
 " let g:ackprg = 'ag --vimgrep'
 " if only grep available

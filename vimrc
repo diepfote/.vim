@@ -42,6 +42,9 @@ set wildmode=longest:full,full
 let g:netrw_list_hide='^\.\(pyc\|pyo\)$'
 
 
+" run sphinx via tox, after pandoc has turned the file in the current
+" buffer (markdown) into an rst|restructured text file for sphinx
+cnoremap p! ! name="$(echo % \| sed -r 's/\..*//' \| head -n1)"; pandoc "$name".md -o "$name".rst; (cd "$(git rev-parse --show-toplevel)" && tox)
 
 " sudo write this, no use with firejail obviously
 cnoremap W! w !sudo tee % >/dev/null

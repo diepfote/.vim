@@ -1116,8 +1116,8 @@ highlight CocWarningHighlight ctermbg=white guibg=white
 " -------------
 " Abbreviations
 
-cabbrev rclf rclone_fastmail_sync_cheatsheets_from_remote
-cabbrev rclt rclone_fastmail_sync_cheatsheets_to_remote
+cabbrev rclt cheatsheets_commit_and_push
+cabbrev rclf cheatsheets_pull
 
 " -------------
 

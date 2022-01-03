@@ -52,14 +52,13 @@ cnoremap W! w !sudo tee % >/dev/null
 
 " Small helper that inserts a random uuid4 on ^U
 " ----------------------------------------------
-fun! InsertUUID4()
+function! InsertUUID4()
 python3 << endpython
 if 1:
     import uuid, vim
     vim.command('return "%s"' % str(uuid.uuid4()))
 endpython
-endfun
-inoremap <c-u> <C-R>=InsertUUID4()
+endfunction
 
 
 " do not write backup files
@@ -447,25 +446,40 @@ inoremap <C-l> <esc><C-w>la
 
 function! CommonOperator(type)
   " echom a:type
-  if a:type ==# 'v'
+
+  if a:type ==? 'v'
+    " case insensitive -> linewise and charwise visual select
+
+    " yank visually selected text
     execute 'normal! `<v`>y'
+    return 1
+  if a:type ==# '^V'
+    " blockwise visual select
+
+    " unsupported!
+    return
   elseif a:type ==# 'char'
+    " visually select range selected via character-
+    " wise motion; then yank
     execute 'normal! `[v`]y'
+    return 1
   else
     " TODO custom operator functionality
-    " for line- and blockwise visual mode & linewise motions
+    " blockwise visual mode & linewise motions
+
+    " return false  = 0 -> not supported
     return
   endif
 
-  " echom @"
 endfunction
 
 function! Base64DecodeOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonOperator(a:type)  " selects and copies motion
-  let @"=system('base64 -d', @")
-  normal! gvP
+  if CommonOperator(a:type)  " selects and copies motion
+    let @"=system('base64 -d', @")
+    normal! gvP
+  endif
 
   let @" = saved_unnamed_register
 endfunction
@@ -473,9 +487,10 @@ endfunction
 function! Base64EncodeOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonOperator(a:type)  " selects and copies motion
-  let @"=system('base64 -w0', @")
-  normal! gvP
+  if CommonOperator(a:type)  " selects and copies motion
+    let @"=system('base64 -w0', @")
+    normal! gvP
+  endif
 
   let @" = saved_unnamed_register
 endfunction
@@ -483,10 +498,10 @@ endfunction
 
 " custom operator mappings
 " TODO custom op mappings for line- and blockwise visual mode & linewise motions
-nnoremap <leader>d64 :set operatorfunc=Base64DecodeOperator<cr>g@
-vnoremap <leader>d64 :<c-u>call Base64DecodeOperator(visualmode())<cr>
-nnoremap <leader>e64 :set operatorfunc=Base64EncodeOperator<cr>g@
-vnoremap <leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
+nnoremap <silent><leader>d64 :set operatorfunc=Base64DecodeOperator<cr>g@
+vnoremap <silent><leader>d64 :<c-u>call Base64DecodeOperator(visualmode())<cr>
+nnoremap <silent><leader>e64 :set operatorfunc=Base64EncodeOperator<cr>g@
+vnoremap <silent><leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
 
 " ----------------------------
 
@@ -496,9 +511,10 @@ vnoremap <leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
 function! ToJsonOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonOperator(a:type)  " selects and copies motion
-  let @"=system('yq read - --prettyPrint --tojson', @")
-  normal! gvP
+  if CommonOperator(a:type)  " selects and copies motion
+    let @"=system('yq read - --prettyPrint --tojson', @")
+    normal! gvP
+  endif
 
   let @" = saved_unnamed_register
 endfunction
@@ -506,9 +522,10 @@ endfunction
 function! ToYamlOperator(type)
   let saved_unnamed_register = @"
 
-  call CommonOperator(a:type)  " selects and copies motion
-  let @"=system('yq read - --prettyPrint', @")
-  normal! gvP
+  if CommonOperator(a:type)  " selects and copies motion
+    let @"=system('yq read - --prettyPrint', @")
+    normal! gvP
+  endif
 
   let @" = saved_unnamed_register
 endfunction
@@ -516,10 +533,10 @@ endfunction
 
 " custom operator mappings
 " TODO custom op mappings for line- and blockwise visual mode & linewise motions
-nnoremap <leader>toj :set operatorfunc=ToJsonOperator<cr>g@
-vnoremap <leader>toj :<c-u>call ToJsonOperator(visualmode())<cr>
-nnoremap <leader>toy :set operatorfunc=ToYamlOperator<cr>g@
-vnoremap <leader>toy :<c-u>call ToYamlOperator(visualmode())<cr>
+nnoremap <silent><leader>toj :set operatorfunc=ToJsonOperator<cr>g@
+vnoremap <silent><leader>toj :<c-u>call ToJsonOperator(visualmode())<cr>
+nnoremap <silent><leader>toy :set operatorfunc=ToYamlOperator<cr>g@
+vnoremap <silent><leader>toy :<c-u>call ToYamlOperator(visualmode())<cr>
 
 " --------------------------------------------------------------------
 

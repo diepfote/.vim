@@ -1,1 +1,1 @@
-/Users/florian/Documents/firejail/contrib/vim/syntax/firejail.vim
+../../Documents/firejail/contrib/vim/syntax/firejail.vim

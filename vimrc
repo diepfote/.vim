@@ -81,13 +81,13 @@ if has('nvim')
 
   " ---------------------
   " jump to last location
-  function! ResCur()
+  function! s:ResCur()
     if &ft =~? 'netrw'
       " do not run for netrw list
       return
     endif
 
-    if line("'\"") <= line("$")
+    if line("'\"") <= line('$')
       normal! g`"
       return 1
     endif
@@ -95,7 +95,7 @@ if has('nvim')
 
   augroup resCur
     autocmd!
-    autocmd BufWinEnter * call ResCur()
+    autocmd BufWinEnter * call <SID>ResCur()
   augroup END
   " ---------------------
 
@@ -125,7 +125,7 @@ set list  " always show some special chars -> listchars option
 
 let g:listchars_for_space_enabled = 0
 set listchars=tab:▴\ ,extends:#,nbsp:⍽
-function! ToggleListCharsOptions()
+function! s:ToggleListCharsOptions()
   if ! g:listchars_for_space_enabled
     let g:listchars_for_space_enabled = 1
     set listchars=tab:▴\ ,extends:#,nbsp:⍽,space:·
@@ -135,7 +135,7 @@ function! ToggleListCharsOptions()
   endif
 endfunction
 
-command ToggleListCharsOptions :call ToggleListCharsOptions()
+command ToggleListCharsOptions :call <SID>ToggleListCharsOptions()
 " --------------------------------
 
 
@@ -640,13 +640,16 @@ cnoremap W! w !sudo tee % >/dev/null
 
 " ----------------------------------------------
 " Small helper that inserts a random uuid4
-function! InsertUUID4()
+function! s:InsertUUID4()
 python3 << endpython
-if 1:
-    import uuid, vim
-    vim.command('return "%s"' % str(uuid.uuid4()))
+import uuid, vim
+vim.command('return "%s"' % str(uuid.uuid4()))
 endpython
 endfunction
+
+" insert UUID in line below current line
+command InsertUUID4  :call append(line('.'), <SID>InsertUUID4())
+
 " ----------------------------------------------
 
 " -----------------------------------
@@ -665,11 +668,11 @@ command PrependSeparator  :call <SID>PrependSeparator()
 
 
 " -------------------------------
-function! DeleteCharAtEndOfLine()
+function! s:DeleteCharAtEndOfLine()
   normal! mz$x`z
 endfunction
 
-nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
+nnoremap <leader>d  :call s:DeleteCharAtEndOfLine()<cr>
                   \ :silent! call repeat#set("\<leader>d", -1)<cr>
 " -------------------------------
 
@@ -690,11 +693,11 @@ vnoremap _x "_x<cr>
 
 
 " remap jump to line of mark to jump to pos
-function! JumpToPos()
+function! s:JumpToPos()
   let s:mark = nr2char(getchar())
   execute 'normal! `' . s:mark
 endfunction
-nnoremap ' :call JumpToPos()<cr>
+nnoremap ' :call <SID>JumpToPos()<cr>
 
 
 " ---------------------------------------------------------------------

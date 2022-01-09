@@ -5,11 +5,25 @@
 if &shell =~# 'fish$'
     set shell=bash
 endif
-" set lead key to space " leave this at the top!!!
+
+" leave this at the top!!!
 "
 let mapleader = "\<space>"
 
+
 set hidden  " do not require buffer writes before switching buffers
+
+
+" do not write backup files
+set nobackup
+set nowritebackup
+
+" disable swapfile
+set noswapfile
+" enable undofile -> undo edits even after closing a file
+set undofile
+
+set fsync  " flush file to disk
 
 
 
@@ -42,36 +56,14 @@ set wildmode=longest:full,full
 let g:netrw_list_hide='^\.\(pyc\|pyo\)$'
 
 
-" run sphinx via tox, after pandoc has turned the file in the current
-" buffer (markdown) into an rst|restructured text file for sphinx
-cnoremap p! ! name="$(echo % \| sed -r 's/\..*//' \| head -n1)"; pandoc "$name".md -o "$name".rst; (cd "$(git rev-parse --show-toplevel)" && tox)
-
-" sudo write this, no use with firejail obviously
-cnoremap W! w !sudo tee % >/dev/null
-
-
-" Small helper that inserts a random uuid4 on ^U
-" ----------------------------------------------
-function! InsertUUID4()
-python3 << endpython
-if 1:
-    import uuid, vim
-    vim.command('return "%s"' % str(uuid.uuid4()))
-endpython
-endfunction
-
-
-" do not write backup files
-set nobackup
-set nowritebackup
-
 
 let os=substitute(system('uname'), '\n', '', '')
+" to use :FZF
 if os ==# 'Darwin' || os ==# 'Mac'
-  " If installed using Homebrew
+  " installed via Homebrew
   set rtp+=/usr/local/opt/fzf
 elseif os ==# 'Linux'
-  " to use :FZF
+  " installed via pacman
   set rtp+=/usr/bin/fzf
 endif
 
@@ -117,15 +109,6 @@ endif
 
 
 
-" disable swapfile
-set noswapfile
-" enable undofile -> undo edits even after closing a file
-set undofile
-
-set fsync  " flush file to disk
-
-
-
 " keep 5 lines at the top or bottom,
 " depends on the scroll direction
 set scrolloff=5
@@ -135,11 +118,11 @@ set cursorline
 " do not show titles in bold print etc.
 let html_no_rendering=1
 
-"
-set list
 
 
 " --------------------------------
+set list  " always show some special chars -> listchars option
+
 let g:listchars_for_space_enabled = 0
 set listchars=tab:▴\ ,extends:#,nbsp:⍽
 function! ToggleListCharsOptions()
@@ -152,7 +135,7 @@ function! ToggleListCharsOptions()
   endif
 endfunction
 
-nnoremap <leader>lc :call ToggleListCharsOptions()<cr>
+command ToggleListCharsOptions :call ToggleListCharsOptions()
 " --------------------------------
 
 
@@ -163,7 +146,7 @@ set colorcolumn=72 " display vertical line to show character limit
 " -----------
 " statusline start
 
-" %c ->
+" %c -> column number
 " %r -> readonly flag
 set statusline =ft=%y
 set statusline +=\ \ \ col:%-3c
@@ -173,8 +156,10 @@ set statusline +=\ %-3{ObsessionStatus()}
 " display character value for the character the cursor is hovering over
 set statusline +=%=cv:%3b,0x%2B
 
+" git status info (branch name etc.)
 set statusline +=%=\ %{fugitive#statusline()}
 
+" current buffer name
 set statusline +=\ \ %-10f
 
 " statusline end
@@ -185,14 +170,10 @@ set statusline +=\ \ %-10f
 "  formatting start
 set formatoptions=qrn1  " refer to https://neovim.io/doc/user/change.html#fo-table
 
-
-
-com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-nnoremap <leader>fxml :FormatXML<cr>
-
-com! FormatJSON :%!python3 -m json.tool
-nnoremap <leader>fjson :FormatJSON<cr>
-
+" Commands not functions (no need for `:call <funcname>()` -> use plain `:<command>`
+command! FormatXML :%!python3 -c "import xml.dom.minidom, sys;
+                      \ print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+command! FormatJSON :%!python3 -m json.tool
 
 "  formatting start
 " ---------
@@ -221,31 +202,35 @@ set nomodeline
 set mouse=a
 
 
+
+" ------------------------
+"  focus related
+
+" change to directory of current file automatically
+function! s:ChangeToDirOfFile()
+  let l:absolute_dir_to_file = '%:p:h'
+  if isdirectory(expand(l:absolute_dir_to_file))
+    execute 'lcd' . l:absolute_dir_to_file
+  endif
+endfunction
 augroup focusChanges
   " do not duplicate autocmds on reload
   autocmd!
 
-  " ------------------------
-  "  focus related
   autocmd FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
   "au FocusLost * :wa " save on focus loss
 
-  " ------------------------
-  " change to directory of current file automatically
-  function! ChangeToDirOfFile()
-    let l:absolute_dir_to_file = '%:p:h'
-    if isdirectory(expand(l:absolute_dir_to_file))
-      execute 'lcd' . l:absolute_dir_to_file
-    endif
-  endfunction
-  autocmd FocusGained,BufEnter * :call ChangeToDirOfFile()
+
+  autocmd FocusGained,BufEnter * :call <SID>ChangeToDirOfFile()
 augroup END
+" ------------------------
+
 
 " ------------------------
 " start custom tab settings
 
 " default
-function! DefaultTabSettings()
+function! s:DefaultTabSettings()
     if &ft =~? 'python\|^c$\|haskell\|make\|^go$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
@@ -261,7 +246,7 @@ augroup default_tab_settings
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd BufEnter,FocusGained * call DefaultTabSettings()
+  autocmd BufEnter,FocusGained * call <SID>DefaultTabSettings()
 augroup END
 
 
@@ -269,6 +254,7 @@ augroup END
 " ------------------------
 
 
+" -----------------
 " spell checking for latex files (de-AT)
 "
 augroup spell_lang
@@ -277,9 +263,11 @@ augroup spell_lang
 
   autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=de_at
 augroup END
+" -----------------
+
 
 " -----------------
-" set ft
+" set custom ft
 augroup set_custom_filetype_for_extensions
   " do not duplicate autocmds on reload
   autocmd!
@@ -314,7 +302,7 @@ augroup END
 " -----------------
 " remove trailing whitespace
 
-fun! StripTrailingWhitespace()
+function! s:StripTrailingWhitespace()
     " Don't strip on these filetypes
     " pattern to use:
     "
@@ -331,19 +319,20 @@ fun! StripTrailingWhitespace()
 
     " default behavior, trim trailing whitespace in lines
     %s/\s\+$//e
-endfun
+endfunction
 
 augroup trailing_whitespace
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd BufWritePre * call StripTrailingWhitespace()
+  autocmd BufWritePre * call <SID>StripTrailingWhitespace()
 augroup END
 " -----------------
 
 
 " -------------------------
 " create directory if it does not exist
+"
 augroup Mkdir
   " do not duplicate autocmds on reload
   autocmd!
@@ -352,18 +341,22 @@ augroup Mkdir
 augroup END
 " -------------------------
 
+
+
 " -----------------
 " case insensitive search
+
 set ignorecase   " change behavior with \C
 " set smartcase    " but become case sensitive if you type uppercase characters
-" -----------------
 
+" -----------------
 
 
 
 " -----------------
 " vim-fish start
 " Set up :make to use fish for syntax checking.
+
 augroup fish_compiler
   " do not duplicate autocmds on reload
   autocmd!
@@ -378,15 +371,13 @@ augroup END
 " -----------------------
 " ncm2 tips
 
-" ####
-" TIPS
-  " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-  " found' messages
+  " suppress the annoying 'match x of y',
+  " 'The only match' and 'Pattern not found' messages
   set shortmess+=c
 
-  " CTRL-C -> ESC
+  " close pop-up on Escape key press
   inoremap <c-c> <ESC>
-  " jj -> ESC
+  " close pop-up on Escape key press
   inoremap jj <ESC>
 
 
@@ -395,8 +386,7 @@ augroup END
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   endif
-" ####
-"
+
 " -----------------------
 
 
@@ -408,12 +398,16 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
-" disable help
-inoremap <F1> <ESC>
-" nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
 
+" disable help
+inoremap <F1> <NOP>
+vnoremap <F1> <NOP>
+
+
+
+" -------------------------------
 " disable arrow keys in all modes
+
 nnoremap <up> <NOP>
 nnoremap <down> <NOP>
 nnoremap <left> <NOP>
@@ -428,23 +422,28 @@ vnoremap <up> <NOP>
 vnoremap <down> <NOP>
 vnoremap <left> <NOP>
 vnoremap <right> <NOP>
+" -------------------------------
 
 
+" -----------------
 " window management
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
 inoremap <C-h> <esc><C-w>ha
 inoremap <C-j> <esc><C-w>ja
 inoremap <C-k> <esc><C-w>ka
 inoremap <C-l> <esc><C-w>la
+" -----------------
+
 
 
 " ----------------------------
 " base64 encoding and decoding
 
-function! CommonOperator(type)
+function! s:CommonOperator(type)
   " echom a:type
 
   if a:type ==? 'v'
@@ -453,7 +452,7 @@ function! CommonOperator(type)
     " yank visually selected text
     execute 'normal! `<v`>y'
     return 1
-  if a:type ==# '^V'
+  elseif a:type ==# '^V'
     " blockwise visual select
 
     " unsupported!
@@ -473,10 +472,10 @@ function! CommonOperator(type)
 
 endfunction
 
-function! Base64DecodeOperator(type)
+function! s:Base64DecodeOperator(type)
   let saved_unnamed_register = @"
 
-  if CommonOperator(a:type)  " selects and copies motion
+  if <SID>CommonOperator(a:type)  " selects and copies motion
     let @"=system('base64 -d', @")
     normal! gvP
   endif
@@ -484,10 +483,10 @@ function! Base64DecodeOperator(type)
   let @" = saved_unnamed_register
 endfunction
 
-function! Base64EncodeOperator(type)
+function! s:Base64EncodeOperator(type)
   let saved_unnamed_register = @"
 
-  if CommonOperator(a:type)  " selects and copies motion
+  if <SID>CommonOperator(a:type)  " selects and copies motion
     let @"=system('base64 -w0', @")
     normal! gvP
   endif
@@ -497,21 +496,21 @@ endfunction
 
 
 " custom operator mappings
-" TODO custom op mappings for line- and blockwise visual mode & linewise motions
-nnoremap <silent><leader>d64 :set operatorfunc=Base64DecodeOperator<cr>g@
-vnoremap <silent><leader>d64 :<c-u>call Base64DecodeOperator(visualmode())<cr>
-nnoremap <silent><leader>e64 :set operatorfunc=Base64EncodeOperator<cr>g@
-vnoremap <silent><leader>e64 :<c-u>call Base64EncodeOperator(visualmode())<cr>
+" TODO custom op mappings for blockwise visual mode & linewise motions
+nnoremap <silent><leader>d64 :set operatorfunc=<SID>Base64DecodeOperator<cr>g@
+vnoremap <silent><leader>d64 :<c-u>call <SID>Base64DecodeOperator(visualmode())<cr>
+nnoremap <silent><leader>e64 :set operatorfunc=<SID>Base64EncodeOperator<cr>g@
+vnoremap <silent><leader>e64 :<c-u>call <SID>Base64EncodeOperator(visualmode())<cr>
 
 " ----------------------------
 
 " --------------------------------------------------------------------
 " json to yaml or back
 "
-function! ToJsonOperator(type)
+function! s:ToJsonOperator(type)
   let saved_unnamed_register = @"
 
-  if CommonOperator(a:type)  " selects and copies motion
+  if <SID>CommonOperator(a:type)  " selects and copies motion
     let @"=system('yq read - --prettyPrint --tojson', @")
     normal! gvP
   endif
@@ -519,10 +518,10 @@ function! ToJsonOperator(type)
   let @" = saved_unnamed_register
 endfunction
 
-function! ToYamlOperator(type)
+function! s:ToYamlOperator(type)
   let saved_unnamed_register = @"
 
-  if CommonOperator(a:type)  " selects and copies motion
+  if <SID>CommonOperator(a:type)  " selects and copies motion
     let @"=system('yq read - --prettyPrint', @")
     normal! gvP
   endif
@@ -532,25 +531,26 @@ endfunction
 
 
 " custom operator mappings
-" TODO custom op mappings for line- and blockwise visual mode & linewise motions
-nnoremap <silent><leader>toj :set operatorfunc=ToJsonOperator<cr>g@
-vnoremap <silent><leader>toj :<c-u>call ToJsonOperator(visualmode())<cr>
-nnoremap <silent><leader>toy :set operatorfunc=ToYamlOperator<cr>g@
-vnoremap <silent><leader>toy :<c-u>call ToYamlOperator(visualmode())<cr>
+" TODO custom op mappings for blockwise visual mode & linewise motions
+nnoremap <silent><leader>toj :set operatorfunc=<SID>ToJsonOperator<cr>g@
+vnoremap <silent><leader>toj :<c-u>call <SID>ToJsonOperator(visualmode())<cr>
+nnoremap <silent><leader>toy :set operatorfunc=<SID>ToYamlOperator<cr>g@
+vnoremap <silent><leader>toy :<c-u>call <SID>ToYamlOperator(visualmode())<cr>
 
 " --------------------------------------------------------------------
 
 
 " ------------------
 " vimrc helpers
-" nicked from Steve Slosh: Learn Vimscript the Hard Way
-function! VimrcSplit()
-  :call VerticalSplitAndSwitch()
+" nicked from https://learnvimscriptthehardway.stevelosh.com/
+
+function! s:VimrcSplit()
+  :call <SID>VerticalSplitAndSwitch()
   :e ~/.vim/vimrc
 endfunction
 
 " open vimrc for editing
-nnoremap <leader>ev :call VimrcSplit()<cr>
+nnoremap <leader>ev :call <SID>VimrcSplit()<cr>
 
 " source vimrc
 nnoremap <leader>sc :source ~/.vim/vimrc<cr>
@@ -559,24 +559,21 @@ nnoremap <leader>sc :source ~/.vim/vimrc<cr>
 
 
 " ---------------------------
-" horizontal split and switch
-"
-function! SplitAndSwitch()
+" split helpers
+
+function! s:SplitAndSwitch()
   :split
   execute "normal! \<c-w>j"
 endfunction
 
-nnoremap <leader>sh :call SplitAndSwitch()<cr>
-" ---------------------------
-" ---------------------------
-" vertical split and switch
-"
-function! VerticalSplitAndSwitch()
+nnoremap <leader>sh :call <SID>SplitAndSwitch()<cr>
+
+function! s:VerticalSplitAndSwitch()
   :vsplit
   execute "normal! \<c-w>l"
 endfunction
 
-nnoremap <leader>sv :call VerticalSplitAndSwitch()<cr>
+nnoremap <leader>sv :call <SID>VerticalSplitAndSwitch()<cr>
 " ---------------------------
 
 
@@ -593,15 +590,13 @@ vnoremap L <c-f>
 nnoremap <leader>c ddO<esc>
 
 
-" --------------------------------------------------
-" vimscript functions not dependend on plugins start
 
 " -------------------
 " textobj indentation
-onoremap <silent>ai :<C-U>cal <SID>IndTxtObj(0)<CR>
-onoremap <silent>ii :<C-U>cal <SID>IndTxtObj(1)<CR>
-vnoremap <silent>ai :<C-U>cal <SID>IndTxtObj(0)<CR><Esc>gv
-vnoremap <silent>ii :<C-U>cal <SID>IndTxtObj(1)<CR><Esc>gv
+onoremap <silent>ai :<C-U>call <SID>IndTxtObj(0)<CR>
+onoremap <silent>ii :<C-U>call <SID>IndTxtObj(1)<CR>
+vnoremap <silent>ai :<C-U>call <SID>IndTxtObj(0)<CR><Esc>gv
+vnoremap <silent>ii :<C-U>call <SID>IndTxtObj(1)<CR><Esc>gv
 
 function! s:IndTxtObj(inner)
   let curline = line('.')
@@ -620,7 +615,9 @@ function! s:IndTxtObj(inner)
     call cursor(curline, 0)
     let p = line('.') + 1
     let nextblank = getline(p) =~? '^\\s*$'
-    while p <= lastline && ((i == 0 && !nextblank) || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner)) || (nextblank && !a:inner))))
+    while p <= lastline && ((i == 0 && !nextblank)
+          \ || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner))
+          \ || (nextblank && !a:inner))))
       +
       let p = line('.') + 1
       let nextblank = getline(p) =~? '^\\s*$'
@@ -630,18 +627,40 @@ function! s:IndTxtObj(inner)
 endfunction
 " -------------------
 
+
+" run sphinx via tox, after pandoc has turned the file in the current
+" buffer (markdown) into an rst|restructured text file for sphinx
+cnoremap p! ! name="$(echo % \| sed -r 's/\..*//' \| head -n1)";
+                      \ pandoc "$name".md -o "$name".rst;
+                      \ (cd "$(git rev-parse --show-toplevel)" && tox)
+
+" sudo write this, no use with firejail obviously
+cnoremap W! w !sudo tee % >/dev/null
+
+
+" ----------------------------------------------
+" Small helper that inserts a random uuid4
+function! InsertUUID4()
+python3 << endpython
+if 1:
+    import uuid, vim
+    vim.command('return "%s"' % str(uuid.uuid4()))
+endpython
+endfunction
+" ----------------------------------------------
+
 " -----------------------------------
 " prepend and append separating lines
 
-function! AppendSeparator()
+function! s:AppendSeparator()
   normal mlyy}kp^v$r-xxgclk'l
 endfunction
-function! PrependSeparator()
+function! s:PrependSeparator()
   normal yyP^v$r-xxgclj
 endfunction
 
-nnoremap <leader>sa  :call AppendSeparator()<cr>
-nnoremap <leader>sp  :call PrependSeparator()<cr>
+command AppendSeparator  :call <SID>AppendSeparator()
+command PrependSeparator  :call <SID>PrependSeparator()
 " -----------------------------------
 
 
@@ -650,7 +669,8 @@ function! DeleteCharAtEndOfLine()
   normal! mz$x`z
 endfunction
 
-nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>:silent! call repeat#set("\<leader>d", -1)<cr>
+nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
+                  \ :silent! call repeat#set("\<leader>d", -1)<cr>
 " -------------------------------
 
 
@@ -658,6 +678,7 @@ nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>:silent! call repeat#set("\
 nnoremap <leader>gr" :let @"=@+<cr>
 " copy no-name register to clipboard
 nnoremap <leader>gr+ :let @+=@"<cr>
+
 
 " Delete to Black Hole Register | Delete to Blackhole Register | Delete into the Void
 " normal mode; combine with any textobject
@@ -675,6 +696,7 @@ function! JumpToPos()
 endfunction
 nnoremap ' :call JumpToPos()<cr>
 
+
 " ---------------------------------------------------------------------
 let s:replacement = ''  " global so last replacement will be remembered
 function! s:ReplaceCharAtEndOfLine(isRepeat)
@@ -685,8 +707,10 @@ function! s:ReplaceCharAtEndOfLine(isRepeat)
   silent! call repeat#set("\<plug>ReplaceCharAtEndOfLineRepeat")
 endfunction
 
-nnoremap <silent> <plug>ReplaceCharAtEndOfLineRepeat :<c-u>call <sid>ReplaceCharAtEndOfLine(1)<cr>
-nnoremap <silent> <plug>ReplaceCharAtEndOfLine :<c-u>call <sid>ReplaceCharAtEndOfLine(0)<cr>
+nnoremap <silent> <plug>ReplaceCharAtEndOfLineRepeat
+                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(1)<cr>
+nnoremap <silent> <plug>ReplaceCharAtEndOfLine
+                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(0)<cr>
 nnoremap <leader>R <plug>ReplaceCharAtEndOfLine
 " ---------------------------------------------------------------------
 
@@ -701,13 +725,15 @@ function! s:AppendCharAtEndOfLine(isRepeat)
   silent! call repeat#set("\<plug>AppendCharAtEndOfLineRepeat")
 endfunction
 
-nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
-nnoremap <silent> <plug>AppendCharAtEndOfLine :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
+nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat
+                  \ :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
+nnoremap <silent> <plug>AppendCharAtEndOfLine
+                  \ :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
 nnoremap <leader>sA <plug>AppendCharAtEndOfLine
 " ---------------------------------------------------------------------
 
-" vimscript functions not dependend on plugins end
-" --------------------------------------------------
+
+
 
 
 

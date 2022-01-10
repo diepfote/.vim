@@ -1162,8 +1162,8 @@ highlight CocWarningHighlight ctermbg=white guibg=white
 " -------------
 " Abbreviations
 
-cabbrev rclt cheatsheets_commit_and_push
-cabbrev rclf cheatsheets_pull
+cabbrev commit cheatsheets_commit_and_push
+cabbrev pull cheatsheets_pull
 
 " -------------
 

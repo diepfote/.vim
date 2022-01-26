@@ -554,6 +554,8 @@ nnoremap <leader>ev :call <SID>VimrcSplit()<cr>
 
 " source vimrc
 nnoremap <leader>sc :source ~/.vim/vimrc<cr>
+" source tempfile
+nnoremap <leader>st :source ~/Desktop/vim-tempfile.vim<cr>
 
 " ------------------
 
@@ -734,10 +736,6 @@ nnoremap <silent> <plug>AppendCharAtEndOfLine
                   \ :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
 nnoremap <leader>sA <plug>AppendCharAtEndOfLine
 " ---------------------------------------------------------------------
-
-
-
-
 
 
 
@@ -1004,6 +1002,8 @@ Plug 'florianbegusch/vim-primitive-yamlsort'
 
 " ------------------------
 " clam
+"
+
 Plug 'sjl/clam.vim'
 
 " open below current window (horizontally)
@@ -1012,6 +1012,7 @@ let g:clam_winpos = 'belowright'
 " type ! in normal or visual mode to run Clam quickly
 nnoremap ! :Clam<space>source<space>~/.vim/source-me;<space>
 vnoremap ! :ClamVisual<space>source<space>~/.vim/source-me;<space>
+
 " ------------------------
 
 " ------------------------

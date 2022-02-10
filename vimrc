@@ -511,7 +511,7 @@ function! s:ToJsonOperator(type)
   let saved_unnamed_register = @"
 
   if <SID>CommonOperator(a:type)  " selects and copies motion
-    let @"=system('yq read - --prettyPrint --tojson', @")
+    let @"=system('yq .', @")
     normal! gvP
   endif
 
@@ -522,7 +522,7 @@ function! s:ToYamlOperator(type)
   let saved_unnamed_register = @"
 
   if <SID>CommonOperator(a:type)  " selects and copies motion
-    let @"=system('yq read - --prettyPrint', @")
+    let @"=system('yq --yaml-output .', @")
     normal! gvP
   endif
 

@@ -751,11 +751,21 @@ if has('nvim')
   Plug 'neoclide/coc.nvim'
 
   if os ==# 'Darwin' || os ==# 'Mac'
-    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy']
-    let g:coc_buffers_to_apply_to = '*.py,*.groovy'
+
+    " TODO change ft to yaml.ansible -> coc-ansible
+    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy', '@yaegassy/coc-ansible']
+
+    " custom for Coc Mappings below
+    let g:coc_buffers_to_apply_to = '*.py,*.groovy,*.json,*.yaml,*.conf'
+    let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
+
   elseif os ==# 'Linux'
-    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic']
-    let g:coc_buffers_to_apply_to = '*.py'
+
+    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic, 'coc-clangd']
+    " custom for Coc Mappings below
+    let g:coc_buffers_to_apply_to = '*.py,*.json,*.yaml'
   endif
 
   augroup coc_mappings
@@ -789,6 +799,8 @@ if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 
 else
+  " NOT NEOVIM
+
   " Trigger completion.
   inoremap <silent><expr> <c-@> coc#refresh()
 endif

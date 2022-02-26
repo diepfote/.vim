@@ -763,7 +763,7 @@ if has('nvim')
 
   elseif os ==# 'Linux'
 
-    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic, 'coc-clangd']
+    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
     " custom for Coc Mappings below
     let g:coc_buffers_to_apply_to = '*.py,*.json,*.yaml'
   endif

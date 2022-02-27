@@ -636,8 +636,6 @@ cnoremap p! ! name="$(echo % \| sed -r 's/\..*//' \| head -n1)";
                       \ pandoc "$name".md -o "$name".rst;
                       \ (cd "$(git rev-parse --show-toplevel)" && tox)
 
-" sudo write this, no use with firejail obviously
-cnoremap W! w !sudo tee % >/dev/null
 
 
 " ----------------------------------------------
@@ -1138,6 +1136,11 @@ if has('nvim')
 
   "  vim-go settings end
   " -----------------------------------
+
+" does not work in neovim
+" cnoremap W! w !sudo tee % >/dev/null
+" thus:
+Plug 'lambdalisue/suda.vim'
 
 endif
 

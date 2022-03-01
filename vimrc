@@ -312,13 +312,15 @@ function! s:StripTrailingWhitespace()
       return
     elseif &ft =~? 'yaml'
       " remove trailing new lines to pass zuul jobs
-      %s/\($\n\s*\)\+\%$//e
+      execute '%s/\($\n\s*\)\+\%$//e'
+
 
       " no return --> fall through
     endif
 
+
     " default behavior, trim trailing whitespace in lines
-    %s/\s\+$//e
+    execute '%s/\s\+$//e'
 endfunction
 
 augroup trailing_whitespace

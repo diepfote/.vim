@@ -861,18 +861,21 @@ let g:ack_mappings = {
 " replace ack by ag
 " let g:ackprg = 'ag --vimgrep'
 " if only grep available
-let g:ackprg = 'grep -n --exclude-dir=.git
-                      \ --exclude-dir=.helm
-                      \ --exclude-dir=.tox
-                      \ --exclude-dir=.mypy_cache
-                      \ --exclude-dir=.eggs
-                      \ --exclude-dir=*.egg-info
-                      \ --exclude-dir=*venv*
-                      \ --exclude-dir=*build*
-                      \ --exclude-dir=__pycache__
-                      \ --exclude-dir=.pytest_cache
-                      \ --exclude-dir=htmlcov
-                      \ --exclude=Session.vim'
+let g:ackprg = 'grep -n
+                  \ --exclude-dir=.git
+                  \ --exclude-dir=.helm
+                  \ --exclude-dir=.tox
+                  \ --exclude-dir=.pulumi
+                  \ --exclude-dir=.cache
+                  \ --exclude-dir=.mypy_cache
+                  \ --exclude-dir=.eggs
+                  \ --exclude-dir=*.egg-info
+                  \ --exclude-dir=*venv*
+                  \ --exclude-dir=_build
+                  \ --exclude-dir=__pycache__
+                  \ --exclude-dir=.pytest_cache
+                  \ --exclude-dir=htmlcov
+                  \ --exclude=Session.vim'
 " ----------------------------
 
 

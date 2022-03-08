@@ -170,9 +170,15 @@ set statusline +=\ \ %-10f
 "  formatting start
 set formatoptions=qrn1  " refer to https://neovim.io/doc/user/change.html#fo-table
 
+function s:FormatXML()
+  :%!python3 -c "import xml.dom.minidom, sys;
+        \ print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+
+  execute 'g/^\s*$/d'
+endfunction
+
 " Commands not functions (no need for `:call <funcname>()` -> use plain `:<command>`
-command! FormatXML :%!python3 -c "import xml.dom.minidom, sys;
-                      \ print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+command! FormatXML :call <SID>FormatXML()
 command! FormatJSON :%!python3 -m json.tool
 
 "  formatting start

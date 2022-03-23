@@ -1,4 +1,3 @@
 source ~/Documents/scripts/source-me/common-functions.sh
 source ~/Documents/scripts/source-me/posix-compliant-shells.sh
-source ~/.sh_functions
 

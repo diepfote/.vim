@@ -212,7 +212,7 @@ set mouse=a
 " ------------------------
 "  focus related
 
-" change to directory of current file automatically
+" cd | change to directory of current file automatically
 function! s:ChangeToDirOfFile()
   let l:absolute_dir_to_file = '%:p:h'
   if isdirectory(expand(l:absolute_dir_to_file))

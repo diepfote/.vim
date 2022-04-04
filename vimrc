@@ -34,6 +34,23 @@ nnoremap <c-left>  :vertical resize -2<cr>
 nnoremap <c-right>  :vertical resize +2<cr>
 
 
+let g:toggle_window_zoom_enabled = 0
+function! s:ToggleWindowZoom()
+  if g:toggle_window_zoom_enabled
+     let g:toggle_window_zoom_enabled = 0
+     execute "normal! \<c-w>="
+  else
+    let g:toggle_window_zoom_enabled = 1
+     execute "normal! \<c-w>_" | execute "normal! \<c-w>\|"
+  endif
+
+endfunction
+
+nnoremap <silent><leader>z  :call <SID>ToggleWindowZoom()<cr>
+
+
+
+
 " swap movement commands
 nnoremap (  :normal! {<cr>
 nnoremap )  :normal! }<cr>

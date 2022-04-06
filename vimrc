@@ -1207,7 +1207,7 @@ highlight CocWarningHighlight ctermbg=white guibg=white
 " Abbreviations
 
 cabbrev __commit cheatsheets_commit_and_push
-cabbrev pull cheatsheets_pull
+cabbrev __pull cheatsheets_pull
 
 " -------------
 

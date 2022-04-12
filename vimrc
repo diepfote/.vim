@@ -307,6 +307,9 @@ augroup set_custom_filetype_for_extensions
 
   autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
 
+  autocmd BufNewFile,BufRead */playbooks/*.yaml      set filetype=yaml.ansible
+  autocmd BufNewFile,BufRead */tests/*.yaml      set filetype=yaml.ansible
+  autocmd BufNewFile,BufRead */roles/*/*.yaml      set filetype=yaml.ansible
 
   autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail

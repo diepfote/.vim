@@ -963,6 +963,18 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 
 
 " --------------------------------
+" colorscheme onehalf
+
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+augroup set_colorscheme_for_yaml_files
+  autocmd FocusGained,BufEnter *.yaml :color onehalflight
+  autocmd FocusGained,BufEnter *.yml :color onehalflight
+augroup END
+
+" --------------------------------
+
+" --------------------------------
 " colorscheme almost without color
 "
 Plug 'pbrisbin/vim-colors-off'

@@ -968,8 +968,9 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
-  autocmd FocusGained,BufEnter *.yaml :color onehalflight
+  autocmd FocusGained,BufEnter * :color off
   autocmd FocusGained,BufEnter *.yml :color onehalflight
+  autocmd FocusGained,BufEnter *.yaml :color onehalflight
 augroup END
 
 " --------------------------------

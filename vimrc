@@ -69,9 +69,11 @@ set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,
 set wildmenu
 set wildmode=longest:full,full
 
-" for sidebars?
-let g:netrw_list_hide='^\.\(pyc\|pyo\)$'
-
+" for netrw hide:
+" - parent dir
+" - current dir
+" - python bytecode and object files
+let g:netrw_list_hide='\^(\.|\.\.)\(pyc\|pyo\)$'
 
 
 let os=substitute(system('uname'), '\n', '', '')
@@ -1226,4 +1228,3 @@ cabbrev __commit cheatsheets_commit_and_push
 cabbrev __pull cheatsheets_pull
 
 " -------------
-

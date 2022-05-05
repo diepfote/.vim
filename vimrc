@@ -1055,6 +1055,13 @@ Plug 'itspriddle/vim-shellcheck'
 Plug 'florianbegusch/vim-primitive-yamlsort'
 
 
+" built-in yaml syntax highlighting breaks if
+" you have a array bracket expression.
+"
+" e.g.
+" "{{ sources[0]}}"
+Plug 'stephpy/vim-yaml'
+
 
 " ------------------------
 " clam

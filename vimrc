@@ -179,40 +179,55 @@ set tabline=%!GetCwdRelativeToHome()
 " statusline start
 
 
-" TODO
-" TODO s:
-function GetDirNameFullPath()
-  &filetype
-  col('.')
-  &readonly
-
+function GetStatusLine()
   " http://derekwyatt.org/2015/07/27/getting-character-under-cursor-in-vim/
   " https://vim.fandom.com/wiki/Convert_between_hex_and_decimal
   let current_char_decimal = char2nr(matchstr(getline('.'), '\%31c.'))
-  let current_char_hex = echo printf('%x', current_char_decimal)
-
-  let full_path_to_cwd = expand('%:p:h')
+  let current_char_hex = printf('%x', current_char_decimal)
+  let current_column = col('.')
+  let full_path_to_cwd = expand('%:p:~')
   let filename = expand('%')
+  let obsession_status = ObsessionStatus()
+  let fugitive_status = fugitive#statusline()
 
+  " set statusline =ft=%y
+  let statusline_expanded = 'ft=' . &filetype
+
+  " %c -> column number
+  " set statusline +=\ \ \ col:%-3c
+  let statusline_expanded .= '   col:' . current_column
+
+  if &readonly
+    " %r -> readonly flag
+    " set statusline +=%4r
+    let statusline_expanded .= '%r' . '[RO]'
+  endif
+
+  if obsession_status
+    " set statusline +=\ %-3{ObsessionStatus()}
+    let statusline_expanded .= '%-3' . '{' . obsession_status . '}'
+  endif
+
+  " display character value for the character the cursor is hovering over
+  " set statusline +=%=cv:%3b,0x%2B
+  let statusline_expanded .= '%=' . 'cv:' . current_char_decimal . ',' . '0x' . current_char_hex
+
+  " git status info (branch name etc.)
+  " set statusline +=%=\ %{fugitive#statusline()}
+  if strlen(fugitive_status)
+    let statusline_expanded .= '%=' . fugitive_status
+  endif
+
+
+  " current buffer name
+  " set statusline +=\ \ %-10f
+  let statusline_expanded .= ' ' . full_path_to_cwd
+  let statusline_expanded .= '/' . filename
+
+  return statusline_expanded
 endfunction
-" set statusline=%!GetDirNameFullPath()
 
-
-" %c -> column number
-" %r -> readonly flag
-set statusline =ft=%y
-set statusline +=\ \ \ col:%-3c
-set statusline +=%4r
-set statusline +=\ %-3{ObsessionStatus()}
-
-" display character value for the character the cursor is hovering over
-set statusline +=%=cv:%3b,0x%2B
-
-" git status info (branch name etc.)
-set statusline +=%=\ %{fugitive#statusline()}
-
-" current buffer name
-set statusline +=\ \ %-10f
+set statusline=%!GetStatusLine()
 
 " statusline end
 " -----------

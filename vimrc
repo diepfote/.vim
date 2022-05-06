@@ -162,6 +162,19 @@ command ToggleListCharsOptions :call <SID>ToggleListCharsOptions()
 set colorcolumn=72 " display vertical line to show character limit
 
 
+
+" -----------
+" tabline start
+function GetCwdRelativeToHome()
+  return fnamemodify(getcwd(), ':~')
+endfunction
+
+" always show
+set showtabline=2
+set tabline=%!GetCwdRelativeToHome()
+" tabline end
+" -----------
+
 " -----------
 " statusline start
 

@@ -178,6 +178,26 @@ set tabline=%!GetCwdRelativeToHome()
 " -----------
 " statusline start
 
+
+" TODO
+" TODO s:
+function GetDirNameFullPath()
+  &filetype
+  col('.')
+  &readonly
+
+  " http://derekwyatt.org/2015/07/27/getting-character-under-cursor-in-vim/
+  " https://vim.fandom.com/wiki/Convert_between_hex_and_decimal
+  let current_char_decimal = char2nr(matchstr(getline('.'), '\%31c.'))
+  let current_char_hex = echo printf('%x', current_char_decimal)
+
+  let full_path_to_cwd = expand('%:p:h')
+  let filename = expand('%')
+
+endfunction
+" set statusline=%!GetDirNameFullPath()
+
+
 " %c -> column number
 " %r -> readonly flag
 set statusline =ft=%y

@@ -186,9 +186,7 @@ function GetStatusLine()
   let current_char_hex = printf('%x', current_char_decimal)
   let current_column = col('.')
   let full_path_to_cwd = expand('%:p:~')
-  let filename = expand('%')
-  let obsession_status = ObsessionStatus()
-  let fugitive_status = fugitive#statusline()
+  let filename = expand('%:t')
 
   " set statusline =ft=%y
   let statusline_expanded = 'ft=' . &filetype
@@ -197,27 +195,20 @@ function GetStatusLine()
   " set statusline +=\ \ \ col:%-3c
   let statusline_expanded .= '   col:' . current_column
 
-  if &readonly
-    " %r -> readonly flag
-    " set statusline +=%4r
-    let statusline_expanded .= '%r' . '[RO]'
-  endif
+  " %r -> readonly flag
+  " set statusline +=%4r
+  let statusline_expanded .= ' %r'
 
-  if obsession_status
-    " set statusline +=\ %-3{ObsessionStatus()}
-    let statusline_expanded .= '%-3' . '{' . obsession_status . '}'
-  endif
+  let statusline_expanded .= '%-3{ObsessionStatus()}'
 
   " display character value for the character the cursor is hovering over
   " set statusline +=%=cv:%3b,0x%2B
   let statusline_expanded .= '%=' . 'cv:' . current_char_decimal . ',' . '0x' . current_char_hex
 
+
   " git status info (branch name etc.)
   " set statusline +=%=\ %{fugitive#statusline()}
-  if strlen(fugitive_status)
-    let statusline_expanded .= '%=' . fugitive_status
-  endif
-
+  let statusline_expanded .= '%=%{fugitive#statusline()}'
 
   " current buffer name
   " set statusline +=\ \ %-10f

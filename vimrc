@@ -179,14 +179,22 @@ set tabline=%!GetCwdRelativeToHome()
 " statusline start
 
 
+" TODO set buffer local
+" -> currently all buffer statuslines
+"    change at the same time
 function GetStatusLine()
   " http://derekwyatt.org/2015/07/27/getting-character-under-cursor-in-vim/
   " https://vim.fandom.com/wiki/Convert_between_hex_and_decimal
   let current_char_decimal = char2nr(matchstr(getline('.'), '\%31c.'))
   let current_char_hex = printf('%x', current_char_decimal)
   let current_column = col('.')
+
+  if isdirectory(expand('%'))
+    let filename = ''
+  else
+    let filename = '/' . expand('%:t')
+  endif
   let full_path_to_cwd = expand('%:p:~')
-  let filename = expand('%:t')
 
   " set statusline =ft=%y
   let statusline_expanded = 'ft=' . &filetype
@@ -213,7 +221,7 @@ function GetStatusLine()
   " current buffer name
   " set statusline +=\ \ %-10f
   let statusline_expanded .= ' ' . full_path_to_cwd
-  let statusline_expanded .= '/' . filename
+  let statusline_expanded .= filename
 
   return statusline_expanded
 endfunction

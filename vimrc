@@ -968,6 +968,9 @@ Plug 'luochen1990/rainbow'
 " :RainbowToggle
 let g:rainbow_active = 1  " enabled
 
+"
+" Check current text object by pressing <F4>
+"
 let g:rainbow_conf = {
 \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
 \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
@@ -985,6 +988,9 @@ let g:rainbow_conf = {
 \   },
 \   'yaml': {
   \     'parentheses_options': 'containedin=yamlFlowString,yamlPlainScalar contained',
+\   },
+\   'rst': {
+  \     'parentheses_options': 'containedin=rstExDirective',
 \   },
 \ }
 \}
@@ -1007,9 +1013,9 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
-  autocmd FocusGained,BufEnter * :color off
-  autocmd FocusGained,BufEnter *.yml :color onehalflight
-  autocmd FocusGained,BufEnter *.yaml :color onehalflight
+  autocmd FocusGained,BufEnter * :color off | :RainbowToggleOn
+  autocmd FocusGained,BufEnter *.yml :color onehalflight | :RainbowToggleOn
+  autocmd FocusGained,BufEnter *.yaml :color onehalflight | :RainbowToggleOn
 augroup END
 
 " --------------------------------

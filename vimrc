@@ -64,16 +64,26 @@ set nocompatible
 set backspace=indent,eol,start
 
 
-" customize the wildmenu
-set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class,*/*.dSYM/*,*.dylib,*.so,*.PNG,*.JPG
-set wildmenu
-set wildmode=longest:full,full
+" ----------------
+"  netrw START
 
-" for netrw hide:
+" for netrw_list_hide used in tpope/vim-vinegar:
 " - parent dir
 " - current dir
 " - python bytecode and object files
-let g:netrw_list_hide='\^(\.|\.\.)\(pyc\|pyo\)$'
+" customize the wildmenu
+set wildignore+=*.dll,*.o,*.py[c,o],*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class,*/*.dSYM/*,*.dylib,*.so,*.PNG,*.JPG,\.,\.\.
+set wildmenu
+set wildmode=longest:full,full
+
+" keep browsing directory and netrw directories synced
+" snatched from https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
+let g:netrw_keepdir = 0
+
+
+"  netrw END
+" ----------------
+
 
 
 let os=substitute(system('uname'), '\n', '', '')

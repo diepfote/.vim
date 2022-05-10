@@ -191,6 +191,14 @@ function GetStatusLine()
   let full_path_to_cwd = expand('%:p:~:h')
   let filename = expand('%:t')
 
+  " check whether a file or dir named `filename` exists.
+  " -> if not this is a directory and we need to unset the filename
+  "    as `full_path_to_cwd` already is the directory name.
+  "
+  if empty(glob(full_path_to_cwd . '/' . filename))
+    let filename = ''
+  endif
+
   " set statusline =ft=%y
   let statusline_expanded = 'ft=' . &filetype
 

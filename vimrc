@@ -1007,7 +1007,7 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
-  autocmd FocusGained,BufEnter * :color off | :RainbowToggleOn
+  autocmd FocusGained,BufEnter * :call ColorsOff() | :RainbowToggleOn
   autocmd FocusGained,BufEnter *.yml :color onehalflight | :RainbowToggleOn
   autocmd FocusGained,BufEnter *.yaml :color onehalflight | :RainbowToggleOn
 augroup END
@@ -1237,16 +1237,17 @@ endif
 call plug#end()
 
 
-" pbrisbin/vim-colors-off
-set background=light
-colorscheme off
-" set statusline color
-highlight StatusLine gui=bold,reverse cterm=bold,reverse
-" do not highlight current line
-highlight CursorLine guifg=NONE guibg=NONE cterm=NONE ctermbg=NONE ctermfg=NONE
-" change color for vertical line indicating character limit
-highlight ColorColumn guifg=NONE guibg=seashell2
-
+function ColorsOff()
+  " pbrisbin/vim-colors-off
+  set background=light
+  colorscheme off
+  " set statusline color
+  highlight StatusLine gui=bold,reverse cterm=bold,reverse
+  " do not highlight current line
+  highlight CursorLine guifg=NONE guibg=NONE cterm=NONE ctermbg=NONE ctermfg=NONE
+  " change color for vertical line indicating character limit
+  highlight ColorColumn guifg=NONE guibg=seashell2
+endfunction
 
 
 " set search highlight color

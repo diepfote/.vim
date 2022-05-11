@@ -181,28 +181,41 @@ endfunction
 
 " always show
 set showtabline=2
-set tabline=%!GetCwdRelativeToHome()
+" set tabline=%!GetCwdRelativeToHome()
+
+set tabline=ft=%y
+
+" %r -> readonly flag
+set tabline+=%5r
+" %c -> column number
+set tabline+=\ \ col:%-3c
+
+" display whether this session is set to auto-save
+set tabline+=\ %-4{ObsessionStatus()}
+
+" display character value for the character the cursor is hovering over
+" decimal first, then hex
+set tabline+=\ [cv:%3b,0x%2B]
+
+" git status info (branch name etc.)
+set tabline+=%=\ %-40{fugitive#statusline()}
+
+
+" redraw tabline on almost any action
+" snatched from https://vi.stackexchange.com/a/28928
+augroup redrawTabline
+  au CursorMoved,CursorMovedI,TextChanged,TextChangedP,CmdlineEnter,CmdlineLeave,CmdlineChanged *  :redrawtabline
+augroup END
+
+
 " tabline end
 " -----------
 
 " -----------
 " statusline start
 
-" %c -> column number
-" %r -> readonly flag
-set statusline =ft=%y
-set statusline +=\ \ \ col:%-3c
-set statusline +=%4r
-set statusline +=\ %-3{ObsessionStatus()}
-
-" display character value for the character the cursor is hovering over
-set statusline +=%=cv:%3b,0x%2B
-
-" git status info (branch name etc.)
-set statusline +=%=\ %{fugitive#statusline()}
-
 " current buffer name
-set statusline +=\ \ %-10f
+set statusline=%=%-10F
 
 " statusline end
 " -----------

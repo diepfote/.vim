@@ -188,14 +188,14 @@ set tabline=ft=%y
 " %r -> readonly flag
 set tabline+=%5r
 " %c -> column number
-set tabline+=\ \ col:%-3c
+set tabline+=\ \ col:[%3c]
 
 " display whether this session is set to auto-save
 set tabline+=\ %-4{ObsessionStatus()}
 
 " display character value for the character the cursor is hovering over
 " decimal first, then hex
-set tabline+=\ [cv:%3b,0x%2B]
+set tabline+=\ cv:[%3b,0x%2B]
 
 " git status info (branch name etc.)
 set tabline+=%=\ %-40{fugitive#statusline()}

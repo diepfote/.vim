@@ -1008,8 +1008,8 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
   autocmd FocusGained,BufEnter * :call ColorsOff() | :RainbowToggleOn
-  autocmd FocusGained,BufEnter *.yml :color onehalflight | :RainbowToggleOn
-  autocmd FocusGained,BufEnter *.yaml :color onehalflight | :RainbowToggleOn
+  autocmd FocusGained,BufEnter *.yml :color onehalflight | :call DoNotHighlightCurrentLine()  | :RainbowToggleOn
+  autocmd FocusGained,BufEnter *.yaml :color onehalflight | :call DoNotHighlightCurrentLine() | :RainbowToggleOn
 augroup END
 
 " --------------------------------
@@ -1237,17 +1237,21 @@ endif
 call plug#end()
 
 
+function DoNotHighlightCurrentLine()
+  highlight CursorLine guifg=NONE guibg=NONE cterm=NONE ctermbg=NONE ctermfg=NONE
+endfunction
+
 function ColorsOff()
   " pbrisbin/vim-colors-off
   set background=light
   colorscheme off
+  call DoNotHighlightCurrentLine()
   " set statusline color
   highlight StatusLine gui=bold,reverse cterm=bold,reverse
-  " do not highlight current line
-  highlight CursorLine guifg=NONE guibg=NONE cterm=NONE ctermbg=NONE ctermfg=NONE
   " change color for vertical line indicating character limit
   highlight ColorColumn guifg=NONE guibg=seashell2
 endfunction
+call ColorsOff()
 
 
 " set search highlight color

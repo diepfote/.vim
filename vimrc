@@ -1007,8 +1007,8 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
-  autocmd FocusGained,BufEnter * :call ColorsOff() | :RainbowToggleOn
-  autocmd FocusGained,BufEnter *.rst,*.yaml,*.yml :color onehalflight | :call ChangeHighlightCurrentLine()  | :RainbowToggleOn
+  autocmd FocusGained,BufEnter * :call ColorOff()
+  autocmd FocusGained,BufEnter *.rst,*.yaml,*.yml :call ColorOneHalfLight()
 augroup END
 
 " --------------------------------
@@ -1246,18 +1246,34 @@ call plug#end()
 function ChangeHighlightCurrentLine()
   highlight CursorLine guifg=NONE guibg=lightyellow cterm=NONE ctermfg=NONE ctermbg=lightyellow
 endfunction
+function ChangeHighlightStatusLine()
+  highlight StatusLine gui=bold,reverse cterm=bold,reverse
+endfunction
+function ChangeHighlightTabLine()
+  highlight TabLineFill gui=bold,reverse cterm=bold,reverse
+endfunction
+function ChangeHighlightVerticalLine()
+  " indicates character limit
+  highlight ColorColumn guifg=NONE guibg=seashell2
+endfunction
 
-function ColorsOff()
+function ColorOneHalfLight()
+  colorscheme onehalflight
+  :RainbowToggleOn
+  call ChangeHighlightCurrentLine()
+  call ChangeHighlightTabLine()
+endfunction
+
+function ColorOff()
   " pbrisbin/vim-colors-off
   set background=light
   colorscheme off
+  :RainbowToggleOn
   call ChangeHighlightCurrentLine()
-  " set statusline color
-  highlight StatusLine gui=bold,reverse cterm=bold,reverse
-  " change color for vertical line indicating character limit
-  highlight ColorColumn guifg=NONE guibg=seashell2
+  call ChangeHighlightStatusLine()
+  call ChangeHighlightTabLine()
+  call ChangeHighlightVerticalLine()
 endfunction
-call ColorsOff()
 
 
 " set search highlight color

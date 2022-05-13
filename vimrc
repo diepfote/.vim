@@ -5,6 +5,7 @@
 if &shell =~# 'fish$'
     set shell=bash
 endif
+let os=substitute(system('uname'), '\n', '', '')
 
 " leave this at the top!!!
 "
@@ -83,18 +84,6 @@ let g:netrw_keepdir = 0
 
 "  netrw END
 " ----------------
-
-
-
-let os=substitute(system('uname'), '\n', '', '')
-" to use :FZF
-if os ==# 'Darwin' || os ==# 'Mac'
-  " installed via Homebrew
-  set rtp+=/usr/local/opt/fzf
-elseif os ==# 'Linux'
-  " installed via pacman
-  set rtp+=/usr/bin/fzf
-endif
 
 
 
@@ -939,18 +928,6 @@ let g:ackprg = 'grep -n
 
 
 Plug 'airblade/vim-gitgutter'
-
-
-
-" ---------------------
-"  fzf integration
-"
-Plug 'junegunn/fzf.vim'
-
-nnoremap M :Files<space>
-let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
-" ---------------------
-
 
 
 " --------------------------------

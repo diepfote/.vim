@@ -1008,8 +1008,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
   autocmd FocusGained,BufEnter * :call ColorsOff() | :RainbowToggleOn
-  autocmd FocusGained,BufEnter *.yml :color onehalflight | :call DoNotHighlightCurrentLine()  | :RainbowToggleOn
-  autocmd FocusGained,BufEnter *.yaml :color onehalflight | :call DoNotHighlightCurrentLine() | :RainbowToggleOn
+  autocmd FocusGained,BufEnter *.rst,*.yaml,*.yml :color onehalflight | :call DoNotHighlightCurrentLine()  | :RainbowToggleOn
 augroup END
 
 " --------------------------------
@@ -1098,6 +1097,9 @@ Plug 'florianbegusch/vim-primitive-yamlsort'
 " e.g.
 " "{{ sources[0]}}"
 Plug 'stephpy/vim-yaml'
+
+" Add jinja2 syntax highlighting
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 
 " ------------------------

@@ -164,9 +164,6 @@ set colorcolumn=72 " display vertical line to show character limit
 
 " -----------
 " tabline start
-function GetCwdRelativeToHome()
-  return fnamemodify(getcwd(), ':~')
-endfunction
 
 " always show
 set showtabline=2
@@ -1096,17 +1093,6 @@ let g:clam_winpos = 'belowright'
 nnoremap ! :Clam<space>source<space>~/.vim/source-me;<space>
 vnoremap ! :ClamVisual<space>source<space>~/.vim/source-me;<space>
 
-" ------------------------
-
-" ------------------------
-"  tabline
-"
-" DISABLED
-"
-
-" Plug 'mkitt/tabline.vim'
-" always display...
-" set showtabline=2
 " ------------------------
 
 

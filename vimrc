@@ -96,6 +96,8 @@ if has('nvim')
   "  n... :  where to save the viminfo files
   set viminfo='10,\"100,:20,%,n~/.viminfo
 
+  " set transparency for pop-up windows
+  set pumblend=40
 
   " ---------------------
   " jump to last location

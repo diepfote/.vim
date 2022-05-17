@@ -1207,16 +1207,36 @@ endif
 
 call plug#end()
 
+function ChangeCocHighlights()
+  " Remove gray background which makes CoC hints etc. hard to read
+  highlight CocFloating ctermbg=white guibg=white
+  " Disable underlining for Coc warnings
+  highlight CocWarningHighlight ctermbg=white guibg=white
+endfunction
+
+function ChangeHighlightSearch()
+  " set search highlight color
+  " hi Search cterm=NONE ctermfg=black ctermbg=white
+  "
+  set hlsearch  "to highlight in cterm
+  set incsearch
+  "
+  highlight Search gui=bold guifg=black guibg=yellow cterm=bold term=NONE ctermfg=black ctermbg=yellow
+  highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
+endfunction
 
 function ChangeHighlightCurrentLine()
   highlight CursorLine guifg=NONE guibg=lightyellow cterm=NONE ctermfg=NONE ctermbg=lightyellow
 endfunction
+
 function ChangeHighlightStatusLine()
   highlight StatusLine gui=bold,reverse cterm=bold,reverse
 endfunction
+
 function ChangeHighlightTabLine()
   highlight TabLineFill gui=bold,reverse cterm=bold,reverse
 endfunction
+
 function ChangeHighlightVerticalLine()
   " indicates character limit
   highlight ColorColumn guifg=NONE guibg=seashell2
@@ -1227,6 +1247,8 @@ function ColorOneHalfLight()
   :RainbowToggleOn
   call ChangeHighlightCurrentLine()
   call ChangeHighlightTabLine()
+  call ChangeCocHighlights()
+  call ChangeHighlightSearch()
 endfunction
 
 function ColorOff()
@@ -1238,23 +1260,9 @@ function ColorOff()
   call ChangeHighlightStatusLine()
   call ChangeHighlightTabLine()
   call ChangeHighlightVerticalLine()
+  call ChangeCocHighlights()
+  call ChangeHighlightSearch()
 endfunction
-
-
-" set search highlight color
-" hi Search cterm=NONE ctermfg=black ctermbg=white
-"
-set hlsearch  "to highlight in cterm
-set incsearch
-"
-highlight Search gui=bold guifg=black guibg=LightYellow cterm=bold term=NONE ctermfg=black ctermbg=LightYellow
-highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
-
-
-" Remove gray background which makes CoC hints etc. hard to read
-highlight CocFloating ctermbg=white guibg=white
-" Disable underlining for Coc warnings
-highlight CocWarningHighlight ctermbg=white guibg=white
 
 
 " -------------

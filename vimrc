@@ -1230,11 +1230,11 @@ function ChangeHighlightCurrentLine()
 endfunction
 
 function ChangeHighlightStatusLine()
-  highlight StatusLine gui=bold,reverse cterm=bold,reverse
+  highlight StatusLine guibg=lightred guifg=black ctermfg=black ctermbg=lightred
 endfunction
 
 function ChangeHighlightTabLine()
-  highlight TabLineFill gui=bold,reverse cterm=bold,reverse
+  highlight TabLineFill guifg=black guibg=lightblue
 endfunction
 
 function ChangeHighlightVerticalLine()
@@ -1246,6 +1246,7 @@ function ColorOneHalfLight()
   colorscheme onehalflight
   :RainbowToggleOn
   call ChangeHighlightCurrentLine()
+  call ChangeHighlightStatusLine()
   call ChangeHighlightTabLine()
   call ChangeCocHighlights()
   call ChangeHighlightSearch()

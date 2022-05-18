@@ -1230,11 +1230,11 @@ function ChangeHighlightCurrentLine()
 endfunction
 
 function ChangeHighlightStatusLine()
-  highlight StatusLine guibg=lightred guifg=black ctermfg=black ctermbg=lightred
+  highlight StatusLine guibg=lightred guifg=#444444 ctermfg=grey ctermbg=lightred
 endfunction
 
 function ChangeHighlightTabLine()
-  highlight TabLineFill guifg=black guibg=lightblue
+  highlight TabLineFill guibg=lightblue guifg=#444444 ctermfg=grey ctermbg=lightblue
 endfunction
 
 function ChangeHighlightVerticalLine()

@@ -1,9 +1,19 @@
 {
-  "hover.target": "preview",
+  "suggest.floatConfig.border": true,
+  "hover.floatConfig.border": true,
 
-//  "yaml.schemas": {
-//     "kubernetes": "/*.yaml"
-// },
+  "diagnostic.floatConfig": {
+    "border": true,
+    "maxHeight": 10,
+    "maxWidth": 30,
+    "winblend": 10,
+    "highlight": true,
+    "close": true,
+  },
+
+  "yaml.schemas": {
+     "kubernetes": "/*.yaml"
+  },
 
 
   "diagnostic-languageserver.filetypes": {

@@ -97,7 +97,7 @@ if has('nvim')
   set viminfo='10,\"100,:20,%,n~/.viminfo
 
   " set transparency for pop-up windows
-  set pumblend=40
+  set pumblend=20
 
   " ---------------------
   " jump to last location
@@ -1207,13 +1207,6 @@ endif
 
 call plug#end()
 
-function ChangeCocHighlights()
-  " Remove gray background which makes CoC hints etc. hard to read
-  highlight CocFloating ctermbg=white guibg=white
-  " Disable underlining for Coc warnings
-  highlight CocWarningHighlight ctermbg=white guibg=white
-endfunction
-
 function ChangeHighlightSearch()
   " set search highlight color
   " hi Search cterm=NONE ctermfg=black ctermbg=white
@@ -1248,7 +1241,6 @@ function ColorOneHalfLight()
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()
   call ChangeHighlightTabLine()
-  call ChangeCocHighlights()
   call ChangeHighlightSearch()
 endfunction
 
@@ -1261,7 +1253,6 @@ function ColorOff()
   call ChangeHighlightStatusLine()
   call ChangeHighlightTabLine()
   call ChangeHighlightVerticalLine()
-  call ChangeCocHighlights()
   call ChangeHighlightSearch()
 endfunction
 

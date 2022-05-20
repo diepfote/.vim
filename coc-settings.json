@@ -3,6 +3,7 @@
   "hover.floatConfig.border": true,
 
   "diagnostic.floatConfig": {
+    // :help coc-config-dialog
     "border": true,
     "maxHeight": 10,
     "maxWidth": 30,
@@ -10,6 +11,7 @@
     "highlight": true,
     "close": true,
   },
+
 
   "yaml.schemas": {
      "kubernetes": "/*.yaml"

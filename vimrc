@@ -754,6 +754,100 @@ endfunction
 nnoremap ' :call <SID>JumpToPos()<cr>
 
 
+
+
+
+" -----------------------
+" justinmk shell bind START
+"
+" whole section nicked from https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L933-L1012
+
+" :shell
+" Creates a global default :shell with maximum 'scrollback'.
+func! s:ctrl_s(cnt, new, here) abort
+  let init = { 'prevwid': win_getid() }
+  let g:term_shell = a:new ? init : get(g:, 'term_shell', init)
+  let d = g:term_shell
+  let b = bufnr(':shell')
+
+  if bufexists(b) && a:here  " Edit the :shell buffer in this window.
+    exe 'buffer' b
+    let d.prevwid = win_getid()
+    return
+  endif
+
+  " Return to previous window.
+  if bufnr('%') == b
+    let term_prevwid = win_getid()
+    if !win_gotoid(d.prevwid)
+      wincmd p
+    endif
+    if bufnr('%') == b
+      " Edge-case: :shell buffer showing in multiple windows in curtab.
+      " Find a non-:shell window in curtab.
+      let bufs = filter(tabpagebuflist(), 'v:val != '.b)
+      if len(bufs) > 0
+        exe bufwinnr(bufs[0]).'wincmd w'
+      else
+        " Last resort: WTF, just go to previous tab?
+        " tabprevious
+        return
+      endif
+    endif
+    let d.prevwid = term_prevwid
+    return
+  endif
+
+  " Go to existing :shell or create new.
+  let curwinid = win_getid()
+  if a:cnt == 0 && bufexists(b) && winbufnr(d.prevwid) == b
+    call win_gotoid(d.prevwid)
+  elseif bufexists(b)
+    let w = bufwinid(b)
+    if a:cnt == 0 && w > 0  " buffer exists in current tabpage
+      call win_gotoid(w)
+    else  " not in current tabpage; go to first found
+      let ws = win_findbuf(b)
+      if a:cnt == 0 && !empty(ws)
+        call win_gotoid(ws[0])
+      else
+        exe ((a:cnt == 0) ? 'tab split' : a:cnt.'split')
+        exe 'buffer' b
+        " augroup nvim_shell
+        "   autocmd!
+        "   autocmd TabLeave <buffer> if winnr('$') == 1 && bufnr('%') == g:term_shell.termbuf | tabclose | endif
+        " augroup END
+      endif
+    endif
+  else
+    let origbuf = bufnr('%')
+    exe ((a:cnt == 0) ? 'tab split' : a:cnt.'split')
+    terminal
+    setlocal scrollback=-1
+    " augroup nvim_shell
+    "   autocmd!
+    "   autocmd TabLeave <buffer> if winnr('$') == 1 && bufnr('%') == g:term_shell.termbuf | tabclose | endif
+    " augroup END
+    file :shell
+    " XXX: original term:// buffer hangs around after :file ...
+    bwipeout! #
+    " Set alternate buffer to something intuitive.
+    let @# = origbuf
+    tnoremap <buffer> <C-s> <C-\><C-n>:call <SID>ctrl_s(0, v:false, v:false)<CR>
+  endif
+  " if a:enter
+  "   startinsert  " enter terminal-mode
+  " endif
+  let d.prevwid = curwinid
+endfunc
+nnoremap <C-s> :<C-u>call <SID>ctrl_s(v:count, v:false, v:false)<CR>
+nnoremap '<C-s> :<C-u>call <SID>ctrl_s(v:count, v:false, v:true)<CR>
+
+" justinmk shell bind END
+" -----------------------
+
+
+
 " ---------------------------------------------------------------------
 let s:replacement = ''  " global so last replacement will be remembered
 function! s:ReplaceCharAtEndOfLine(isRepeat)

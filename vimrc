@@ -971,6 +971,9 @@ augroup END
 " -----------------
 
 
+Plug 'justinmk/vim-dirvish'
+
+
 " ----------------------
 " tagbar
 "

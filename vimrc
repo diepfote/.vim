@@ -609,7 +609,7 @@ nnoremap <leader>ev :call <SID>VimrcSplit()<cr>
 " source vimrc
 nnoremap <leader>sc :source ~/.vim/vimrc<cr>
 " source tempfile
-nnoremap <leader>st :source ~/Desktop/vim-tempfile.vim<cr>
+nnoremap <leader>st :source %<cr>
 
 " ------------------
 

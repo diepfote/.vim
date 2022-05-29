@@ -479,6 +479,11 @@ vnoremap <right> <NOP>
 " -------------------------------
 
 
+" nicked from https://github.com/justinmk/config/blob/d4c0a1733206c3a973dce10ce122d64456fd7eb9/.config/nvim/init.vim#L738
+" repeat last command for each line of a visual selection
+xnoremap . :normal .<CR>
+
+
 " -----------------
 " window management
 inoremap <C-h> <esc><C-w>ha

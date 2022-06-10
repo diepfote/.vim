@@ -675,6 +675,9 @@ vnoremap L <c-f>
 " clear line
 nnoremap <leader>c ddO<esc>
 
+" snatched from https://github.com/jessfraz/.vim/blob/5f0c5536acde95b0022ffec66b594c630512ff5f/vimrc#L225-L226
+" remove search hightlight
+nnoremap <leader><space> :nohlsearch<CR>
 
 
 " -------------------

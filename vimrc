@@ -1346,7 +1346,14 @@ function ChangeHighlightVerticalLine()
 endfunction
 
 function ColorOneHalfLight()
-  colorscheme onehalflight
+  let l:colorscheme_name = 'onehalflight'
+  if exists('g:colors_name')
+    if g:colors_name ==# l:colorscheme_name
+      return
+    endif
+  endif
+
+  execute 'colorscheme ' . l:colorscheme_name
   :RainbowToggleOn
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()
@@ -1355,9 +1362,16 @@ function ColorOneHalfLight()
 endfunction
 
 function ColorOff()
+  let l:colorscheme_name = 'off'
+  if exists('g:colors_name')
+    if g:colors_name ==# l:colorscheme_name
+      return
+    endif
+  endif
+
   " pbrisbin/vim-colors-off
   set background=light
-  colorscheme off
+  execute 'colorscheme ' . l:colorscheme_name
   :RainbowToggleOn
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()

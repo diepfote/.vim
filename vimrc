@@ -361,7 +361,7 @@ augroup set_custom_filetype_for_extensions
   autocmd BufRead,BufNewFile *.hook set ft=sh
 
 
-  autocmd FocusGained,BufEnter ~/.mutt/*      set filetype=muttrc
+  autocmd BufNewFile,BufRead ~/.mutt/*      set filetype=muttrc
 
   autocmd BufNewFile,BufRead */playbooks/*.yaml      set filetype=yaml.ansible
   autocmd BufNewFile,BufRead */tests/*.yaml      set filetype=yaml.ansible
@@ -1127,7 +1127,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 augroup set_colorscheme_for_yaml_files
   autocmd FocusGained,BufEnter * :call ColorOff()
-  autocmd FocusGained,BufEnter *.rst,*.yaml,*.yml :call ColorOneHalfLight()
+  autocmd FileType rst,yaml :call ColorOneHalfLight()
 augroup END
 
 " --------------------------------

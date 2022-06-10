@@ -65,6 +65,12 @@ set nocompatible
 set backspace=indent,eol,start
 
 
+" snatched from https://github.com/jessfraz/.vim/blob/5f0c5536acde95b0022ffec66b594c630512ff5f/vimrc#L59-L61
+" open help vertically
+command! -nargs=* -complete=help Help vertical belowright help <args>
+autocmd FileType help wincmd L
+
+
 " ----------------
 "  netrw START
 

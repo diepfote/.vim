@@ -35,6 +35,7 @@ nnoremap <c-left>  :vertical resize -2<cr>
 nnoremap <c-right>  :vertical resize +2<cr>
 
 
+" -----------------------
 let g:toggle_window_zoom_enabled = 0
 function! s:ToggleWindowZoom()
   if g:toggle_window_zoom_enabled
@@ -48,8 +49,31 @@ function! s:ToggleWindowZoom()
 endfunction
 
 nnoremap <silent><leader>z  :call <SID>ToggleWindowZoom()<cr>
+" -----------------------
 
 
+" -----------------------
+" snatched from  https://github.com/jessfraz/.vim/blob/5f0c5536acde95b0022ffec66b594c630512ff5f/vimrc#L199-L217
+function! DeleteInactiveBufs()
+  "From tabpagebuflist() help, get a list of all buffers in all tabs
+  let tablist = []
+  for i in range(tabpagenr('$'))
+    call extend(tablist, tabpagebuflist(i + 1))
+  endfor
+
+  "Below originally inspired by Hara Krishna Dara and Keith Roberts
+  "http://tech.groups.yahoo.com/group/vim/message/56425
+  let nWipeouts = 0
+  for i in range(1, bufnr('$'))
+    if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+      "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+      silent exec 'bwipeout' i
+      let nWipeouts = nWipeouts + 1
+    endif
+  endfor
+  echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+" -----------------------
 
 
 " swap movement commands

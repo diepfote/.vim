@@ -54,7 +54,7 @@ nnoremap <silent><leader>z  :call <SID>ToggleWindowZoom()<cr>
 
 " -----------------------
 " snatched from  https://github.com/jessfraz/.vim/blob/5f0c5536acde95b0022ffec66b594c630512ff5f/vimrc#L199-L217
-function! DeleteInactiveBufs()
+function! s:DeleteInactiveBufs()
   "From tabpagebuflist() help, get a list of all buffers in all tabs
   let tablist = []
   for i in range(tabpagenr('$'))
@@ -73,6 +73,8 @@ function! DeleteInactiveBufs()
   endfor
   echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
+
+command Bdeleteall :call <SID>DeleteInactiveBufs()
 " -----------------------
 
 

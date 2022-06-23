@@ -2,7 +2,7 @@
 */**
 
 !/syntax
-!/syntax/*
+!/syntax/firejail.vim
 !LICENSE
 !vimrc
 !coc-settings.json

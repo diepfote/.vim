@@ -454,28 +454,6 @@ augroup END
 
 
 
-" -----------------------
-" ncm2 tips
-
-  " suppress the annoying 'match x of y',
-  " 'The only match' and 'Pattern not found' messages
-  set shortmess+=c
-
-  " close pop-up on Escape key press
-  inoremap <c-c> <ESC>
-  " close pop-up on Escape key press
-  inoremap jj <ESC>
-
-
-  if has('nvim')
-    " Use <TAB> to select the popup menu:
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  endif
-
-" -----------------------
-
-
 " remap PageUp to C-a
 "nnoremap <C-a>  <C-b>
 
@@ -926,7 +904,7 @@ call plug#begin('~/.vim/plugged')
 
 
 " -----------------------------------
-" coc language server
+" coc language server START
 
 if has('nvim')
   Plug 'neoclide/coc.nvim'
@@ -976,15 +954,61 @@ if has('nvim')
     autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
   augroup END
 
-  " Trigger completion.
-  inoremap <silent><expr> <c-space> coc#refresh()
 
-else
-  " NOT NEOVIM
+  " -----------------------
+  " tmux-complete settings
 
-  " Trigger completion.
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+  " !broken since coc.nvim switched to its own popup window!
+
+  " Plug 'prabirshrestha/async.vim'
+  " Plug 'prabirshrestha/asyncomplete.vim'
+  " Plug 'wellle/tmux-complete.vim'
+"   " to enable fuzzy matching disable filter_prefix -> set to 0
+  " let g:tmuxcomplete#asyncomplete_source_options = {
+  "             \ 'name':      'tmuxcomplete',
+  "             \ 'whitelist': ['*'],
+  "             \ 'config': {
+  "             \     'splitmode':      'words',
+  "             \     'filter_prefix':   0,
+  "             \     'show_incomplete': 1,
+  "             \     'sort_candidates': 0,
+  "             \     'scrollback':      0,
+  "             \     'truncate':        0
+  "             \     }
+  "             \ }
+
+  " -----------------------
+
+
+  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+  " delays and poor user experience.
+  set updatetime=300
+
+  " Always show the signcolumn, otherwise it would shift the text each time
+  " diagnostics appear/become resolved.
+  set signcolumn=yes
+
+  " Use tab for trigger completion with characters ahead and navigate.
+  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+  " other plugin before putting this into your config.
+  inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#pum#next(1):
+        \ CheckBackspace() ? "\<Tab>" :
+        \ coc#refresh()
+  inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+
+  " Make <CR> to accept selected completion item or notify coc.nvim to format
+  " <C-g>u breaks current undo, please make your own choice.
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+" coc language server END
 " -----------------------------------
 
 
@@ -1269,61 +1293,6 @@ augroup end
 
 
 if has('nvim')
-  " --------------
-  "  ncm2
-  "
-  Plug 'roxma/nvim-yarp', { 'do': ':UpdateRemotePlugins' } " dependency for ncm2
-  Plug 'ncm2/ncm2', { 'do': ':UpdateRemotePlugins' }
-
-  " NOTE: you need to install completion sources to get completions. Check
-  " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-  Plug 'ncm2/ncm2-bufword'
-  Plug 'ncm2/ncm2-path'
-  Plug 'ncm2/ncm2-jedi' " python completions
-
-
-  " common lisp
-  "Plug 'HiPhish/ncm2-vlime'  "  completions taken from vlime (requires
-    "connection to vlime server)
-  "Plug 'l04m33/vlime'  "https://github.com/l04m33/vlime#quickstart
-"
-  if has('nvim')
-    augroup ncm2_for_buffer
-      " do not duplicate autocmds on reload
-      autocmd!
-
-      autocmd BufEnter * call ncm2#enable_for_buffer()
-    augroup END
-
-
-    " IMPORTANT: :help Ncm2PopupOpen for more information
-    set completeopt=noinsert,menuone,noselect
-  endif
-
-
-  " -----------------------
-  " tmux-complete settings
-  "
-  Plug 'wellle/tmux-complete.vim' " vim completions from other tmux panes (used by ncm2)
-  " to enable fuzzy matching disable filter_prefix -> set to 0
-  let g:tmuxcomplete#asyncomplete_source_options = {
-              \ 'name':      'tmuxcomplete',
-              \ 'whitelist': ['*'],
-              \ 'config': {
-              \     'splitmode':      'words',
-              \     'filter_prefix':   0,
-              \     'show_incomplete': 1,
-              \     'sort_candidates': 0,
-              \     'scrollback':      0,
-              \     'truncate':        0
-              \     }
-              \ }
-
-  " -----------------------
-
-  " ncm2 end
-  " --------------
-
 
   " -----------------------------------
   "  vim-go settings start
@@ -1344,6 +1313,7 @@ if has('nvim')
 
   "  vim-go settings end
   " -----------------------------------
+endif
 
 " does not work in neovim
 " cnoremap W! w !sudo tee % >/dev/null

@@ -1007,12 +1007,10 @@ if has('nvim')
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
+" -----------------------
 
 " coc language server END
 " -----------------------------------
-
-
-Plug 'tpope/vim-vinegar'  " improve vim's netrw
 
 Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
 
@@ -1032,6 +1030,9 @@ augroup END
 
 " netrw replacement
 Plug 'justinmk/vim-dirvish'
+" improve vim's netrw
+" Plug 'tpope/vim-vinegar'
+"
 
 " f / t command improved
 Plug 'justinmk/vim-sneak'

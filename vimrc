@@ -361,6 +361,7 @@ augroup set_custom_filetype_for_extensions
   autocmd BufRead,BufNewFile *.service set ft=sh
   autocmd BufRead,BufNewFile *.conf set ft=sh
   autocmd BufRead,BufNewFile *.hook set ft=sh
+  autocmd BufRead,BufNewFile *.d set ft=d
 
 
   autocmd BufNewFile,BufRead ~/.mutt/*      set filetype=muttrc

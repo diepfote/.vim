@@ -3,13 +3,12 @@
   "hover.floatConfig.border": true,
 
   "diagnostic.floatConfig": {
-    // :help coc-config-dialog
+    // :help coc-config-float
     "border": true,
     "maxHeight": 10,
     "maxWidth": 30,
     "winblend": 10,
-    "highlight": true,
-    "close": true,
+    "close": true
   },
 
 

@@ -25,8 +25,7 @@
       "sourceName": "pylint",
       "command": "pylint",
       "args": [
-        "--disable",
-        "E0401",
+        "--disable=E0401,bare-except,invalid-name,logging-fstring-interpolation,broad-except,consider-using-f-string,missing-module-docstring,line-too-long,consider-using-sys-exit,logging-format-interpolation,missing-function-docstring,unspecified-encoding",
         "--output-format",
         "text",
         "--score",
@@ -63,7 +62,8 @@
       "debounce": 200,
       "rootPatterns": [".git", "pyproject.toml", "setup.py"],
       "args": [
-
+        "--ignore",
+        "W391,E501",
         "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
         "-"
       ],

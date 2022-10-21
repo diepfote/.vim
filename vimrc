@@ -1237,7 +1237,7 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'itspriddle/vim-shellcheck'
 
 
-Plug 'florianbegusch/vim-primitive-yamlsort'
+Plug 'diepfote/vim-primitive-yamlsort'
 
 
 " built-in yaml syntax highlighting breaks if

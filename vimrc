@@ -736,11 +736,11 @@ command PrependSeparator  :call <SID>PrependSeparator()
 
 
 " -------------------------------
-function! s:DeleteCharAtEndOfLine()
+function! DeleteCharAtEndOfLine()
   normal! mz$x`z
 endfunction
 
-nnoremap <leader>d  :call s:DeleteCharAtEndOfLine()<cr>
+nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
                   \ :silent! call repeat#set("\<leader>d", -1)<cr>
 " -------------------------------
 

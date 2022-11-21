@@ -422,6 +422,11 @@ augroup END
 " thus:
 Plug 'lambdalisue/suda.vim'
 
+" Usage e.g.:
+" :CtrlP  -> files
+" :CtrlPBuffer -> buffers
+" :CtrlPMixed  -> both + most recently used files
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 

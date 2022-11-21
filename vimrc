@@ -609,13 +609,14 @@ vnoremap <silent><leader>toy :<c-u>call <SID>ToYamlOperator(visualmode())<cr>
 " vimrc helpers
 " nicked from https://learnvimscriptthehardway.stevelosh.com/
 
-function! s:VimrcSplit()
+function! s:SplitAndOpen(filename)
   :call <SID>VerticalSplitAndSwitch()
-  :e ~/.vim/vimrc
+  execute ':e ' . a:filename
 endfunction
 
-" open vimrc for editing
-nnoremap <leader>ev :call <SID>VimrcSplit()<cr>
+
+nnoremap <leader>ev :call <SID>SplitAndOpen('~/.vim/vimrc')<cr>
+nnoremap <leader>ep :call <SID>SplitAndOpen('~/.vim/plugins.vim')<cr>
 
 " source vimrc
 nnoremap <leader>sc :source ~/.vim/vimrc<cr>

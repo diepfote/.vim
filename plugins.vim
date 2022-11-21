@@ -428,6 +428,16 @@ Plug 'lambdalisue/suda.vim'
 " :CtrlPMixed  -> both + most recently used files
 Plug 'ctrlpvim/ctrlp.vim'
 
+" When pasting, it compresses all blank
+" lines that result from the paste to a
+" single one
+" (or none, at the top and bottom of the file).
+Plug 'AndrewRadev/whitespaste.vim'
+
+" delete wrapping if-clauses, try-catch blocks, and similar constructs
+" mapping `dh`
+Plug 'AndrewRadev/deleft.vim'
+
 call plug#end()
 
 

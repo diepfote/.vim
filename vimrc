@@ -161,9 +161,9 @@ endif
 
 
 
-" keep 5 lines at the top or bottom,
+" keep 0 lines at the top or bottom,
 " depends on the scroll direction
-set scrolloff=5
+set scrolloff=0
 
 set cursorline
 

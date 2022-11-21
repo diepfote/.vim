@@ -438,6 +438,13 @@ Plug 'AndrewRadev/whitespaste.vim'
 " mapping `dh`
 Plug 'AndrewRadev/deleft.vim'
 
+" Placing the cursor on \"two\" and executing :SidewaysLeft, the \"one\" and \"two\" arguments will switch their places
+" def function(one, two, three):
+"    pass
+" def function(two, one, three):
+"     pass
+Plug 'AndrewRadev/sideways.vim'
+
 call plug#end()
 
 

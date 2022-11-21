@@ -4,109 +4,110 @@ call plug#begin('~/.vim/plugged')
 
 
 " -----------------------------------
-" coc language server START
+" coc language server BEGIN
 
-if has('nvim')
-  Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim'
 
-  if os ==# 'Darwin' || os ==# 'Mac'
+if os ==# 'Darwin' || os ==# 'Mac'
 
-    " TODO change ft to yaml.ansible -> coc-ansible
-    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy', '@yaegassy/coc-ansible']
+  " TODO change ft to yaml.ansible -> coc-ansible
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy', '@yaegassy/coc-ansible']
 
-    " custom for Coc Mappings below
-    let g:coc_buffers_to_apply_to = '*.py,*.groovy,*.json,*.yaml,*.conf'
-    let g:coc_filetype_map = {
-  \ 'yaml.ansible': 'ansible',
-  \ }
+  " custom for Coc Mappings below
+  let g:coc_buffers_to_apply_to = '*.py,*.groovy,*.json,*.yaml,*.conf'
+  let g:coc_filetype_map = {
+\ 'yaml.ansible': 'ansible',
+\ }
 
-  elseif os ==# 'Linux'
+elseif os ==# 'Linux'
 
-    let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
-    " custom for Coc Mappings below
-    let g:coc_buffers_to_apply_to = '*.py,*.json,*.yaml'
-  endif
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
+  " custom for Coc Mappings below
+  let g:coc_buffers_to_apply_to = '*.py,*.json,*.yaml'
+endif
 
-  augroup coc_mappings
-    " do not duplicate autocmds on reload
-    autocmd!
-
-
-    " Symbol renaming.
-    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <leader>rn <Plug>(coc-rename)'
-
-    " GoTo code navigation.
-    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gd <Plug>(coc-definition)'
-    " Show References
-    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gR <Plug>(coc-references)'
-    " Show function signature
-    execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . " nmap <silent> gs :call CocActionAsync('doHover')<cr>"
+augroup coc_mappings
+  " do not duplicate autocmds on reload
+  autocmd!
 
 
+  " Symbol renaming.
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <leader>rn <Plug>(coc-rename)'
+
+  " GoTo code navigation.
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gd <Plug>(coc-definition)'
+  " Show References
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gR <Plug>(coc-references)'
+  " Show function signature
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . " nmap <silent> gs :call CocActionAsync('doHover')<cr>"
 
 
-    " Mappings for CoCList
-    " Show all diagnostics.
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
-    " Show commands.
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-    " Find symbol of current document.
-    autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-  augroup END
+  " Mappings for CoCList
+  " Show all diagnostics.
+  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+  " Show commands.
+  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+  " Find symbol of current document.
+  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+augroup END
+
+" coc language server END
+" -----------------------------------
 
 
-  " -----------------------
-  " tmux-complete settings
 
-  " !broken since coc.nvim switched to its own popup window!
+" -----------------------
+" tmux-complete settings
 
-  " Plug 'prabirshrestha/async.vim'
-  " Plug 'prabirshrestha/asyncomplete.vim'
-  " Plug 'wellle/tmux-complete.vim'
+" !broken since coc.nvim switched to its own popup window!
+
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'wellle/tmux-complete.vim'
 "   " to enable fuzzy matching disable filter_prefix -> set to 0
-  " let g:tmuxcomplete#asyncomplete_source_options = {
-  "             \ 'name':      'tmuxcomplete',
-  "             \ 'whitelist': ['*'],
-  "             \ 'config': {
-  "             \     'splitmode':      'words',
-  "             \     'filter_prefix':   0,
-  "             \     'show_incomplete': 1,
-  "             \     'sort_candidates': 0,
-  "             \     'scrollback':      0,
-  "             \     'truncate':        0
-  "             \     }
-  "             \ }
+" let g:tmuxcomplete#asyncomplete_source_options = {
+"             \ 'name':      'tmuxcomplete',
+"             \ 'whitelist': ['*'],
+"             \ 'config': {
+"             \     'splitmode':      'words',
+"             \     'filter_prefix':   0,
+"             \     'show_incomplete': 1,
+"             \     'sort_candidates': 0,
+"             \     'scrollback':      0,
+"             \     'truncate':        0
+"             \     }
+"             \ }
 
-  " -----------------------
-
-
-  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-  " delays and poor user experience.
-  set updatetime=300
-
-  " Always show the signcolumn, otherwise it would shift the text each time
-  " diagnostics appear/become resolved.
-  set signcolumn=yes
-
-  " Use tab for trigger completion with characters ahead and navigate.
-  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-  " other plugin before putting this into your config.
-  inoremap <silent><expr> <TAB>
-        \ coc#pum#visible() ? coc#pum#next(1):
-        \ CheckBackspace() ? "\<Tab>" :
-        \ coc#refresh()
-  inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" -----------------------
 
 
-  " Make <CR> to accept selected completion item or notify coc.nvim to format
-  " <C-g>u breaks current undo, please make your own choice.
-  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-  function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 " -----------------------
 
 " coc language server END
@@ -393,35 +394,34 @@ augroup end
 " ---------------------------------------
 
 
-if has('nvim')
 
-  " -----------------------------------
-  "  vim-go settings start
+" -----------------------------------
+"  vim-go settings start
 
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-  augroup vim-go-mappings
-    " do not duplicate autocmds on reload
-    autocmd!
+augroup vim-go-mappings
+  " do not duplicate autocmds on reload
+  autocmd!
 
-      " Symbol renaming.
-      au FileType go nnoremap <leader>rn :GoRename<cr>
+    " Symbol renaming.
+    au FileType go nnoremap <leader>rn :GoRename<cr>
 
-      " GoTo code navigation.
-      au FileType go nnoremap <silent>gd <Plug>(go-def)
-      au FileType go nnoremap <silent>gR :GoReferrers<cr>
-  augroup END
+    " GoTo code navigation.
+    au FileType go nnoremap <silent>gd <Plug>(go-def)
+    au FileType go nnoremap <silent>gR :GoReferrers<cr>
+augroup END
 
-  "  vim-go settings end
-  " -----------------------------------
-endif
+"  vim-go settings end
+" -----------------------------------
 
-" does not work in neovim
+" the following does not work in neovim:
+" ```
 " cnoremap W! w !sudo tee % >/dev/null
+" ```
 " thus:
 Plug 'lambdalisue/suda.vim'
 
-endif
 
 call plug#end()
 

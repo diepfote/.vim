@@ -312,6 +312,7 @@ augroup END
 
 " default
 function! s:DefaultTabSettings()
+    " TODO use files in ~/.vim/ftplugin/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftplugin
     if &ft =~? 'python\|^c$\|haskell\|make\|^go$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
@@ -349,6 +350,7 @@ augroup END
 
 " -----------------
 " set custom ft
+" TODO use files in ~/.vim/ftdetect/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftdetect
 augroup set_custom_filetype_for_extensions
   " do not duplicate autocmds on reload
   autocmd!

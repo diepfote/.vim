@@ -355,21 +355,6 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'habamax/vim-rst'
 
 
-" ------------------------
-" clam
-
-" Clam.vim is a lightweight Vim plugin to easily run shell commands.
-Plug 'sjl/clam.vim'
-
-" open below current window (horizontally)
-let g:clam_winpos = 'belowright'
-
-" type ! in normal or visual mode to run Clam quickly
-nnoremap ! :Clam<space>source<space>~/.vim/source-me;<space>
-vnoremap ! :ClamVisual<space>source<space>~/.vim/source-me;<space>
-
-" ------------------------
-
 
 Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
@@ -444,6 +429,18 @@ Plug 'AndrewRadev/deleft.vim'
 " def function(two, one, three):
 "     pass
 Plug 'AndrewRadev/sideways.vim'
+
+" ------------------------------
+"  bufferize BEGIN
+
+" I previously used 'sjl/clam.vim' which only bufferizes shell commands.
+"
+Plug 'AndrewRadev/bufferize.vim'
+nnoremap ! :Bufferize<space>!<space>source<space>~/.vim/source-me;<space>
+
+"  bufferize END
+" ------------------------------
+
 
 call plug#end()
 

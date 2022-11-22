@@ -430,6 +430,10 @@ Plug 'AndrewRadev/deleft.vim'
 "     pass
 Plug 'AndrewRadev/sideways.vim'
 
+" The plugin is designed to automatically rename closing
+" HTML/XML tags when editing opening ones (or the other way around)
+Plug 'AndrewRadev/tagalong.vim'
+
 " ------------------------------
 "  bufferize BEGIN
 

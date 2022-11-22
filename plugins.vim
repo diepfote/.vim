@@ -357,8 +357,8 @@ Plug 'habamax/vim-rst'
 
 " ------------------------
 " clam
-"
 
+" Clam.vim is a lightweight Vim plugin to easily run shell commands.
 Plug 'sjl/clam.vim'
 
 " open below current window (horizontally)

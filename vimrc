@@ -316,6 +316,8 @@ function! s:DefaultTabSettings()
     if &ft =~? 'python\|^c$\|haskell\|make\|^go$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
+    elseif &ft =~? '^gitconfig$'
+        set tabstop=2 shiftwidth=2
     elseif &ft =~? 'asm'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
     elseif &ft =~? 'fstab'

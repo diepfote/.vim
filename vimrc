@@ -458,6 +458,14 @@ augroup END
 " -----------------
 
 
+" map next/previous misspelled word
+map <C-t> [s
+map <C-z> ]s
+augroup set_spellcheck
+  autocmd!
+  autocmd Filetype markdown setlocal spell
+augroup END
+
 
 " remap PageUp to C-a
 "nnoremap <C-a>  <C-b>

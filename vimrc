@@ -466,7 +466,7 @@ augroup spell_lang
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd Filetype markdown,tex call s:SetSpell()
+  autocmd Filetype markdown,tex,rst call s:SetSpell()
 augroup END
 " -----------------
 

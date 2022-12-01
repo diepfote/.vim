@@ -339,18 +339,6 @@ augroup END
 
 
 " -----------------
-" spell checking for latex files (de-AT)
-"
-augroup spell_lang
-  " do not duplicate autocmds on reload
-  autocmd!
-
-  autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=de_at
-augroup END
-" -----------------
-
-
-" -----------------
 " set custom ft
 " TODO use files in ~/.vim/ftdetect/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftdetect
 augroup set_custom_filetype_for_extensions
@@ -463,9 +451,24 @@ map <C-t> [s
 map <C-z> ]s
 augroup set_spellcheck
   autocmd!
-  autocmd Filetype markdown setlocal spell
 augroup END
 
+" -----------------
+" spell checking
+"
+function! s:SetSpell()
+  " setlocal spell spelllang=en_us,en_uk,de_at,medical
+  setlocal spell spelllang=en_us
+endfunction
+
+augroup spell_lang
+
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd Filetype markdown,tex call s:SetSpell()
+augroup END
+" -----------------
 
 " remap PageUp to C-a
 "nnoremap <C-a>  <C-b>

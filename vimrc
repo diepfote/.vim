@@ -318,7 +318,7 @@ function! s:DefaultTabSettings()
         set tabstop=4 shiftwidth=4
     elseif &ft =~? '^gitconfig$'
         set tabstop=2 shiftwidth=2
-    elseif &ft =~? 'asm'
+    elseif &ft =~? 'asm\|markdown'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
     elseif &ft =~? 'fstab'
         set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab

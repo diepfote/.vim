@@ -250,14 +250,23 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 " --------------------------------
 
 
+Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line
+
 " --------------------------------
 " colorscheme onehalf
 
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
+function! <sid>SetColorScheme()
+    if &ft =~? '^yaml$\|^rst$\|^markdown$'
+      call ColorOneHalfLight()
+    else
+      call ColorOff()
+    endif
+endfunction
+
 augroup set_colorscheme_for_yaml_files
-  autocmd FocusGained,BufEnter * :call ColorOff()
-  autocmd FileType rst,yaml :call ColorOneHalfLight()
+  autocmd FocusGained,BufEnter * :call <sid>SetColorScheme()
 augroup END
 
 " --------------------------------
@@ -284,19 +293,7 @@ let g:syntastic_python_checkers = ['']  " disable syntastic for python
 
 Plug 'tpope/vim-endwise'
 
-Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line
-augroup highlight_indentation
-  " do not duplicate autocmds on reload
-  autocmd!
-
-  autocmd FileType yaml,markdown LocalIndentGuide +hl -cc
-augroup END
-
-
-" ---------------------------------
 Plug 'christoomey/vim-sort-motion'  " type gs then the rest of your text objects & motions
-
-
 
 " --------------------------------
 " vim tmux runner settings
@@ -487,6 +484,7 @@ function ColorOneHalfLight()
 
   execute 'colorscheme ' . l:colorscheme_name
   :RainbowToggleOn
+  :LocalIndentGuide +hl +cc
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()
   call ChangeHighlightTabLine()
@@ -504,6 +502,7 @@ function ColorOff()
   " pbrisbin/vim-colors-off
   set background=light
   execute 'colorscheme ' . l:colorscheme_name
+  :LocalIndentGuide -hl -cc
   :RainbowToggleOn
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()

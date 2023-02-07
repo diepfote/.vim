@@ -446,16 +446,14 @@ augroup END
 " -----------------
 
 
-" map next/previous misspelled word
-map <C-t> [s
-map <C-z> ]s
-augroup set_spellcheck
-  autocmd!
-augroup END
-
 " -----------------
 " spell checking
 "
+
+" map next/previous misspelled word
+map <C-t> [s
+map <C-z> ]s
+
 function! s:SetSpell()
   " setlocal spell spelllang=en_us,en_uk,de_at,medical
   setlocal spell spelllang=en_us

@@ -709,6 +709,32 @@ function! s:IndTxtObj(inner)
     normal! $
   endif
 endfunction
+
+" snatched from https://vi.stackexchange.com/questions/12835/how-do-i-jump-to-the-next-line-with-the-same-indent-level
+function! GoToNextIndent(inc)
+    " Get the cursor current position
+    let currentPos = getpos('.')
+    let currentLine = currentPos[1]
+    let matchIndent = 0
+
+    " Look for a line with the same indent level whithout going out of the buffer
+    while !matchIndent && currentLine != line('$') + 1 && currentLine != -1
+        let currentLine += a:inc
+        let matchIndent = indent(currentLine) == indent('.')
+    endwhile
+
+    " If a line is found go to this line
+    if (matchIndent)
+        let currentPos[1] = currentLine
+        call setpos('.', currentPos)
+    endif
+endfunction
+
+augroup indentation_jump_yaml
+  autocmd!
+  autocmd Filetype yaml nnoremap ]] :call GoToNextIndent(1)<CR>
+  autocmd Filetype yaml nnoremap [[ :call GoToNextIndent(-1)<CR>
+augroup END
 " -------------------
 
 

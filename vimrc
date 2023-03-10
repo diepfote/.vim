@@ -363,10 +363,10 @@ augroup set_custom_filetype_for_extensions
   autocmd BufNewFile,BufRead */roles/*/*.yaml      set ft=yaml.ansible
 
   " json in yaml -> too many errors
-  autocmd BufNewFile,BufRead */queries/*.yaml      set ft=
+  autocmd BufNewFile,BufRead */queries/*.yaml      set ft=text
   " prometheus rules
   " templating in yaml -> too many errors
-  autocmd BufNewFile,BufRead */*prometheus*.yaml      set ft=
+  autocmd BufNewFile,BufRead */*prometheus*.yaml      set ft=text
 
   autocmd BufNewFile,BufRead /etc/firejail/*.profile      set ft=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.local        set ft=firejail

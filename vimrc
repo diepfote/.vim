@@ -356,27 +356,27 @@ augroup set_custom_filetype_for_extensions
   autocmd BufRead,BufNewFile *.d set ft=d
 
 
-  autocmd BufNewFile,BufRead ~/.mutt/*      set filetype=muttrc
+  autocmd BufNewFile,BufRead ~/.mutt/*      set ft=muttrc
 
-  autocmd BufNewFile,BufRead */playbooks/*.yaml      set filetype=yaml.ansible
-  autocmd BufNewFile,BufRead */tests/*.yaml      set filetype=yaml.ansible
-  autocmd BufNewFile,BufRead */roles/*/*.yaml      set filetype=yaml.ansible
+  autocmd BufNewFile,BufRead */playbooks/*.yaml      set ft=yaml.ansible
+  autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
+  autocmd BufNewFile,BufRead */roles/*/*.yaml      set ft=yaml.ansible
 
   " json in yaml -> too many errors
-  autocmd BufNewFile,BufRead */queries/*.yaml      set filetype=
+  autocmd BufNewFile,BufRead */queries/*.yaml      set ft=
   " prometheus rules
   " templating in yaml -> too many errors
-  autocmd BufNewFile,BufRead */*prometheus*.yaml      set filetype=
+  autocmd BufNewFile,BufRead */*prometheus*.yaml      set ft=
 
-  autocmd BufNewFile,BufRead /etc/firejail/*.profile      set filetype=firejail
-  autocmd BufNewFile,BufRead /etc/firejail/*.local        set filetype=firejail
-  autocmd BufNewFile,BufRead /etc/firejail/*.inc          set filetype=firejail
-  autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set filetype=firejail
-  autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set filetype=firejail
-  autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set filetype=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.profile set filetype=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.local   set filetype=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.inc     set filetype=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.profile      set ft=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.local        set ft=firejail
+  autocmd BufNewFile,BufRead /etc/firejail/*.inc          set ft=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set ft=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set ft=firejail
+  autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set ft=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.profile set ft=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.local   set ft=firejail
+  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.inc     set ft=firejail
 augroup END
 
 " -----------------

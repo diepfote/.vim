@@ -348,6 +348,9 @@ Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
 
+Plug 'chrisbra/NrrwRgn'
+
+
 " Change restructured text highlighting
 Plug 'habamax/vim-rst'
 

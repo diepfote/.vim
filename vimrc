@@ -346,27 +346,31 @@ augroup set_custom_filetype_for_extensions
   autocmd!
 
   autocmd BufRead,BufNewFile config-* set ft=sshconfig
+
   autocmd BufRead,BufNewFile *.bib set ft=tex
+
   autocmd BufRead,BufNewFile *.rc set ft=sh
   autocmd BufRead,BufNewFile *.envrc set ft=sh
   autocmd BufRead,BufNewFile *.custom-envrc set ft=sh
   autocmd BufRead,BufNewFile *.service set ft=sh
   autocmd BufRead,BufNewFile *.conf set ft=sh
   autocmd BufRead,BufNewFile *.hook set ft=sh
-  autocmd BufRead,BufNewFile *.d set ft=d
 
+  autocmd BufRead,BufNewFile *.d set ft=d
 
   autocmd BufNewFile,BufRead ~/.mutt/*      set ft=muttrc
 
-  autocmd BufNewFile,BufRead */playbooks/*.yaml      set ft=yaml.ansible
+  autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
   autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
-  autocmd BufNewFile,BufRead */roles/*/*.yaml      set ft=yaml.ansible
+  autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
 
   " json in yaml -> too many errors
-  autocmd BufNewFile,BufRead */queries/*.yaml      set ft=text
+  autocmd BufNewFile,BufRead */queries/*.yaml     set ft=text
   " prometheus rules
   " templating in yaml -> too many errors
-  autocmd BufNewFile,BufRead */*prometheus*.yaml      set ft=text
+  autocmd BufNewFile,BufRead */*prometheus*.yaml  set ft=text
+  " coc.nvim settings: less strict than json but json extension
+  autocmd BufNewFile,BufRead */coc-settings.json  set ft=text
 
   autocmd BufNewFile,BufRead /etc/firejail/*.profile      set ft=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.local        set ft=firejail

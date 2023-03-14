@@ -87,5 +87,10 @@
         "N": "hint"
       }
     }
-  }
+  },
+
+  // do not pin this, otherwise it will not work on Linux out of the box
+  // to install it on Mac OS/Darwin run:
+  // :CocCommand clangd.install
+  // "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd"
 }

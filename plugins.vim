@@ -11,10 +11,10 @@ Plug 'neoclide/coc.nvim'
 if os ==# 'Darwin' || os ==# 'Mac'
 
   " TODO change ft to yaml.ansible -> coc-ansible
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-groovy', '@yaegassy/coc-ansible']
+  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd', 'coc-groovy', '@yaegassy/coc-ansible']
 
   " custom for Coc Mappings below
-  let g:coc_buffers_to_apply_to = '*.py,*.groovy,*.json,*.yaml,*.conf'
+  let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf'
   let g:coc_filetype_map = {
 \ 'yaml.ansible': 'ansible',
 \ }
@@ -23,7 +23,7 @@ elseif os ==# 'Linux'
 
   let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
   " custom for Coc Mappings below
-  let g:coc_buffers_to_apply_to = '*.py,*.json,*.yaml'
+  let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml'
 endif
 
 augroup coc_mappings

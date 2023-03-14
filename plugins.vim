@@ -177,7 +177,7 @@ let g:ack_mappings = {
       \ 'L': '<c-f>' }
 
 " replace ack by the silverlight seacher
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'ag -a --vimgrep'
 " if only grep available
 " let g:ackprg = 'grep -n
 "                   \ --exclude-dir=.git

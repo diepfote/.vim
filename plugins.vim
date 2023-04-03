@@ -8,10 +8,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim'
 
+let g:shared_coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
+
 if os ==# 'Darwin' || os ==# 'Mac'
 
   " TODO change ft to yaml.ansible -> coc-ansible
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd', 'coc-groovy', '@yaegassy/coc-ansible']
+  let g:coc_global_extensions = ['coc-groovy', '@yaegassy/coc-ansible']
+  call extend(g:coc_global_extensions, g:shared_coc_global_extensions)
 
   " custom for Coc Mappings below
   let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf'
@@ -21,7 +24,9 @@ if os ==# 'Darwin' || os ==# 'Mac'
 
 elseif os ==# 'Linux'
 
-  let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd']
+  let g:coc_global_extensions = []
+  call extend(g:coc_global_extensions, g:shared_coc_global_extensions)
+
   " custom for Coc Mappings below
   let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml'
 endif

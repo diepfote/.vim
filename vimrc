@@ -75,6 +75,8 @@ function! s:DeleteInactiveBufs()
 endfunction
 
 command Bdeleteall :call <SID>DeleteInactiveBufs()
+
+command RequiredByNone /required by.*none
 " -----------------------
 
 

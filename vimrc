@@ -315,14 +315,14 @@ augroup END
 " default
 function! s:DefaultTabSettings()
     " TODO use files in ~/.vim/ftplugin/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftplugin
-    if &ft =~? 'python\|^c$\|haskell\|make\|^go$'
+    if &ft =~? 'python\|^c$\|haskell\|^go$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
     elseif &ft =~? '^gitconfig$'
         set tabstop=2 shiftwidth=2
     elseif &ft =~? 'asm\|markdown'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-    elseif &ft =~? 'fstab'
+    elseif &ft =~? 'fstab\|make'
         set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab
     else"
       set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab

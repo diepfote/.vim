@@ -344,6 +344,23 @@ Plug 'diepfote/vim-primitive-yamlsort'
 " "{{ sources[0]}}"
 Plug 'stephpy/vim-yaml'
 
+" ---
+" improve yaml file movement
+"
+" shows current yaml item in statusline
+Plug 'Einenlum/yaml-revealer'
+
+" jump based on indentation level
+"
+" [- : Move to previous line of lesser indent than the current line.
+" [+ : Move to previous line of greater indent than the current line.
+" [= : Move to previous line of same indent as the current line that is separated from the current line by lines of different indents.
+" ]- : Move to next line of lesser indent than the current line.
+" ]+ : Move to next line of greater indent than the current line.
+" ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
+Plug 'jeetsukumaran/vim-indentwise'
+" ---
+
 " Add jinja2 syntax highlighting
 Plug 'Glench/Vim-Jinja2-Syntax'
 

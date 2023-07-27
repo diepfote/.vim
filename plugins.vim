@@ -177,7 +177,7 @@ let g:ack_mappings = {
       \ 'L': '<c-f>' }
 
 " replace ack by the silverlight seacher
-let g:ackprg = 'ag -a --vimgrep'
+let g:ackprg = 'ag -f -a --vimgrep'
 " if only grep available
 " let g:ackprg = 'grep -n
 "                   \ --exclude-dir=.git
@@ -438,6 +438,7 @@ Plug 'AndrewRadev/whitespaste.vim'
 
 " delete wrapping if-clauses, try-catch blocks, and similar constructs
 " mapping `dh`
+" or run `:Deleft`
 Plug 'AndrewRadev/deleft.vim'
 
 " Placing the cursor on \"two\" and executing :SidewaysLeft, the \"one\" and \"two\" arguments will switch their places
@@ -450,6 +451,7 @@ Plug 'AndrewRadev/sideways.vim'
 " The plugin is designed to automatically rename closing
 " HTML/XML tags when editing opening ones (or the other way around)
 Plug 'AndrewRadev/tagalong.vim'
+
 
 " ------------------------------
 "  bufferize BEGIN

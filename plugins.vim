@@ -120,11 +120,12 @@ Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
 Plug 'tpope/vim-commentary'
 
 " custom comment strings
-augroup firejail_commentstring
+augroup custom_comment_strings
   " do not duplicate autocmds on reload
   autocmd!
 
   autocmd FileType firejail setlocal commentstring=#\ %s
+  autocmd FileType text     setlocal commentstring=#\ %s
 augroup END
 " -----------------
 

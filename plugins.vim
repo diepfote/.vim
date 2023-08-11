@@ -349,7 +349,7 @@ Plug 'stephpy/vim-yaml'
 " improve yaml file movement
 "
 " shows current yaml item in statusline
-Plug 'Einenlum/yaml-revealer'
+" Plug 'Einenlum/yaml-revealer'
 
 " jump based on indentation level
 "
@@ -360,6 +360,14 @@ Plug 'Einenlum/yaml-revealer'
 " ]+ : Move to next line of greater indent than the current line.
 " ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
 Plug 'jeetsukumaran/vim-indentwise'
+"
+command JumpSameIdentNext  :normal ]=
+command JumpGtrIdentNext   :normal ]+
+command JumpLsrIndentNext  :normal ]-
+"
+command JumpSameIdentPrev  :normal [=
+command JumpGtrIdentPrev   :normal [+
+command JumpLsrIdentPrev   :normal [-
 " ---
 
 " Add jinja2 syntax highlighting
@@ -542,4 +550,4 @@ cabbrev __commit cheatsheets_commit_and_push
 cabbrev __pull cheatsheets_pull
 
 " -------------
-"
+

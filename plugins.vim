@@ -362,12 +362,12 @@ Plug 'stephpy/vim-yaml'
 Plug 'jeetsukumaran/vim-indentwise'
 "
 command JumpSameIdentNext  :normal ]=
-command JumpGtrIdentNext   :normal ]+
-command JumpLsrIndentNext  :normal ]-
+command JumpLsrIdentNext   :normal ]+
+command JumpGtrIndentNext  :normal ]-
 "
 command JumpSameIdentPrev  :normal [=
-command JumpGtrIdentPrev   :normal [+
-command JumpLsrIdentPrev   :normal [-
+command JumpLsrIdentPrev   :normal [+
+command JumpGtrIdentPrev   :normal [-
 " ---
 
 " Add jinja2 syntax highlighting

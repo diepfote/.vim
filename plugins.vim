@@ -203,6 +203,10 @@ let g:ackprg = 'ag -f -a --vimgrep'
 Plug 'airblade/vim-gitgutter'
 
 
+" how to use it? the easiest way
+" vim -b <filename>
+Plug 'rootkiter/vim-hexedit'
+
 " --------------------------------
 " rainbow plugin
 "

@@ -203,6 +203,18 @@ let g:ackprg = 'ag -f -a --vimgrep'
 Plug 'airblade/vim-gitgutter'
 
 
+" ---------------------
+"  fzf integration
+"
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+map <leader>; :Files<CR>
+map <leader>, :Buffers<CR>
+let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
+" ---------------------
+
+
 " how to use it? the easiest way
 " vim -b <filename>
 Plug 'rootkiter/vim-hexedit'
@@ -554,4 +566,3 @@ cabbrev __commit cheatsheets_commit_and_push
 cabbrev __pull cheatsheets_pull
 
 " -------------
-

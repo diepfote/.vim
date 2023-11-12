@@ -138,10 +138,10 @@ Plug 'justinmk/vim-dirvish'
 
 " f / t command improved
 Plug 'justinmk/vim-sneak'
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+noremap f <Plug>Sneak_f
+noremap F <Plug>Sneak_F
+noremap t <Plug>Sneak_t
+noremap T <Plug>Sneak_T
 
 
 " ----------------------
@@ -209,8 +209,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-map <leader>; :Files<CR>
-map <leader>, :Buffers<CR>
+noremap <leader>B :Buffers<CR>
+noremap <leader>E :Files<CR>
 let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
 " ---------------------
 
@@ -390,6 +390,7 @@ command JumpGtrIdentPrev   :normal [-
 Plug 'Glench/Vim-Jinja2-Syntax'
 
 
+" narrow range plugin / NarrowRange plugin
 Plug 'chrisbra/NrrwRgn'
 
 

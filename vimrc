@@ -463,8 +463,8 @@ augroup END
 "
 
 " map next/previous misspelled word
-map <C-t> [s
-map <C-z> ]s
+noremap <C-t> [s
+noremap <C-z> ]s
 
 function! s:SetSpell()
   " setlocal spell spelllang=en_us,en_uk,de_at,medical

@@ -13,13 +13,20 @@ let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnost
 if os ==# 'Darwin' || os ==# 'Mac'
 
   " TODO change ft to yaml.ansible -> coc-ansible
+  "
   call extend(g:coc_global_extensions, ['coc-groovy', '@yaegassy/coc-ansible'])
 
+  "
   " custom for Coc Mappings below
   let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf'
   let g:coc_filetype_map = {
 \ 'yaml.ansible': 'ansible',
 \ }
+
+  " DISABLED on purpose
+  " autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
+  " autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
+  " autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
 
 elseif os ==# 'Linux'
   " custom for Coc Mappings below

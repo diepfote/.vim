@@ -548,12 +548,16 @@ function! s:CommonOperator(type)
     " wise motion; then yank
     execute 'normal! `[v`]y'
     return 1
+
+  elseif a:type ==? 0
+    " in this case we assume a region was already selected
+    return 1
+
   else
     " TODO custom operator functionality
     " blockwise visual mode & linewise motions
-
-    " return false  = 0 -> not supported
-    return
+    "
+    return 0  " 0 -> not supported
   endif
 
 endfunction
@@ -587,6 +591,12 @@ nnoremap <silent><leader>d64 :set operatorfunc=<SID>Base64DecodeOperator<cr>g@
 vnoremap <silent><leader>d64 :<c-u>call <SID>Base64DecodeOperator(visualmode())<cr>
 nnoremap <silent><leader>e64 :set operatorfunc=<SID>Base64EncodeOperator<cr>g@
 vnoremap <silent><leader>e64 :<c-u>call <SID>Base64EncodeOperator(visualmode())<cr>
+
+" range definition snatched from
+" https://stackoverflow.com/a/16164585
+command -range=% Base64Encode  :call <SID>Base64EncodeOperator(0)
+command -range=% Base64Decode  :call <SID>Base64DecodeOperator(0)
+
 
 " ----------------------------
 
@@ -622,6 +632,11 @@ nnoremap <silent><leader>toj :set operatorfunc=<SID>ToJsonOperator<cr>g@
 vnoremap <silent><leader>toj :<c-u>call <SID>ToJsonOperator(visualmode())<cr>
 nnoremap <silent><leader>toy :set operatorfunc=<SID>ToYamlOperator<cr>g@
 vnoremap <silent><leader>toy :<c-u>call <SID>ToYamlOperator(visualmode())<cr>
+
+" range definition snatched from
+" https://stackoverflow.com/a/16164585
+command -range=% JsonToYaml  :call <SID>ToYamlOperator(0)
+command -range=% YamlToJson  :call <SID>ToJsonOperator(0)
 
 " --------------------------------------------------------------------
 

@@ -362,9 +362,10 @@ augroup set_custom_filetype_for_extensions
 
   autocmd BufNewFile,BufRead ~/.mutt/*      set ft=muttrc
 
-  autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
-  autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
-  autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
+  " DISABLED on purpose
+  " autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
+  " autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
+  " autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
 
   " json in yaml -> too many errors
   autocmd BufNewFile,BufRead */queries/*.yaml     set ft=text

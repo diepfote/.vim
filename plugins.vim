@@ -12,7 +12,6 @@ let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnost
 
 if os ==# 'Darwin' || os ==# 'Mac'
 
-  " TODO change ft to yaml.ansible -> coc-ansible
   "
   call extend(g:coc_global_extensions, ['coc-groovy', '@yaegassy/coc-ansible'])
 

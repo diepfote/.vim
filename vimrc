@@ -236,8 +236,8 @@ augroup END
 " -----------
 " statusline start
 
-" current buffer name
-set statusline=%=%-10F
+" modified flag and current buffer name
+set statusline=%=%m\ %-10F
 
 " statusline end
 " -----------

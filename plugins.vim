@@ -428,6 +428,20 @@ augroup end
 " ---------------------------------------
 
 
+" -----------------------------------
+" zig-vim
+
+Plug 'ziglang/zig.vim'
+
+augroup zig-vim-autocommands
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  " Symbol renaming.
+  au FileType zig :compiler zig_build_exe
+augroup END
+
+" -----------------------------------
 
 " -----------------------------------
 "  vim-go settings start

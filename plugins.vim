@@ -383,13 +383,13 @@ Plug 'stephpy/vim-yaml'
 " ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
 Plug 'jeetsukumaran/vim-indentwise'
 "
-command JumpSameIdentNext  :normal ]=
-command JumpLsrIdentNext   :normal ]+
-command JumpGtrIndentNext  :normal ]-
+command! JumpSameIdentNext  :normal ]=
+command! JumpLsrIdentNext   :normal ]+
+command! JumpGtrIndentNext  :normal ]-
 "
-command JumpSameIdentPrev  :normal [=
-command JumpLsrIdentPrev   :normal [+
-command JumpGtrIdentPrev   :normal [-
+command! JumpSameIdentPrev  :normal [=
+command! JumpLsrIdentPrev   :normal [+
+command! JumpGtrIdentPrev   :normal [-
 " ---
 
 " Add jinja2 syntax highlighting

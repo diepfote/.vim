@@ -27,6 +27,16 @@ set undofile
 set fsync  " flush file to disk
 
 
+" just write/quit the file, damn you
+" https://blog.sanctum.geek.nz/vim-koans/#:~:text=In%20a%20desperate,Wq%20looked%20away.
+command! -bang W :w
+command! -bang Wq :wq
+command! -bang WQ :wq
+command! -bang Q :q
+command! -bang Qa :qa
+command! -bang QA :qa
+command! -bang X :x
+
 
 " resize windows with arrow keys
 nnoremap <c-down>  :resize +2<cr>
@@ -74,9 +84,9 @@ function! s:DeleteInactiveBufs()
   echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 
-command Bdeleteall :call <SID>DeleteInactiveBufs()
+command! Bdeleteall :call <SID>DeleteInactiveBufs()
 
-command RequiredByNone /required by.*none
+command! RequiredByNone /required by.*none
 " -----------------------
 
 
@@ -189,7 +199,7 @@ function! s:ToggleListCharsOptions()
   endif
 endfunction
 
-command ToggleListCharsOptions :call <SID>ToggleListCharsOptions()
+command! ToggleListCharsOptions :call <SID>ToggleListCharsOptions()
 " --------------------------------
 
 
@@ -594,8 +604,8 @@ vnoremap <silent><leader>e64 :<c-u>call <SID>Base64EncodeOperator(visualmode())<
 
 " range definition snatched from
 " https://stackoverflow.com/a/16164585
-command -range=% Base64Encode  :call <SID>Base64EncodeOperator(0)
-command -range=% Base64Decode  :call <SID>Base64DecodeOperator(0)
+command! -range=% Base64Encode  :call <SID>Base64EncodeOperator(0)
+command! -range=% Base64Decode  :call <SID>Base64DecodeOperator(0)
 
 
 " ----------------------------
@@ -635,8 +645,8 @@ vnoremap <silent><leader>toy :<c-u>call <SID>ToYamlOperator(visualmode())<cr>
 
 " range definition snatched from
 " https://stackoverflow.com/a/16164585
-command -range=% JsonToYaml  :call <SID>ToYamlOperator(0)
-command -range=% YamlToJson  :call <SID>ToJsonOperator(0)
+command! -range=% JsonToYaml  :call <SID>ToYamlOperator(0)
+command! -range=% YamlToJson  :call <SID>ToJsonOperator(0)
 
 " --------------------------------------------------------------------
 
@@ -779,7 +789,7 @@ endpython
 endfunction
 
 " insert UUID in line below current line
-command InsertUUID4  :call append(line('.'), <SID>InsertUUID4())
+command! InsertUUID4  :call append(line('.'), <SID>InsertUUID4())
 
 " ----------------------------------------------
 
@@ -793,8 +803,8 @@ function! s:PrependSeparator()
   normal yyP^v$r-xxgclj
 endfunction
 
-command AppendSeparator  :call <SID>AppendSeparator()
-command PrependSeparator  :call <SID>PrependSeparator()
+command! AppendSeparator  :call <SID>AppendSeparator()
+command! PrependSeparator  :call <SID>PrependSeparator()
 " -----------------------------------
 
 

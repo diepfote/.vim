@@ -277,7 +277,7 @@ if exists('loaded_less')  " make vim behave like less
   set nonumber
 else
   " useful for motion commands
-  set relativenumber
+  set norelativenumber
   set number
 endif
 

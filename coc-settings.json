@@ -1,4 +1,15 @@
 {
+
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false,
+    "blank_lines": false,
+  },
+
+  "yaml.schemas": {
+     "kubernetes": "/*.yaml"
+  },
+
   "suggest.floatConfig.border": true,
   "hover.floatConfig.border": true,
 
@@ -9,11 +20,6 @@
     "maxWidth": 30,
     "winblend": 10,
     "close": true
-  },
-
-
-  "yaml.schemas": {
-     "kubernetes": "/*.yaml"
   },
 
 

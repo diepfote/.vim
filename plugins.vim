@@ -32,29 +32,36 @@ elseif os ==# 'Linux'
   let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml'
 endif
 
+
+function! CocDiagnosticsOpenClose()
+    :lcl
+    :CocDiagnostics
+endfunction
+
+
 augroup coc_mappings
   " do not duplicate autocmds on reload
   autocmd!
 
 
   " Symbol renaming.
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <leader>rn <Plug>(coc-rename)'
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <leader>rn <Plug>(coc-rename)'
 
   " GoTo code navigation.
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gd <Plug>(coc-definition)'
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent> gd <Plug>(coc-definition)'
   " Show References
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nmap <silent> gR <Plug>(coc-references)'
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent> gR <Plug>(coc-references)'
   " Show function signature
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . " nmap <silent> gs :call CocActionAsync('doHover')<cr>"
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . " nnoremap <silent> gs :call CocActionAsync('doHover')<cr>"
 
 
   " Mappings for CoCList
   " Show all diagnostics.
-  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait>  <BackSpace><BackSpace>  :<C-u>CocDiagnostic<cr>
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call CocDiagnosticsOpenClose()<cr>'
   " Show commands.
-  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>c  :CocList commands<cr>'
   " Find symbol of current document.
-  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>o  :CocList outline<cr>'
 augroup END
 
 " coc language server END

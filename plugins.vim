@@ -50,7 +50,7 @@ augroup coc_mappings
 
   " Mappings for CoCList
   " Show all diagnostics.
-  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>a  :<C-u>CocDiagnostic<cr>
+  autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait>  <BackSpace><BackSpace>  :<C-u>CocDiagnostic<cr>
   " Show commands.
   autocmd BufEnter,FocusGained *.py,*.groovy nmap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
   " Find symbol of current document.

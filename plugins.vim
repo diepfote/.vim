@@ -58,6 +58,7 @@ augroup coc_mappings
   " Mappings for CoCList
   " Show all diagnostics.
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call CocDiagnosticsOpenClose()<cr>'
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><Enter>  :lcl<cr>'
   " Show commands.
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>c  :CocList commands<cr>'
   " Find symbol of current document.

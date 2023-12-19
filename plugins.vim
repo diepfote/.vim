@@ -17,7 +17,7 @@ if os ==# 'Darwin' || os ==# 'Mac'
 
   "
   " custom for Coc Mappings below
-  let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf'
+  let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf,*.md'
   let g:coc_filetype_map = {
 \ 'yaml.ansible': 'ansible',
 \ }
@@ -362,8 +362,23 @@ let g:mwDefaultHighlightingPalette = 'extended'
 
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
+
+" ---------
+" ShellCheck config
+
 Plug 'itspriddle/vim-shellcheck'
 
+function! ShellCheckOpenClose()
+    :ccl
+    :ShellCheck!
+endfunction
+
+augroup ShellCheck
+  autocmd FileType sh  nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call ShellCheckOpenClose()<cr>
+  autocmd FileType sh  nnoremap <silent><nowait>  <BackSpace><Enter>  :ccl<cr>
+augroup end
+
+" ----------
 
 Plug 'diepfote/vim-primitive-yamlsort'
 

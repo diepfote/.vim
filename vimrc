@@ -158,7 +158,9 @@ if has('nvim')
   endfunction
 
   augroup resCur
+    " do not duplicate autocmds on reload
     autocmd!
+
     autocmd BufWinEnter * call <SID>ResCur()
   augroup END
   " ---------------------
@@ -236,7 +238,10 @@ set tabline+=%=\ %-40{fugitive#statusline()}
 " redraw tabline on almost any action
 " snatched from https://vi.stackexchange.com/a/28928
 augroup redrawTabline
-  au CursorMoved,CursorMovedI,TextChanged,TextChangedP,CmdlineEnter,CmdlineLeave,CmdlineChanged *  :redrawtabline
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd CursorMoved,CursorMovedI,TextChanged,TextChangedP,CmdlineEnter,CmdlineLeave,CmdlineChanged *  :redrawtabline
 augroup END
 
 
@@ -312,7 +317,6 @@ augroup focusChanges
 
   autocmd FocusGained,BufEnter * :silent! !  " trigger file reload when buffer gets focus
   "au FocusLost * :wa " save on focus loss
-
 
   autocmd FocusGained,BufEnter * :call <SID>ChangeToDirOfFile()
 augroup END
@@ -480,7 +484,6 @@ function! s:SetSpell()
 endfunction
 
 augroup spell_lang
-
   " do not duplicate autocmds on reload
   autocmd!
 
@@ -766,7 +769,9 @@ function! GoToNextIndent(inc)
 endfunction
 
 augroup indentation_jump_yaml
+  " do not duplicate autocmds on reload
   autocmd!
+
   autocmd Filetype yaml nnoremap ]] :call GoToNextIndent(1)<CR>
   autocmd Filetype yaml nnoremap [[ :call GoToNextIndent(-1)<CR>
 augroup END
@@ -903,7 +908,9 @@ func! s:ctrl_s(cnt, new, here) abort
         exe ((a:cnt == 0) ? 'tab split' : a:cnt.'split')
         exe 'buffer' b
         " augroup nvim_shell
+        "   " do not duplicate autocmds on reload
         "   autocmd!
+
         "   autocmd TabLeave <buffer> if winnr('$') == 1 && bufnr('%') == g:term_shell.termbuf | tabclose | endif
         " augroup END
       endif
@@ -914,7 +921,9 @@ func! s:ctrl_s(cnt, new, here) abort
     terminal
     setlocal scrollback=-1
     " augroup nvim_shell
+    "   " do not duplicate autocmds on reload
     "   autocmd!
+
     "   autocmd TabLeave <buffer> if winnr('$') == 1 && bufnr('%') == g:term_shell.termbuf | tabclose | endif
     " augroup END
     file :shell

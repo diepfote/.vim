@@ -33,7 +33,7 @@ elseif os ==# 'Linux'
 endif
 
 
-function! CocDiagnosticsOpenClose()
+function! CocDiagnosticsReopen()
     :lcl
     :CocDiagnostics
 endfunction
@@ -42,7 +42,6 @@ endfunction
 augroup coc_mappings
   " do not duplicate autocmds on reload
   autocmd!
-
 
   " Symbol renaming.
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <leader>rn <Plug>(coc-rename)'
@@ -57,7 +56,7 @@ augroup coc_mappings
 
   " Mappings for CoCList
   " Show all diagnostics.
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call CocDiagnosticsOpenClose()<cr>'
+  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call CocDiagnosticsReopen()<cr>'
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><Enter>  :lcl<cr>'
   " Show commands.
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>c  :CocList commands<cr>'
@@ -297,6 +296,9 @@ function! <sid>SetColorScheme()
 endfunction
 
 augroup set_colorscheme_for_yaml_files
+  " do not duplicate autocmds on reload
+  autocmd!
+
   autocmd FocusGained,BufEnter * :call <sid>SetColorScheme()
 augroup END
 
@@ -368,13 +370,16 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 
 Plug 'itspriddle/vim-shellcheck'
 
-function! ShellCheckOpenClose()
+function! ShellCheckReopen()
     :ccl
     :ShellCheck!
 endfunction
 
 augroup ShellCheck
-  autocmd FileType sh  nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call ShellCheckOpenClose()<cr>
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd FileType sh  nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call ShellCheckReopen()<cr>
   autocmd FileType sh  nnoremap <silent><nowait>  <BackSpace><Enter>  :ccl<cr>
 augroup end
 
@@ -445,7 +450,9 @@ function! <sid>FugitiveAddGoToParentTreeMapping()
 
 endfunction
 augroup fugitiveVim
+  " do not duplicate autocmds on reload
   autocmd!
+
   autocmd BufEnter * :call <sid>FugitiveAddGoToParentTreeMapping()
 augroup end
 " ---------------------------------------

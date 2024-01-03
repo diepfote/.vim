@@ -569,7 +569,17 @@ endfunction
 
 function ChangeHighlightVerticalLine()
   " indicates character limit
-  highlight ColorColumn guifg=NONE guibg=seashell2
+  highlight ColorColumn guifg=NONE guibg=lightyellow
+endfunction
+
+function ColorSharedSettings()
+  :RainbowToggleOn
+
+  call ChangeHighlightCurrentLine()
+  call ChangeHighlightStatusLine()
+  call ChangeHighlightTabLine()
+  call ChangeHighlightVerticalLine()
+  call ChangeHighlightSearch()
 endfunction
 
 function ColorOneHalfLight()
@@ -581,12 +591,10 @@ function ColorOneHalfLight()
   endif
 
   execute 'colorscheme ' . l:colorscheme_name
-  :RainbowToggleOn
+
   :LocalIndentGuide +hl +cc
-  call ChangeHighlightCurrentLine()
-  call ChangeHighlightStatusLine()
-  call ChangeHighlightTabLine()
-  call ChangeHighlightSearch()
+
+  call ColorSharedSettings()
 endfunction
 
 function ColorOff()
@@ -600,13 +608,10 @@ function ColorOff()
   " pbrisbin/vim-colors-off
   set background=light
   execute 'colorscheme ' . l:colorscheme_name
+
   :LocalIndentGuide -hl -cc
-  :RainbowToggleOn
-  call ChangeHighlightCurrentLine()
-  call ChangeHighlightStatusLine()
-  call ChangeHighlightTabLine()
-  call ChangeHighlightVerticalLine()
-  call ChangeHighlightSearch()
+
+  call ColorSharedSettings()
 endfunction
 
 

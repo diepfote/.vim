@@ -139,6 +139,7 @@ augroup custom_comment_strings
 
   autocmd FileType firejail setlocal commentstring=#\ %s
   autocmd FileType text     setlocal commentstring=#\ %s
+  autocmd FileType json     setlocal commentstring=//\ %s
 augroup END
 " -----------------
 

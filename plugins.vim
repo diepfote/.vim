@@ -413,10 +413,12 @@ Plug 'stephpy/vim-yaml'
 Plug 'jeetsukumaran/vim-indentwise'
 "
 command! JumpSameIdentNext  :normal ]=
+nnoremap J                  :normal ]=<cr>
 command! JumpLsrIdentNext   :normal ]+
 command! JumpGtrIndentNext  :normal ]-
 "
 command! JumpSameIdentPrev  :normal [=
+nnoremap K                  :normal [=<cr>
 command! JumpLsrIdentPrev   :normal [+
 command! JumpGtrIdentPrev   :normal [-
 " ---

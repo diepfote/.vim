@@ -86,7 +86,7 @@ endfunction
 
 command! Bdeleteall :call <SID>DeleteInactiveBufs()
 
-command! RequiredByNone /required by.*none
+command! RequiredByNone /\v^Required By.*None$\n^Optional For.*None$
 " -----------------------
 
 

@@ -389,6 +389,8 @@ augroup end
 Plug 'diepfote/vim-primitive-yamlsort'
 
 
+
+
 " built-in yaml syntax highlighting breaks if
 " you have a array bracket expression.
 "
@@ -514,6 +516,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 " single one
 " (or none, at the top and bottom of the file).
 Plug 'AndrewRadev/whitespaste.vim'
+
+" trim whitespace on modified lines
+Plug 'thirtythreeforty/lessspace.vim'
+let g:lessspace_blacklist = ['diff', 'markdown']
+
 
 " delete wrapping if-clauses, try-catch blocks, and similar constructs
 " mapping `dh`

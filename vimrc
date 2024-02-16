@@ -422,12 +422,14 @@ function! s:StripTrailingWhitespace()
     execute '%s/\s\+$//e'
 endfunction
 
-augroup trailing_whitespace
-  " do not duplicate autocmds on reload
-  autocmd!
+" @Disabled 2024-02-15: replaced by thirtythreeforty/lesspace.vim.
+" is this a full replacement? does this help with zuul job confi?
+" augroup trailing_whitespace
+"   " do not duplicate autocmds on reload
+"   autocmd!
 
-  autocmd BufWritePre * call <SID>StripTrailingWhitespace()
-augroup END
+"   autocmd BufWritePre * call <SID>StripTrailingWhitespace()
+" augroup END
 " -----------------
 
 

@@ -23,9 +23,11 @@ if os ==# 'Darwin' || os ==# 'Mac'
 \ }
 
   " DISABLED on purpose
+  " augroup playbooks
   " autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
   " autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
   " autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
+  " augroup END
 
 elseif os ==# 'Linux'
   " custom for Coc Mappings below

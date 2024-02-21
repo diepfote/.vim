@@ -398,6 +398,18 @@ augroup END
 " -----------------
 
 
+" --------------
+" disable undofile files opened via `pass`
+"
+augroup pass_edit
+  " 'pass' included in dir name
+  autocmd BufNewFile,BufRead /**/pass.*/**  set noundofile
+  " 'pass' included in file name
+  autocmd BufNewFile,BufRead /**/pass.*     set noundofile
+augroup END
+
+" --------------
+
 " -----------------
 " remove trailing whitespace
 

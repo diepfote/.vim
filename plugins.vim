@@ -71,31 +71,6 @@ augroup END
 
 
 
-" -----------------------
-" tmux-complete settings
-
-" !broken since coc.nvim switched to its own popup window!
-
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'wellle/tmux-complete.vim'
-"   " to enable fuzzy matching disable filter_prefix -> set to 0
-" let g:tmuxcomplete#asyncomplete_source_options = {
-"             \ 'name':      'tmuxcomplete',
-"             \ 'whitelist': ['*'],
-"             \ 'config': {
-"             \     'splitmode':      'words',
-"             \     'filter_prefix':   0,
-"             \     'show_incomplete': 1,
-"             \     'sort_candidates': 0,
-"             \     'scrollback':      0,
-"             \     'truncate':        0
-"             \     }
-"             \ }
-
-" -----------------------
-
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -128,6 +103,8 @@ endfunction
 " coc language server END
 " -----------------------------------
 
+" re-evaluated on 2024-03-06. keeping this in case I ever want to
+" convert a binary plist file
 Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
 
 " -----------------
@@ -152,12 +129,20 @@ Plug 'justinmk/vim-dirvish'
 " Plug 'tpope/vim-vinegar'
 "
 
+
+" -----------------------
+" justinmk/vim-sneak
 " f / t command improved
 Plug 'justinmk/vim-sneak'
 noremap f <Plug>Sneak_f
 noremap F <Plug>Sneak_F
 noremap t <Plug>Sneak_t
 noremap T <Plug>Sneak_T
+
+" TODO 2024-03-06 use label-mode -> minimalist alternative
+" to https://github.com/easymotion/vim-easymotion
+" -----------------------
+
 
 
 " ----------------------
@@ -323,38 +308,36 @@ Plug 'pbrisbin/vim-colors-off'
 "
 Plug 'dag/vim-fish'
 
+
 Plug 'vim-syntastic/syntastic'
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_python_checkers = ['']  " disable syntastic for python
 
+" helps to end certain structures automatically
+" e.g. adds "endfunction" if you start a function in vimscript
 Plug 'tpope/vim-endwise'
 
-Plug 'christoomey/vim-sort-motion'  " type gs then the rest of your text objects & motions
-
-" --------------------------------
-" vim tmux runner settings
-Plug 'christoomey/vim-tmux-runner'
-
-" for Python and other languages with syntactic whitespace
-let g:VtrStripLeadingWhitespace = 0
-let g:VtrClearEmptyLines = 0
-let g:VtrAppendNewline = 0
-" --------------------------------
 
 Plug 'glts/vim-magnum'  " dependency for vim-radical
+" Radical.vim is a Vim plugin that converts between the number representations encountered when programming, that is in addition to decimal, hex, octal, and binary representation.
+"
+" gA ... shows the four representations of the number under the cursor (or selected in Visual mode).
+" crd, crx, cro, crb ... convert the number under the cursor to decimal, hex, octal, binary, respectively.
 Plug 'glts/vim-radical'
+
+2024
+" increase and decrease numbers and dates ... <ctrl-a>/<ctrl-x>
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'  " e.g. ds" to delete surrounding quotes ; ysTEXTOBJECT'  to surround TEXTOBJECT with ' ; cs"' to change " to '
+
+ " e.g. ds" to delete surrounding quotes ; ysTEXTOBJECT'  to surround TEXTOBJECT with ' ; cs"' to change " to '
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'  " support native repeat operation '.' for plugins that implement tpope/vim-repeat
-
-
-
 
 
 Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
-
+Plug 'inkarkat/vim-ReplaceWithRegister'
 " -----------------
 " vim-mark
 "
@@ -364,8 +347,6 @@ Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 Plug 'inkarkat/vim-mark'
 let g:mwDefaultHighlightingPalette = 'extended'
 " -----------------
-
-Plug 'inkarkat/vim-ReplaceWithRegister'
 
 
 " ---------
@@ -429,6 +410,7 @@ command! JumpGtrIdentPrev   :normal [-
 
 " Add jinja2 syntax highlighting
 Plug 'Glench/Vim-Jinja2-Syntax'
+" TODO 2024-03-05  change highlighting colors
 
 
 " narrow range plugin / NarrowRange plugin
@@ -440,6 +422,8 @@ Plug 'habamax/vim-rst'
 
 
 
+" tmux integration
+" re-evaluated on 2024-03-06
 Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
 
@@ -507,11 +491,6 @@ augroup END
 " thus:
 Plug 'lambdalisue/suda.vim'
 
-" Usage e.g.:
-" :CtrlP  -> files
-" :CtrlPBuffer -> buffers
-" :CtrlPMixed  -> both + most recently used files
-Plug 'ctrlpvim/ctrlp.vim'
 
 " When pasting, it compresses all blank
 " lines that result from the paste to a
@@ -519,22 +498,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 " (or none, at the top and bottom of the file).
 Plug 'AndrewRadev/whitespaste.vim'
 
+" check `vimrc` for `@Disabled 2024-02-15` and `lessspace`
 " trim whitespace on modified lines
 Plug 'thirtythreeforty/lessspace.vim'
 let g:lessspace_blacklist = ['diff', 'markdown']
 
-
-" delete wrapping if-clauses, try-catch blocks, and similar constructs
-" mapping `dh`
-" or run `:Deleft`
-Plug 'AndrewRadev/deleft.vim'
-
-" Placing the cursor on \"two\" and executing :SidewaysLeft, the \"one\" and \"two\" arguments will switch their places
-" def function(one, two, three):
-"    pass
-" def function(two, one, three):
-"     pass
-Plug 'AndrewRadev/sideways.vim'
 
 " The plugin is designed to automatically rename closing
 " HTML/XML tags when editing opening ones (or the other way around)

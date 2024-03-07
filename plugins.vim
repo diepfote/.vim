@@ -139,6 +139,12 @@ noremap F <Plug>Sneak_F
 noremap t <Plug>Sneak_t
 noremap T <Plug>Sneak_T
 
+" :help sneak
+" forward jump in normal mode ... s<whattosearchfor>
+" backward jump in normal mode S<whattosearchfor>
+"
+let g:sneak#label = 1
+
 " TODO 2024-03-06 use label-mode -> minimalist alternative
 " to https://github.com/easymotion/vim-easymotion
 " -----------------------

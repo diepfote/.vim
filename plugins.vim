@@ -347,8 +347,15 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 " -----------------
 " vim-mark
 "
-" to highlight a word under your cursor do: <leader>m
+" highlight a word under your cursor ... <leader>m
+" highlight based on a regex pattern ... <leader>r
 " to remove all highlights do: :MarkClear
+"
+" jump to the next mark (any) ... <leader>/
+" jump to the next mark (same pattern) ... <leader>*
+"
+" set the palette ... :MarkPallete extended
+" note: MarkPalette supports autocompletion
 "
 Plug 'inkarkat/vim-mark'
 let g:mwDefaultHighlightingPalette = 'extended'
@@ -596,6 +603,8 @@ function ColorOff()
   execute 'colorscheme ' . l:colorscheme_name
 
   :LocalIndentGuide -hl -cc
+
+  :MarkPalette extended
 
   call ColorSharedSettings()
 endfunction

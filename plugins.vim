@@ -331,7 +331,6 @@ Plug 'glts/vim-magnum'  " dependency for vim-radical
 " crd, crx, cro, crb ... convert the number under the cursor to decimal, hex, octal, binary, respectively.
 Plug 'glts/vim-radical'
 
-2024
 " increase and decrease numbers and dates ... <ctrl-a>/<ctrl-x>
 Plug 'tpope/vim-speeddating'
 

@@ -353,7 +353,7 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 " jump to the next mark (any) ... <leader>/
 " jump to the next mark (same pattern) ... <leader>*
 "
-" set the palette ... :MarkPallete extended
+" set the palette ... :MarkPalette extended
 " note: MarkPalette supports autocompletion
 "
 Plug 'inkarkat/vim-mark'
@@ -566,6 +566,7 @@ endfunction
 
 function ColorSharedSettings()
   :RainbowToggleOn
+  :MarkPalette extended
 
   call ChangeHighlightCurrentLine()
   call ChangeHighlightStatusLine()
@@ -602,8 +603,6 @@ function ColorOff()
   execute 'colorscheme ' . l:colorscheme_name
 
   :LocalIndentGuide -hl -cc
-
-  :MarkPalette extended
 
   call ColorSharedSettings()
 endfunction

@@ -66,10 +66,6 @@ augroup coc_mappings
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>o  :CocList outline<cr>'
 augroup END
 
-" coc language server END
-" -----------------------------------
-
-
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -98,10 +94,25 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" -----------------------
 
 " coc language server END
 " -----------------------------------
+
+
+"
+" :[range]Join[!] [separator] [count] [flags]
+"
+" flags :
+"   r : (reverse) join lines in reverse
+"   k : (keep) don't remove joined line after join
+"
+" e.g.
+" replace new lines with literal '\n', use `!` to keep leading/trailing whitespace
+" :'<,>'Join! '\n'
+" :'<,>'Join '\n'
+"
+Plug 'sk1418/Join'
+
 
 " re-evaluated on 2024-03-06. keeping this in case I ever want to
 " convert a binary plist file

@@ -215,6 +215,10 @@ let g:ackprg = 'ag -f -a --vimgrep'
 "                   \  --exclude="*.html"
 "                   \ --exclude=build.*trace
 "                   \ --exclude=Session.vim'
+"
+
+" close quickfix window mapping
+execute 'autocmd BufEnter,FocusGained * nnoremap <silent><nowait>  <BackSpace><Space>  :ccl<cr>'
 " ----------------------------
 
 

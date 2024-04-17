@@ -45,6 +45,12 @@ nnoremap <c-left>  :vertical resize -2<cr>
 nnoremap <c-right>  :vertical resize +2<cr>
 
 
+" previous location
+" ...    <C-o>
+" previous edit
+nnoremap <c-p> `.<cr>
+
+
 " -----------------------
 let g:toggle_window_zoom_enabled = 0
 function! s:ToggleWindowZoom()

@@ -524,26 +524,6 @@ vnoremap <F1> <NOP>
 
 
 
-" -------------------------------
-" disable arrow keys in all modes
-
-nnoremap <up> <NOP>
-nnoremap <down> <NOP>
-nnoremap <left> <NOP>
-nnoremap <right> <NOP>
-
-inoremap <up> <NOP>
-inoremap <down> <NOP>
-inoremap <left> <NOP>
-inoremap <right> <NOP>
-
-vnoremap <up> <NOP>
-vnoremap <down> <NOP>
-vnoremap <left> <NOP>
-vnoremap <right> <NOP>
-" -------------------------------
-
-
 " nicked from https://github.com/justinmk/config/blob/d4c0a1733206c3a973dce10ce122d64456fd7eb9/.config/nvim/init.vim#L738
 " repeat last command for each line of a visual selection
 xnoremap . :normal .<CR>

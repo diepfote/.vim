@@ -378,7 +378,14 @@ augroup set_custom_filetype_for_extensions
   autocmd BufRead,BufNewFile *.conf set ft=sh
   autocmd BufRead,BufNewFile *.hook set ft=sh
 
-  autocmd BufRead,BufNewFile *.d set ft=d
+  " dtrace
+  autocmd BufRead,BufNewFile *.d set ft=dtrace
+
+  " bpftrace
+  "
+  " replaced by 'mmarchini/bpftrace.vim' in plugins.vim
+  "
+  " autocmd BufRead,BufNewFile *.bt set ft=dtrace
 
   autocmd BufNewFile,BufRead ~/.mutt/*      set ft=muttrc
 

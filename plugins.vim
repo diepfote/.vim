@@ -536,6 +536,9 @@ let g:lessspace_blacklist = ['diff', 'markdown']
 Plug 'AndrewRadev/tagalong.vim'
 
 
+" add filetype bpftrace
+Plug 'mmarchini/bpftrace.vim'
+
 " ------------------------------
 "  bufferize BEGIN
 

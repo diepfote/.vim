@@ -632,4 +632,7 @@ endfunction
 cabbrev __commit cheatsheets_commit_and_push
 cabbrev __pull cheatsheets_pull
 
+
+cabbrev __rezepte rezepte_commit_and_push
+
 " -------------

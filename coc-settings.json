@@ -1,4 +1,22 @@
 {
+  // https://github.com/fannheyward/coc-rust-analyzer?tab=readme-ov-file#configurations
+  //
+  // Disable all type hints for rust-analyzer
+  //
+  "rust-analyzer.inlayHints": {
+    "bindingModeHints.enable" : false,
+    "chainingHints.enable": false,
+    "closingBraceHints.enable": false,
+    "closureReturnTypeHints.enable": false,
+    "expressionAdjustmentHints.enable": false,
+    "lifetimeElisionHints.enable": false,
+    "parameterHints.enable": false,
+    "reborrowHints.enable": false,
+
+    "typeHints": {
+      "enable": false
+    }
+  },
 
   "markdownlint.config": {
     "default": true,

@@ -8,7 +8,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd', 'coc-markdownlint']
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd', 'coc-markdownlint', 'coc-rust-analyzer']
+let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml,*.rs'
 
 if os ==# 'Darwin' || os ==# 'Mac'
 
@@ -17,7 +18,7 @@ if os ==# 'Darwin' || os ==# 'Mac'
 
   "
   " custom for Coc Mappings below
-  let g:coc_buffers_to_apply_to = '*.c,*.py,*.groovy,*.json,*.yaml,*.conf,*.md'
+  let g:coc_buffers_to_apply_to = '*.groovy,*.conf,*.md,' . g:coc_buffers_to_apply_to
   let g:coc_filetype_map = {
 \ 'yaml.ansible': 'ansible',
 \ }
@@ -31,7 +32,7 @@ if os ==# 'Darwin' || os ==# 'Mac'
 
 elseif os ==# 'Linux'
   " custom for Coc Mappings below
-  let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml'
+  let g:coc_buffers_to_apply_to = '' . g:coc_buffers_to_apply_to
 endif
 
 

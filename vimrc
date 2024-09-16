@@ -333,9 +333,9 @@ augroup END
 " start custom tab settings
 
 " default
-function! s:DefaultTabSettings()
+function! DefaultTabSettings()
     " TODO use files in ~/.vim/ftplugin/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftplugin
-    if &ft =~? 'python\|^c$\|haskell\|^go$\|^zig$'
+    if &ft =~? 'python\|^c$\|haskell\|^go$\|^zig$\|^rust$'
       " Do not set custom tab settings!
         set tabstop=4 shiftwidth=4
     elseif &ft =~? '^gitconfig$'
@@ -352,7 +352,7 @@ augroup default_tab_settings
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd BufEnter,FocusGained * call <SID>DefaultTabSettings()
+  autocmd BufEnter,FocusGained * call DefaultTabSettings()
 augroup END
 
 

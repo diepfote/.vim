@@ -325,11 +325,6 @@ Plug 'pbrisbin/vim-colors-off'
 " --------------------------------
 
 
-" TODO: vim-endwise or vim-fish causes end statements to outdent all the way
-" if ft=fish
-"
-Plug 'dag/vim-fish'
-
 
 Plug 'vim-syntastic/syntastic'
 let g:syntastic_vim_checkers = ['vint']
@@ -338,14 +333,6 @@ let g:syntastic_python_checkers = ['']  " disable syntastic for python
 " helps to end certain structures automatically
 " e.g. adds "endfunction" if you start a function in vimscript
 Plug 'tpope/vim-endwise'
-
-
-Plug 'glts/vim-magnum'  " dependency for vim-radical
-" Radical.vim is a Vim plugin that converts between the number representations encountered when programming, that is in addition to decimal, hex, octal, and binary representation.
-"
-" gA ... shows the four representations of the number under the cursor (or selected in Visual mode).
-" crd, crx, cro, crb ... convert the number under the cursor to decimal, hex, octal, binary, respectively.
-Plug 'glts/vim-radical'
 
 " increase and decrease numbers and dates ... <ctrl-a>/<ctrl-x>
 Plug 'tpope/vim-speeddating'
@@ -436,17 +423,9 @@ command! JumpLsrIdentPrev   :normal [+
 command! JumpGtrIdentPrev   :normal [-
 " ---
 
-" Add jinja2 syntax highlighting
-Plug 'Glench/Vim-Jinja2-Syntax'
-" TODO 2024-03-05  change highlighting colors
-
 
 " narrow range plugin / NarrowRange plugin
 Plug 'chrisbra/NrrwRgn'
-
-
-" Change restructured text highlighting
-Plug 'habamax/vim-rst'
 
 
 

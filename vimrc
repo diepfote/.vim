@@ -278,6 +278,7 @@ endfunction
 " Commands not functions (no need for `:call <funcname>()` -> use plain `:<command>`
 command! FormatXML :call <SID>FormatXML()
 command! FormatJSON :%!python3 -m json.tool
+command! FormatPython :%!black -q -
 
 "  formatting start
 " ---------

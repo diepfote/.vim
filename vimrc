@@ -27,15 +27,16 @@ set undofile
 set fsync  " flush file to disk
 
 
-" just write/quit the file, damn you
+" once there was a lost joke
 " https://blog.sanctum.geek.nz/vim-koans/#:~:text=In%20a%20desperate,Wq%20looked%20away.
+"
 command! -bang W :w
 command! -bang Wq :wq
 command! -bang WQ :wq
-command! -bang Q :q
-command! -bang Qa :qa
-command! -bang QA :qa
-command! -bang X :x
+command! -bang Q :q!
+command! -bang Qa :qa!
+command! -bang QA :qa!
+command! -bang X :x!
 
 
 " resize windows with arrow keys

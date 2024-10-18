@@ -195,16 +195,22 @@ let html_no_rendering=1
 
 " --------------------------------
 set list  " always show some special chars -> listchars option
-
-let g:listchars_for_space_enabled = 0
-set listchars=tab:▴\ ,extends:#,nbsp:⍽
-function! s:ToggleListCharsOptions()
-  if ! g:listchars_for_space_enabled
-    let g:listchars_for_space_enabled = 1
-    set listchars=tab:▴\ ,extends:#,nbsp:⍽,space:·
-  else
+function! s:DisableListCharForSpace()
     let g:listchars_for_space_enabled = 0
     set listchars=tab:▴\ ,extends:#,nbsp:⍽
+endfunction
+function! s:EnableListCharForSpace()
+    let g:listchars_for_space_enabled = 1
+    set listchars=tab:▴\ ,extends:#,nbsp:⍽,space:•
+endfunction
+call <SID>DisableListCharForSpace()
+
+
+function! s:ToggleListCharsOptions()
+  if ! g:listchars_for_space_enabled
+    call <SID>EnableListCharForSpace()
+  else
+    call <SID>DisableListCharForSpace()
   endif
 endfunction
 
@@ -775,7 +781,7 @@ function! GoToNextIndent(inc)
     endif
 endfunction
 
-augroup indentation_jump_yaml
+augroup yaml_custom
   " do not duplicate autocmds on reload
   autocmd!
 

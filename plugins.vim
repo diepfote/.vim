@@ -290,7 +290,6 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 " --------------------------------
 
 
-Plug 'tweekmonster/local-indent.vim'  " highlight indentation with vertical colored line
 
 " --------------------------------
 " colorscheme onehalf
@@ -545,6 +544,12 @@ function ChangeHighlightSearch()
   highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
 endfunction
 
+function ChangeHighlightSelection()
+  highlight Visual ctermbg=lightmagenta guibg=lightmagenta
+  " highlight Visual ctermbg=lightblue guibg=lightblue
+  " highlight Visual ctermbg=lightgray guibg=lightgray
+endfunction
+
 function ChangeHighlightCurrentLine()
   highlight CursorLine guifg=NONE guibg=lightyellow cterm=NONE ctermfg=NONE ctermbg=lightyellow
 endfunction
@@ -571,6 +576,7 @@ function ColorSharedSettings()
   call ChangeHighlightTabLine()
   call ChangeHighlightVerticalLine()
   call ChangeHighlightSearch()
+  call ChangeHighlightSelection()
 endfunction
 
 function ColorOneHalfLight()
@@ -582,8 +588,6 @@ function ColorOneHalfLight()
   endif
 
   execute 'colorscheme ' . l:colorscheme_name
-
-  :LocalIndentGuide +hl +cc
 
   call ColorSharedSettings()
 endfunction
@@ -599,8 +603,6 @@ function ColorOff()
   " pbrisbin/vim-colors-off
   set background=light
   execute 'colorscheme ' . l:colorscheme_name
-
-  :LocalIndentGuide -hl -cc
 
   call ColorSharedSettings()
 endfunction

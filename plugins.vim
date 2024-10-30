@@ -410,16 +410,10 @@ Plug 'stephpy/vim-yaml'
 " ]+ : Move to next line of greater indent than the current line.
 " ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
 Plug 'jeetsukumaran/vim-indentwise'
-"
-command! JumpSameIdentNext  :normal ]=
-nnoremap J                  :normal ]=<cr>
-command! JumpLsrIdentNext   :normal ]+
-command! JumpGtrIndentNext  :normal ]-
-"
-command! JumpSameIdentPrev  :normal [=
-nnoremap K                  :normal [=<cr>
-command! JumpLsrIdentPrev   :normal [+
-command! JumpGtrIdentPrev   :normal [-
+
+map K <Plug>(IndentWisePreviousEqualIndent)
+map J <Plug>(IndentWiseNextEqualIndent)
+
 " ---
 
 

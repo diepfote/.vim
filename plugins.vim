@@ -197,25 +197,46 @@ let g:ack_mappings = {
       \ 'L': '<c-f>' }
 
 " replace ack by the silverlight seacher
-let g:ackprg = 'ag -f -a --vimgrep'
+" let g:ackprg = 'ag --exclude -f -a --vimgrep'
+let g:ackprg = 'ag -f --vimgrep
+                  \ --ignore-dir .git
+                  \ --ignore-dir .helm
+                  \ --ignore-dir .tox
+                  \ --ignore-dir .pulumi
+                  \ --ignore-dir .cache
+                  \ --ignore-dir .mypy_cache
+                  \ --ignore-dir .eggs
+                  \ --ignore-dir *.egg-info
+                  \ --ignore-dir *venv*
+                  \ --ignore-dir _build
+                  \ --ignore-dir __pycache__
+                  \ --ignore "*.pyc"
+                  \ --ignore-dir .pytest_cache
+                  \ --ignore poetry.lock
+                  \ --ignore-dir htmlcov
+                  \ --ignore "*.html"
+                  \ --ignore build.*trace
+                  \ --ignore Session.vim'
 " if only grep available
 " let g:ackprg = 'grep -n
-"                   \ --exclude-dir=.git
-"                   \ --exclude-dir=.helm
-"                   \ --exclude-dir=.tox
-"                   \ --exclude-dir=.pulumi
-"                   \ --exclude-dir=.cache
-"                   \ --exclude-dir=.mypy_cache
-"                   \ --exclude-dir=.eggs
-"                   \ --exclude-dir=*.egg-info
-"                   \ --exclude-dir=*venv*
-"                   \ --exclude-dir=_build
-"                   \ --exclude-dir=__pycache__
-"                   \ --exclude-dir=.pytest_cache
-"                   \ --exclude-dir=htmlcov
-"                   \  --exclude="*.html"
-"                   \ --exclude=build.*trace
-"                   \ --exclude=Session.vim'
+                  " \ --exclude-dir=.git
+                  " \ --exclude-dir=.helm
+                  " \ --exclude-dir=.tox
+                  " \ --exclude-dir=.pulumi
+                  " \ --exclude-dir=.cache
+                  " \ --exclude-dir=.mypy_cache
+                  " \ --exclude-dir=.eggs
+                  " \ --exclude-dir=*.egg-info
+                  " \ --exclude-dir=*venv*
+                  " \ --exclude-dir=_build
+                  " \ --exclude-dir=__pycache__
+                  " \ --exclude="*.pyc"
+                  " \ --exclude-dir=.pytest_cache
+                  " \ --exclude=poetry.lock
+                  " \ --exclude-dir=htmlcov
+                  " \ --exclude="*.html"
+                  " \ --exclude=build.*trace
+                  " \ --exclude=Session.vim
 "
 
 " close quickfix window mapping

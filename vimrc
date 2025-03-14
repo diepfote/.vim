@@ -350,6 +350,8 @@ function! DefaultTabSettings()
         set tabstop=2 shiftwidth=2
     elseif &ft =~? 'asm\|vim\|markdown'
         set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+    elseif &ft =~? 'java'
+        set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
     elseif &ft =~? 'fstab\|make'
         set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab
     else"

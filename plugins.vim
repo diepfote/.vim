@@ -210,6 +210,7 @@ let g:ackprg = 'ag -f --vimgrep
                   \ --ignore-dir *venv*
                   \ --ignore-dir _build
                   \ --ignore-dir __pycache__
+                  \ --ignore-dir .ruff_cache
                   \ --ignore "*.pyc"
                   \ --ignore-dir .pytest_cache
                   \ --ignore poetry.lock
@@ -230,6 +231,7 @@ let g:ackprg = 'ag -f --vimgrep
                   " \ --exclude-dir=*venv*
                   " \ --exclude-dir=_build
                   " \ --exclude-dir=__pycache__
+                  " \ --exclude-dir=.ruff_cache
                   " \ --exclude="*.pyc"
                   " \ --exclude-dir=.pytest_cache
                   " \ --exclude=poetry.lock

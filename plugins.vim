@@ -547,6 +547,11 @@ nnoremap ! :Bufferize<space>!<space>source<space>~/.vim/source-me;<space>
 " ------------------------------
 
 
+" toggle markdown checkboxes
+" <leader>tt will either insert `[ ]` or toggle it
+Plug 'jkramer/vim-checkbox'
+
+
 call plug#end()
 
 

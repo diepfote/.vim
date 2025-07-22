@@ -320,7 +320,7 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 function! <sid>SetColorScheme()
-    if &ft =~? '^yaml$\|^rst$\|^markdown$'
+    if &ft =~? '^rst$\|^markdown$'
       call ColorOneHalfLight()
     else
       call ColorOff()

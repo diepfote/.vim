@@ -367,6 +367,7 @@ Plug 'tpope/vim-repeat'  " support native repeat operation '.' for plugins that 
 Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
+
 Plug 'inkarkat/vim-ReplaceWithRegister'
 " -----------------
 " vim-mark
@@ -553,6 +554,50 @@ Plug 'diepfote/vim-checkbox'
 
 
 call plug#end()
+
+" -------------------------------
+function! DeleteCharAtEndOfLine()
+  normal! mz$x`z
+endfunction
+
+nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
+                  \ :silent! call repeat#set("\<leader>d", -1)<cr>
+" -------------------------------
+
+" ---------------------------------------------------------------------
+let s:replacement = ''  " global so last replacement will be remembered
+function! s:ReplaceCharAtEndOfLine(isRepeat)
+  if ! a:isRepeat
+    let s:replacement = nr2char(getchar())
+  endif
+  execute 'normal! mz$r' . s:replacement . '`z'
+  silent! call repeat#set("\<plug>ReplaceCharAtEndOfLineRepeat")
+endfunction
+
+nnoremap <silent> <plug>ReplaceCharAtEndOfLineRepeat
+                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(1)<cr>
+nnoremap <silent> <plug>ReplaceCharAtEndOfLine
+                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(0)<cr>
+nnoremap <leader>R <plug>ReplaceCharAtEndOfLine
+" ---------------------------------------------------------------------
+
+
+" ---------------------------------------------------------------------
+let s:append_val = ''  " global so last append_val will be remembered
+function! s:AppendCharAtEndOfLine(isRepeat)
+  if ! a:isRepeat
+    let s:append_val = nr2char(getchar())
+  endif
+  execute 'normal! mz$a' . s:append_val . '`z'
+  silent! call repeat#set("\<plug>AppendCharAtEndOfLineRepeat")
+endfunction
+
+nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat
+                  \ :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
+nnoremap <silent> <plug>AppendCharAtEndOfLine
+                  \ :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
+nnoremap <leader>sA <plug>AppendCharAtEndOfLine
+" ---------------------------------------------------------------------
 
 
 function ChangeHighlightSearch()

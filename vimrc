@@ -830,15 +830,6 @@ command! PrependSeparator  :call <SID>PrependSeparator()
 " -----------------------------------
 
 
-" -------------------------------
-function! DeleteCharAtEndOfLine()
-  normal! mz$x`z
-endfunction
-
-nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
-                  \ :silent! call repeat#set("\<leader>d", -1)<cr>
-" -------------------------------
-
 
 " copy clipboard to no-name register
 nnoremap <leader>gr" :let @"=@+<cr>
@@ -958,44 +949,6 @@ nnoremap '<C-s> :<C-u>call <SID>ctrl_s(v:count, v:false, v:true)<CR>
 
 " justinmk shell bind END
 " -----------------------
-
-
-
-" ---------------------------------------------------------------------
-let s:replacement = ''  " global so last replacement will be remembered
-function! s:ReplaceCharAtEndOfLine(isRepeat)
-  if ! a:isRepeat
-    let s:replacement = nr2char(getchar())
-  endif
-  execute 'normal! mz$r' . s:replacement . '`z'
-  silent! call repeat#set("\<plug>ReplaceCharAtEndOfLineRepeat")
-endfunction
-
-nnoremap <silent> <plug>ReplaceCharAtEndOfLineRepeat
-                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(1)<cr>
-nnoremap <silent> <plug>ReplaceCharAtEndOfLine
-                  \ :<c-u>call <sid>ReplaceCharAtEndOfLine(0)<cr>
-nnoremap <leader>R <plug>ReplaceCharAtEndOfLine
-" ---------------------------------------------------------------------
-
-
-" ---------------------------------------------------------------------
-let s:append_val = ''  " global so last append_val will be remembered
-function! s:AppendCharAtEndOfLine(isRepeat)
-  if ! a:isRepeat
-    let s:append_val = nr2char(getchar())
-  endif
-  execute 'normal! mz$a' . s:append_val . '`z'
-  silent! call repeat#set("\<plug>AppendCharAtEndOfLineRepeat")
-endfunction
-
-nnoremap <silent> <plug>AppendCharAtEndOfLineRepeat
-                  \ :<c-u>call <sid>AppendCharAtEndOfLine(1)<cr>
-nnoremap <silent> <plug>AppendCharAtEndOfLine
-                  \ :<c-u>call <sid>AppendCharAtEndOfLine(0)<cr>
-nnoremap <leader>sA <plug>AppendCharAtEndOfLine
-" ---------------------------------------------------------------------
-
 
 source ~/plugins.vim
 

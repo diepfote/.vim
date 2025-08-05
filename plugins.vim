@@ -62,7 +62,7 @@ augroup coc_mappings
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><BackSpace>  :call CocDiagnosticsReopen()<cr>'
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait>  <BackSpace><Enter>  :lcl<cr>'
   " Show commands.
-  execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>c  :CocList commands<cr>'
+  " execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>c  :CocList commands<cr>'
   " Find symbol of current document.
   execute 'autocmd BufEnter,FocusGained ' . g:coc_buffers_to_apply_to . ' nnoremap <silent><nowait> <space>o  :CocList outline<cr>'
 augroup END
@@ -551,6 +551,20 @@ nnoremap ! :Bufferize<space>!<space>source<space>~/.vim/source-me;<space>
 " toggle markdown checkboxes
 " <leader>tt will either insert `[ ]` or toggle it
 Plug 'diepfote/vim-checkbox'
+
+
+" ------------
+" GH Copilot
+" copilot chat
+Plug 'danbradbury/copilot-chat.vim'
+
+" Open a new Cpilot Chat window
+nnoremap <leader>cc :CopilotChatOpen<CR>
+
+" Add visual selection to copilot window
+vmap <leader>a <Plug>CopilotChatAddSelection
+
+" ------------
 
 
 call plug#end()

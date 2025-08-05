@@ -837,6 +837,32 @@ nnoremap <leader>gr" :let @"=@+<cr>
 nnoremap <leader>gr+ :let @+=@"<cr>
 
 
+function! CopyToReg(dst_reg)
+  " inspiration taken from
+  " https://github.com/DanBradbury/copilot-chat.vim/blob/685ed74f4d2349d3f5dec11aa5f89944e91e4a17/autoload/copilot_chat/buffer.vim#L158
+
+  " Save the contents of the unnamed register
+  " to restore it later
+  let l:saved_reg = getreg('"')
+  let l:saved_regtype = getregtype('"')
+
+  " Get the visual selection
+  normal! gvy
+
+  " Get the contents of
+  let l:selection = getreg('"')
+
+  " Copy selection to clipboard
+  call setreg(a:dst_reg, l:selection, l:saved_regtype)
+
+  " Restore unnamed register
+  call setreg('"', l:saved_reg, l:saved_regtype)
+endfunction
+vnoremap cb :<c-u>call CopyToReg("+")<cr>
+vnoremap ca :<c-u>call CopyToReg("a")<cr>
+vnoremap cs :<c-u>call CopyToReg("s")<cr>
+vnoremap cy :<c-u>call CopyToReg("y")<cr>
+
 " Delete to Black Hole Register | Delete to Blackhole Register | Delete into the Void
 " normal mode; combine with any textobject
 nnoremap _d "_d

@@ -864,11 +864,8 @@ function! CopyToReg(dst_reg, delete)
 endfunction
 "
 " Check the content of any of these registers
-" :reg ""
-" :reg "+
-" :reg "a
-" :reg "s
-" :reg "y
+" :reg "+ "a "s "y
+"
 " --
 " Copy to register
 vnoremap cb :<c-u>call CopyToReg("+", 0)<cr>

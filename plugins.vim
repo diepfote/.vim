@@ -555,6 +555,10 @@ Plug 'diepfote/vim-checkbox'
 
 " ------------
 " GH Copilot
+
+" tpope's official client
+Plug 'github/copilot.vim'
+
 " copilot chat
 Plug 'danbradbury/copilot-chat.vim'
 
@@ -568,6 +572,25 @@ vmap <leader>a <Plug>CopilotChatAddSelection
 
 
 call plug#end()
+
+
+" -----------------------------------
+" GH copilot settings
+
+function! ToggleGhCopilot()
+  let l:current_dir = expand('%:p:h')
+  if l:current_dir =~# '.*/deploy-*/*'
+     :Copilot enable
+     return
+  endif
+  :Copilot disable
+endfunction
+
+let g:copilot_enabled = v:false
+augroup gh_copilot
+    autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
+augroup END
+" -----------------------------------
 
 " -------------------------------
 function! DeleteCharAtEndOfLine()

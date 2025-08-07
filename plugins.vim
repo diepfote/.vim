@@ -567,12 +567,57 @@ vmap <leader>a <Plug>CopilotChatAddSelection  " Add visual selection to copilot 
 " ------------
 
 
+" ----------------------------
+" parrot
+
+Plug 'frankroeder/parrot.nvim'
+
+" dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+
+
+" ----------------------------
+
+
+
 call plug#end()
 
 
 
+" ------------------
+" settings for parrot
+lua << EOF
+require('parrot').setup({
+    providers = {
+      perplexity = {
+        name = "perplexity",
+        api_key = os.getenv("PERPLEXITY_API_KEY"),
+        endpoint = "https://api.perplexity.ai/chat/completions",
+        topic = {
+          model = "r1-1776",
+          params = {
+            max_tokens = 64,
+          },
+        },
+        models = {
+          "sonar",
+          "sonar-pro",
+          "sonar-deep-research",
+          "sonar-reasoning",
+          "sonar-reasoning-pro",
+          "r1-1776",
+        },
+      },
+    }
+})
+EOF
 
-
+nnoremap <leader>cp :PrtChatNew<CR>
+" @TODO replace with mapping to Enter in normal mode.
+" This requires a custom filetype for any parrot.nvim window you open.
+nnoremap <leader>cu :PrtChatResponde<CR>
+" ------------------
 
 " -----------------------------------
 " settings for tpope's gh copilot plugin

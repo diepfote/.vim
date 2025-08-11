@@ -314,6 +314,24 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 
 
 
+
+" --------------------
+" helm ftdetect & syntax
+Plug 'towolf/vim-helm'
+
+augroup helm_values
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufRead,BufNewFile values*.yaml set ft=helm
+    autocmd BufRead,BufNewFile */values/*.yaml set ft=helm
+augroup END
+
+
+" --------------------
+
+
+
 " --------------------------------
 " colorscheme onehalf
 
@@ -633,7 +651,10 @@ endfunction
 
 let g:copilot_enabled = v:false
 augroup gh_copilot
-    autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
 augroup END
 " -----------------------------------
 

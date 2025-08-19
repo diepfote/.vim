@@ -732,7 +732,7 @@ function ChangeHighlightStatusLine()
 endfunction
 
 function ChangeHighlightTabLine()
-  highlight TabLineFill guibg=lightblue guifg=#444444 ctermfg=grey ctermbg=lightblue
+  highlight TabLineFill guibg=#8ec07c guifg=#444444 ctermfg=grey ctermbg=lightgreen
 endfunction
 
 function ChangeHighlightVerticalLine()

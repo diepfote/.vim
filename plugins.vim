@@ -338,8 +338,9 @@ augroup END
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 function! <sid>SetColorScheme()
-    if &ft =~? '^rst$\|^markdown$'
-      call ColorOneHalfLight()
+    if &ft =~? '^rst$\|^markdown$\|^text$'
+      " call ColorOneHalfLight()
+      call ColorGruvBox()
     else
       call ColorOff()
     endif
@@ -364,6 +365,10 @@ Plug 'pbrisbin/vim-colors-off'
 
 " --------------------------------
 
+"------------------------------
+" gruvbox color scheme
+Plug 'morhetz/gruvbox'
+"------------------------------
 
 
 Plug 'vim-syntastic/syntastic'
@@ -752,34 +757,31 @@ function ColorSharedSettings()
   call ChangeHighlightSelection()
 endfunction
 
-function ColorOneHalfLight()
-  let l:colorscheme_name = 'onehalflight'
+function _SetColor(color)
   if exists('g:colors_name')
-    if g:colors_name ==# l:colorscheme_name
+    if g:colors_name ==# a:color
       return
     endif
   endif
 
-  execute 'colorscheme ' . l:colorscheme_name
+  execute 'colorscheme ' . a:color
 
   call ColorSharedSettings()
+endfunction
+
+function ColorOneHalfLight()
+    call _SetColor('onehalflight')
 endfunction
 
 function ColorOff()
-  let l:colorscheme_name = 'off'
-  if exists('g:colors_name')
-    if g:colors_name ==# l:colorscheme_name
-      return
-    endif
-  endif
-
-  " pbrisbin/vim-colors-off
-  set background=light
-  execute 'colorscheme ' . l:colorscheme_name
-
-  call ColorSharedSettings()
+    set background=light
+    call _SetColor('off')
 endfunction
 
+function ColorGruvBox()
+    set background=light
+    call _SetColor('gruvbox')
+endfunction
 
 " -------------
 " Abbreviations

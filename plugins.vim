@@ -338,7 +338,7 @@ augroup END
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 function! <sid>SetColorScheme()
-    if &ft =~? '^rst$\|^markdown$\|^text$'
+    if &ft =~? '^rst$\|^copilot_chat$\|^markdown$\|^text$'
       " call ColorOneHalfLight()
       call ColorGruvBox()
     else
@@ -618,7 +618,7 @@ require('parrot').setup({
         api_key = os.getenv("PERPLEXITY_API_KEY"),
         endpoint = "https://api.perplexity.ai/chat/completions",
         topic = {
-          model = "r1-1776",
+          model = "sonar",
           params = {
             max_tokens = 64,
           },
@@ -629,7 +629,6 @@ require('parrot').setup({
           "sonar-deep-research",
           "sonar-reasoning",
           "sonar-reasoning-pro",
-          "r1-1776",
         },
       },
     }

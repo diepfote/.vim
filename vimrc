@@ -831,12 +831,6 @@ command! PrependSeparator  :call <SID>PrependSeparator()
 
 
 
-" copy clipboard to no-name register
-nnoremap <leader>gr" :let @"=@+<cr>
-" copy no-name register to clipboard
-nnoremap <leader>gr+ :let @+=@"<cr>
-
-
 function! CopyToReg(dst_reg, delete)
   " inspiration taken from
   " https://github.com/DanBradbury/copilot-chat.vim/blob/685ed74f4d2349d3f5dec11aa5f89944e91e4a17/autoload/copilot_chat/buffer.vim#L158

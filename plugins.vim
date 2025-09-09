@@ -391,7 +391,57 @@ Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithR
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
 
+
+
+" ---------------------------------
+"  replacewithregister START
+
 Plug 'inkarkat/vim-ReplaceWithRegister'
+
+" copy clipboard to no-name register
+nnoremap <leader>gr" :let @"=@+<cr>
+" copy no-name register to clipboard
+nnoremap <leader>gr+ :let @+=@"<cr>
+
+" @TODO do not repeat yourself
+" @TODO fix all but the first function & mapping
+
+function! s:ReplaceLineWithClipboard()
+    :let unnamed_reg=@"
+    :let @"=@+
+    :normal 0grg_
+    :let @"=unnamed_reg
+endfunction
+
+function! s:ReplaceInnerBigWordWithClipboard()
+    :let unnamed_reg=@"
+    :let @"=@+
+    :normal 0griW
+    :let @"=unnamed_reg
+endfunction
+
+function! s:ReplaceInnerWordWithClipboard()
+    :let unnamed_reg=@"
+    :let @"=@+
+    :normal 0griw
+    :let @"=unnamed_reg
+endfunction
+
+function! s:ReplaceInsideParenWithClipboard()
+    :let unnamed_reg=@"
+    :let @"=@+
+    :normal 0 "@+gri'
+    :let @"=unnamed_reg
+endfunction
+
+nnoremap <leader>gr$  :call <sid>ReplaceLineWithClipboard()<cr>
+" nnoremap <leader>grB  :call <sid>ReplaceInnerBigWordWithClipboard()<cr>
+" nnoremap <leader>grb  :call <sid>ReplaceInnerWordWithClipboard()<cr>
+" nnoremap <leader>grp  :call <sid>ReplaceInsideParenWithClipboard()<cr>
+
+"  replacewithregister START
+" ---------------------------------
+
 " -----------------
 " vim-mark
 "
@@ -677,6 +727,14 @@ augroup gh_copilot
   autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
 augroup END
 " -----------------------------------
+
+
+
+
+
+
+
+
 
 
 

@@ -408,13 +408,14 @@ nnoremap <leader>gr+ :let @+=@"<cr>
 
 
 " https://github.com/inkarkat/vim-ReplaceWithRegister/blob/0302dd3/plugin/ReplaceWithRegister.vim#L71
-" visual: gr    ...  replace selection with unnamed reg
-" visual: @+gr  ... replace selection with clipboard
-" visual: @agr  ... replace selection with reg a
-"
+
 " normal: grr    ... replace line with unammed reg
-" normal: @+grr  ... replace line with clipboard
-" normal: @agrr  ... replace line with reg a
+nnoremap gra :normal "agrr<cr>
+nnoremap grc :normal "+grr<cr>
+
+" visual: gr    ...  replace selection with unnamed reg
+xmap ga  :visual "agr<cr>
+xmap gc  :visual "+gr<cr>
 
 "  replacewithregister START
 " ---------------------------------

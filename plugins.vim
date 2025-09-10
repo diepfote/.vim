@@ -637,6 +637,15 @@ Plug 'danbradbury/copilot-chat.vim'
 nnoremap <leader>cc :CopilotChatOpen<CR>
 vmap <leader>a <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
 
+function! CopilotChatOpenOnly()
+  :CopilotChatOpen
+
+  " win_execute() requires the unique id
+  " win_getid() takes the window number
+  "
+  :call win_execute(win_getid(winnr('#')), 'close')
+endfunction
+
 " ------------
 
 

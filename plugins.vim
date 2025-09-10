@@ -25,9 +25,11 @@ if os ==# 'Darwin' || os ==# 'Mac'
 
   " DISABLED on purpose
   " augroup playbooks
-  " autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
-  " autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
-  " autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
+  "   autocmd!
+
+  "   autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
+  "   autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
+  "   autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
   " augroup END
 
 elseif os ==# 'Linux'
@@ -324,7 +326,8 @@ augroup helm_values
   autocmd!
 
   autocmd BufRead,BufNewFile values*.yaml set ft=helm
-    autocmd BufRead,BufNewFile */values/*.yaml set ft=helm
+  autocmd BufRead,BufNewFile */values/*.yaml set ft=helm
+  autocmd BufRead,BufNewFile */charts/*.yaml set ft=helm
 augroup END
 
 

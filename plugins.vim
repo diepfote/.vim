@@ -630,12 +630,11 @@ endfunction
 " ----------------------------
 " parrot
 
-Plug 'frankroeder/parrot.nvim'
-
 " dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 
+Plug 'frankroeder/parrot.nvim'
 
 " ----------------------------
 
@@ -673,24 +672,14 @@ require('parrot').setup({
 EOF
 
 nnoremap <leader>cp :PrtChatNew<CR>
-" nnoremap <leader>cu :PrtChatResponde<CR>
-" replaced by:
-"
-" ~/.vim/plugged/parrot.nvim
-" $  git d
-" diff --git a/lua/parrot/chat_utils.lua b/lua/parrot/chat_utils.lua
-" index c2ba365..6e4a16f 100644
-" --- a/lua/parrot/chat_utils.lua
-" +++ b/lua/parrot/chat_utils.lua
-" @@ -26,6 +26,7 @@ M.prep_md = function(buf)
-"    vim.api.nvim_command("setlocal wrap linebreak")
-"    -- auto save on TextChanged, InsertLeave
-"    vim.api.nvim_command("autocmd TextChanged,InsertLeave <buffer=" .. buf .. "> silent! write")
-" +  vim.api.nvim_command("nnoremap <buffer> <CR> :PrtChatResponde<CR>")
+" paste selection to current chat
+xmap <leader>p  :PrtChatPaste<cr>
 
-"    -- register shortcuts local to this buffer
-"    buf = buf or vim.api.nvim_get_current_buf()
+augroup parrot.nvim
+  autocmd!
 
+  autocmd BufRead,BufNewFile */parrot/chats/*.md nnoremap <buffer> <CR> :PrtChatResponde<CR>
+augroup END
 
 " ------------------
 

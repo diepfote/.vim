@@ -419,13 +419,13 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 nnoremap gra :normal "agrr<cr>
 nnoremap grs :normal "sgrr<cr>
 nnoremap gry :normal "ygrr<cr>
-nnoremap grc :normal "+grr<cr>
+nnoremap grb :normal "+grr<cr>
 
 " visual: gr  ...  replace selection with unnamed reg
 xmap ga   "agr<cr>
 xmap gs   "sgr<cr>
 xmap gy   "ygr<cr>
-xmap gc   "+gr<cr>
+xmap gb   "+gr<cr>
 
 " --
 

@@ -831,55 +831,6 @@ command! PrependSeparator  :call <SID>PrependSeparator()
 
 
 
-function! CopyToReg(dst_reg, delete)
-  " inspiration taken from
-  " https://github.com/DanBradbury/copilot-chat.vim/blob/685ed74f4d2349d3f5dec11aa5f89944e91e4a17/autoload/copilot_chat/buffer.vim#L158
-
-  " Save the contents of the unnamed register
-  " to restore it later
-  let l:saved_reg = getreg('"')
-  let l:saved_regtype = getregtype('"')
-
-  " Copy or delete the selection to the unnamed register
-  if a:delete
-      normal! gvd
-  else
-      normal! gvy
-  endif
-
-  " Get the contents of
-  let l:selection = getreg('"')
-
-  " Copy selection to clipboard
-  call setreg(a:dst_reg, l:selection, l:saved_regtype)
-
-  " Restore unnamed register
-  call setreg('"', l:saved_reg, l:saved_regtype)
-endfunction
-"
-" Check the content of any of these registers
-" :reg "+ "a "s "y
-"
-" --
-" Copy to register
-vnoremap cb :<c-u>call CopyToReg("+", 0)<cr>
-vnoremap ca :<c-u>call CopyToReg("a", 0)<cr>
-vnoremap cs :<c-u>call CopyToReg("s", 0)<cr>
-vnoremap cy :<c-u>call CopyToReg("y", 0)<cr>
-" Delete/Cut To Register
-vnoremap db :<c-u>call CopyToReg("+", 1)<cr>
-vnoremap da :<c-u>call CopyToReg("a", 1)<cr>
-vnoremap ds :<c-u>call CopyToReg("s", 1)<cr>
-vnoremap dy :<c-u>call CopyToReg("y", 1)<cr>
-
-
-" Delete to Black Hole Register | Delete to Blackhole Register | Delete into the Void
-" normal mode; combine with any textobject
-nnoremap _d "_d
-nnoremap _x "_x
-" visual mode
-vnoremap _d "_d<cr>
-vnoremap _x "_x<cr>
 
 
 " remap jump to line of mark to jump to pos

@@ -394,11 +394,18 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'  " support native repeat operation '.' for plugins that implement tpope/vim-repeat
 
 
-Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister
+Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister and vim-SmartCase
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
+" -----------------
+" case insensitive search
 
+set ignorecase   " change behavior with \C
+" set smartcase    " but become case sensitive if you type uppercase characters
+"
+" Plug 'inkarkat/vim-SmartCase'
 
+" -----------------
 
 " ---------------------------------
 "  replacewithregister START

@@ -372,7 +372,6 @@ augroup END
 
 " -----------------
 " set custom ft
-" TODO use files in ~/.vim/ftdetect/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftdetect
 augroup set_custom_filetype_for_extensions
   " do not duplicate autocmds on reload
   autocmd!
@@ -399,23 +398,19 @@ augroup set_custom_filetype_for_extensions
 
   autocmd BufNewFile,BufRead ~/.mutt/*      set ft=muttrc
 
-  " json in yaml -> too many errors
-  autocmd BufNewFile,BufRead */queries/*.yaml     set ft=text
-  " prometheus rules
-  " templating in yaml -> too many errors
-  autocmd BufNewFile,BufRead */*prometheus*.yaml  set ft=text
-  " coc.nvim settings: less strict than json but json extension
+  " coc.nvim settings: config is not as strict as json (e.g. comments allowed)
   autocmd BufNewFile,BufRead */coc-settings.json  set ft=text
 
+  " firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.profile      set ft=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.local        set ft=firejail
   autocmd BufNewFile,BufRead /etc/firejail/*.inc          set ft=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.profile set ft=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.local   set ft=firejail
   autocmd BufNewFile,BufRead ~/.config/firejail/*.inc     set ft=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.profile set ft=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.local   set ft=firejail
-  autocmd BufNewFile,BufRead ~/Documents/firejail/etc/profile-*/*.inc     set ft=firejail
+  autocmd BufNewFile,BufRead */firejail/etc/profile-*/*.profile set ft=firejail
+  autocmd BufNewFile,BufRead */firejail/etc/profile-*/*.local   set ft=firejail
+  autocmd BufNewFile,BufRead */firejail/etc/profile-*/*.inc     set ft=firejail
 augroup END
 
 " -----------------

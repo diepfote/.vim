@@ -401,11 +401,6 @@ Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
-" copy clipboard to no-name register
-nnoremap <leader>gr" :let @"=@+<cr>
-" copy no-name register to clipboard
-nnoremap <leader>gr+ :let @+=@"<cr>
-
 
 " https://github.com/inkarkat/vim-ReplaceWithRegister/blob/0302dd3/plugin/ReplaceWithRegister.vim#L71
 

@@ -753,7 +753,7 @@ nnoremap ' :call <SID>JumpToPos()<cr>
 " -----------------------
 " justinmk shell bind START
 "
-" whole section nicked from https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L933-L1012
+" whole section nicked from https://github.com/justinmk/config/blob/d4c0a1733206c3a973dce10ce122d64456fd7eb9/.config/nvim/init.vim#L933-L1012
 
 " :shell
 " Creates a global default :shell with maximum 'scrollback'.

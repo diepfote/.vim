@@ -484,8 +484,8 @@ augroup END
 " -----------------
 " case insensitive search
 
-set ignorecase   " change behavior with \C
-" set smartcase    " but become case sensitive if you type uppercase characters
+" set ignorecase   " change behavior with \C
+set smartcase    " but become case sensitive if you type uppercase characters
 
 " -----------------
 

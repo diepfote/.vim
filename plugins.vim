@@ -70,8 +70,8 @@ augroup coc_mappings
 augroup END
 
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
+" Longer updatetimes (default is 4000 ms = 4 s) lead
+" to noticeable delays and poor user experience
 set updatetime=300
 
 " Always show the signcolumn, otherwise it would shift the text each time
@@ -121,8 +121,9 @@ Plug 'sk1418/Join'
 " convert a binary plist file
 Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
 
-" -----------------
-" vim-commentary
+" --------------------
+" vim-commentary START
+
 Plug 'tpope/vim-commentary'
 
 " custom comment strings
@@ -134,7 +135,22 @@ augroup custom_comment_strings
   autocmd FileType text     setlocal commentstring=#\ %s
   autocmd FileType json     setlocal commentstring=//\ %s
 augroup END
-" -----------------
+
+
+function! s:AppendSeparator()
+  normal mlyy}kp^v$r-xxgclk'l
+endfunction
+function! s:PrependSeparator()
+  normal yyP^v$r-xxgclj
+endfunction
+
+command! AppendSeparator  :call <SID>AppendSeparator()
+command! PrependSeparator  :call <SID>PrependSeparator()
+
+
+" vim-commentary END
+" --------------------
+
 
 
 " netrw replacement
@@ -244,7 +260,11 @@ let g:ackprg = 'ag -f --vimgrep
 "
 
 " close quickfix window mapping
-execute 'autocmd BufEnter,FocusGained * nnoremap <silent><nowait>  <BackSpace><Space>  :ccl<cr>'
+augroup quickfix_close
+  autocmd!
+
+  execute 'autocmd BufEnter,FocusGained * nnoremap <silent><nowait>  <BackSpace><Space>  :ccl<cr>'
+augroup END
 " ----------------------------
 
 
@@ -339,22 +359,6 @@ augroup END
 " colorscheme onehalf
 
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
-
-function! <sid>SetColorScheme()
-    if &ft =~? '^rst$\|^copilot_chat$\|^markdown$\|^text$'
-      " call ColorOneHalfLight()
-      call ColorGruvBox()
-    else
-      call ColorOff()
-    endif
-endfunction
-
-augroup set_colorscheme_for_yaml_files
-  " do not duplicate autocmds on reload
-  autocmd!
-
-  autocmd FocusGained,BufEnter * :call <sid>SetColorScheme()
-augroup END
 
 " --------------------------------
 
@@ -518,7 +522,7 @@ Plug 'diepfote/vim-primitive-yamlsort'
 
 
 " built-in yaml syntax highlighting breaks if
-" you have a array bracket expression.
+" you have an array bracket expression.
 "
 " e.g.
 " "{{ sources[0]}}"
@@ -667,7 +671,7 @@ Plug 'github/copilot.vim'
 " copilot chat
 Plug 'danbradbury/copilot-chat.vim'
 nnoremap <leader>cc :CopilotChatOpen<CR>
-vmap <leader>a <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
+xmap <leader>a <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
 
 function! CopilotChatOpenOnly()
   :CopilotChatOpen
@@ -682,7 +686,7 @@ endfunction
 
 
 " ----------------------------
-" parrot
+" parrot.nvim
 
 " dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -699,7 +703,7 @@ call plug#end()
 
 
 " ------------------
-" settings for parrot
+" settings for parrot.nvim
 lua << EOF
 require('parrot').setup({
     providers = {
@@ -765,11 +769,9 @@ augroup END
 
 
 
-
-
-
-
 " -------------------------------
+"  just to showcase how vim-repeat works
+"
 function! DeleteCharAtEndOfLine()
   normal! mz$x`z
 endfunction
@@ -779,6 +781,8 @@ nnoremap <leader>d  :call DeleteCharAtEndOfLine()<cr>
 " -------------------------------
 
 " ---------------------------------------------------------------------
+"  just to showcase how vim-repeat works
+"
 let s:replacement = ''  " global so last replacement will be remembered
 function! s:ReplaceCharAtEndOfLine(isRepeat)
   if ! a:isRepeat
@@ -797,6 +801,8 @@ nnoremap <leader>R <plug>ReplaceCharAtEndOfLine
 
 
 " ---------------------------------------------------------------------
+"  just to showcase how vim-repeat works
+"
 let s:append_val = ''  " global so last append_val will be remembered
 function! s:AppendCharAtEndOfLine(isRepeat)
   if ! a:isRepeat
@@ -813,6 +819,13 @@ nnoremap <silent> <plug>AppendCharAtEndOfLine
 nnoremap <leader>sA <plug>AppendCharAtEndOfLine
 " ---------------------------------------------------------------------
 
+
+
+
+
+
+" ---------------------------------
+" set colorscheme START
 
 function ChangeHighlightSearch()
   " set search highlight color
@@ -848,7 +861,7 @@ function ChangeHighlightVerticalLine()
   highlight ColorColumn guifg=NONE guibg=lightyellow
 endfunction
 
-function ColorSharedSettings()
+function s:ColorSharedSettings()
   :RainbowToggleOn
   :MarkPalette extended
 
@@ -860,7 +873,23 @@ function ColorSharedSettings()
   call ChangeHighlightSelection()
 endfunction
 
-function _SetColor(color)
+function! <sid>SetColorScheme()
+    if &ft =~? '^rst$\|^copilot_chat$\|^markdown$\|^text$'
+      " call ColorOneHalfLight()
+      call ColorGruvBox()
+    else
+      call ColorOff()
+    endif
+endfunction
+
+augroup set_colorscheme_for_yaml_files
+  " do not duplicate autocmds on reload
+  autocmd!
+
+  autocmd FocusGained,BufEnter * :call <sid>SetColorScheme()
+augroup END
+
+function s:SetColor(color)
   if exists('g:colors_name')
     if g:colors_name ==# a:color
       return
@@ -869,22 +898,30 @@ function _SetColor(color)
 
   execute 'colorscheme ' . a:color
 
-  call ColorSharedSettings()
+  call <sid>ColorSharedSettings()
 endfunction
 
 function ColorOneHalfLight()
-    call _SetColor('onehalflight')
+    call <sid>SetColor('onehalflight')
 endfunction
 
 function ColorOff()
     set background=light
-    call _SetColor('off')
+    call <sid>SetColor('off')
 endfunction
 
 function ColorGruvBox()
     set background=light
-    call _SetColor('gruvbox')
+    call <sid>SetColor('gruvbox')
 endfunction
+
+" set colorscheme END
+" ---------------------------------
+
+
+
+
+
 
 " -------------
 " Abbreviations

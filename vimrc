@@ -431,26 +431,26 @@ augroup END
 " -----------------
 " remove trailing whitespace
 
-function! s:StripTrailingWhitespace()
-    " Don't strip on these filetypes
-    " pattern to use:
-    "
-    "if &ft =~ 'markdown\|somethingelse'
+"function! s:StripTrailingWhitespace()
+"    " Don't strip on these filetypes
+"    " pattern to use:
+"    "
+"    "if &ft =~ 'markdown\|somethingelse'
 
-    if &ft =~? 'markdown\|diff'
-      return
-    elseif &ft =~? 'yaml'
-      " remove trailing new lines to pass zuul jobs
-      execute '%s/\($\n\s*\)\+\%$//e'
-
-
-      " no return --> fall through
-    endif
+"    if &ft =~? 'markdown\|diff'
+"      return
+"    elseif &ft =~? 'yaml'
+"      " remove trailing new lines to pass zuul jobs
+"      execute '%s/\($\n\s*\)\+\%$//e'
 
 
-    " default behavior, trim trailing whitespace in lines
-    execute '%s/\s\+$//e'
-endfunction
+"      " no return --> fall through
+"    endif
+
+
+"    " default behavior, trim trailing whitespace in lines
+"    execute '%s/\s\+$//e'
+"endfunction
 
 " @Disabled 2024-02-15: replaced by thirtythreeforty/lesspace.vim.
 " is this a full replacement? does this help with zuul job confi?
@@ -479,8 +479,8 @@ augroup END
 " -----------------
 " case insensitive search
 
-" set ignorecase   " change behavior with \C
-set smartcase    " but become case sensitive if you type uppercase characters
+set ignorecase   " change behavior with \C
+" set smartcase    " but become case sensitive if you type uppercase characters
 
 " -----------------
 
@@ -715,77 +715,12 @@ nnoremap L <c-f>
 vnoremap L <c-f>
 
 
-" clear line
-nnoremap <leader>c ddO<esc>
 
 " snatched from https://github.com/jessfraz/.vim/blob/5f0c5536acde95b0022ffec66b594c630512ff5f/vimrc#L225-L226
 " remove search hightlight
 nnoremap <leader><space> :nohlsearch<CR>
 
 
-" -------------------
-" textobj indentation
-onoremap <silent>ai :<C-U>call <SID>IndTxtObj(0)<CR>
-onoremap <silent>ii :<C-U>call <SID>IndTxtObj(1)<CR>
-vnoremap <silent>ai :<C-U>call <SID>IndTxtObj(0)<CR><Esc>gv
-vnoremap <silent>ii :<C-U>call <SID>IndTxtObj(1)<CR><Esc>gv
-
-function! s:IndTxtObj(inner)
-  let curline = line('.')
-  let lastline = line('$')
-  let i = indent(line('.')) - &shiftwidth * (v:count1 - 1)
-  let i = i < 0 ? 0 : i
-  if getline('.') !~? '^\\s*$'
-    let p = line('.') - 1
-    let nextblank = getline(p) =~? '^\\s*$'
-    while p > 0 && ((i == 0 && !nextblank) || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner)) || (nextblank && !a:inner))))
-      -
-      let p = line('.') - 1
-      let nextblank = getline(p) =~? "^\\s*$"
-    endwhile
-    normal! 0V
-    call cursor(curline, 0)
-    let p = line('.') + 1
-    let nextblank = getline(p) =~? '^\\s*$'
-    while p <= lastline && ((i == 0 && !nextblank)
-          \ || (i > 0 && ((indent(p) >= i && !(nextblank && a:inner))
-          \ || (nextblank && !a:inner))))
-      +
-      let p = line('.') + 1
-      let nextblank = getline(p) =~? '^\\s*$'
-    endwhile
-    normal! $
-  endif
-endfunction
-
-" snatched from https://vi.stackexchange.com/questions/12835/how-do-i-jump-to-the-next-line-with-the-same-indent-level
-function! GoToNextIndent(inc)
-    " Get the cursor current position
-    let currentPos = getpos('.')
-    let currentLine = currentPos[1]
-    let matchIndent = 0
-
-    " Look for a line with the same indent level whithout going out of the buffer
-    while !matchIndent && currentLine != line('$') + 1 && currentLine != -1
-        let currentLine += a:inc
-        let matchIndent = indent(currentLine) == indent('.')
-    endwhile
-
-    " If a line is found go to this line
-    if (matchIndent)
-        let currentPos[1] = currentLine
-        call setpos('.', currentPos)
-    endif
-endfunction
-
-augroup yaml_custom
-  " do not duplicate autocmds on reload
-  autocmd!
-
-  autocmd Filetype yaml nnoremap ]] :call GoToNextIndent(1)<CR>
-  autocmd Filetype yaml nnoremap [[ :call GoToNextIndent(-1)<CR>
-augroup END
-" -------------------
 
 
 " run sphinx via tox, after pandoc has turned the file in the current
@@ -809,21 +744,6 @@ endfunction
 command! InsertUUID4  :call append(line('.'), <SID>InsertUUID4())
 
 " ----------------------------------------------
-
-" -----------------------------------
-" prepend and append separating lines
-
-function! s:AppendSeparator()
-  normal mlyy}kp^v$r-xxgclk'l
-endfunction
-function! s:PrependSeparator()
-  normal yyP^v$r-xxgclj
-endfunction
-
-command! AppendSeparator  :call <SID>AppendSeparator()
-command! PrependSeparator  :call <SID>PrependSeparator()
-" -----------------------------------
-
 
 
 

@@ -675,6 +675,13 @@ Plug 'diepfote/vim-checkbox'
 " tpope's official client
 Plug 'github/copilot.vim'
 
+" taken from https://github.com/pbrisbin/dotfiles/commit/ed88fcd5c83d05c5afd0ec2ef2ea5dc680fb044c
+" Tell copilot to use ctrl+c instead of <Tab>
+inoremap <expr> <C-c> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+
+
 " copilot chat
 Plug 'danbradbury/copilot-chat.vim'
 nnoremap <leader>cc :CopilotChatOpen<CR>

@@ -745,10 +745,7 @@ function! s:JumpToPos()
   execute 'normal! `' . s:mark
 endfunction
 nnoremap ' :call <SID>JumpToPos()<cr>
-
-
-
-
+nnoremap M :call <SID>JumpToPos()<cr>
 
 " -----------------------
 " justinmk shell bind START

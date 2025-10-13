@@ -348,6 +348,7 @@ augroup helm_values
   autocmd BufRead,BufNewFile values*.yaml set ft=helm
   autocmd BufRead,BufNewFile */values/*.yaml set ft=helm
   autocmd BufRead,BufNewFile */charts/*.yaml set ft=helm
+  autocmd BufRead,BufNewFile *prometheus*.yaml set ft=helm
 augroup END
 
 

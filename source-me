@@ -1,3 +1,7 @@
 source ~/Repos/scripts/source-me/common-functions.sh
 source ~/Repos/scripts/source-me/posix-compliant-shells.sh
 
+no-color_work-checked-in () {
+  ~/Repos/golang/tools/execute-in-repos/execute-in-repos -workers 10 -config repo.conf git -c color.status=never status -sb
+}
+

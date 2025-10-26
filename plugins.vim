@@ -923,6 +923,7 @@ endfunction
 function ColorOff()
     set background=light
     call <sid>SetColor('off')
+    hi CocInlayHint guifg=black guibg=lightred
 endfunction
 
 function ColorGruvBox()

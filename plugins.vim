@@ -14,7 +14,7 @@ let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml,*.rs'
 if os ==# 'Darwin' || os ==# 'Mac'
 
   "
-  call extend(g:coc_global_extensions, ['coc-groovy', '@yaegassy/coc-ansible'])
+  call extend(g:coc_global_extensions, ['coc-groovy', '@yaegassy/coc-ansible', 'coc-rust-analyzer'])
 
   "
   " custom for Coc Mappings below

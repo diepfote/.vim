@@ -923,6 +923,8 @@ endfunction
 function ColorOff()
     set background=light
     call <sid>SetColor('off')
+
+    " background color for coc-rust-analyzer type hints
     hi CocInlayHint guifg=black guibg=lightred
 endfunction
 

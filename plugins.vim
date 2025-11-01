@@ -608,6 +608,9 @@ augroup END
 " -----------------------------------
 "  vim-go settings start
 
+" The `do` part tells `vim-plug` to run the
+" `:GoUpdateBinaries` command after the `vim-go` plugin
+" is installed or updated.
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 augroup vim-go-mappings

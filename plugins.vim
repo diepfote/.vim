@@ -288,7 +288,7 @@ let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
 Plug 'rootkiter/vim-hexedit'
 
 " --------------------------------
-" rainbow plugin
+" rainbow parentheses start
 "
 
 Plug 'luochen1990/rainbow'
@@ -332,10 +332,16 @@ nnoremap <f2> :echo ("hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 nnoremap <f3> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
 nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')<cr>
 
+" rainbow parentheses end
 " --------------------------------
 
+" --------------------------------
+"  rainbow levels start
 
+Plug 'thiagoalessio/rainbow_levels.vim'
 
+"  rainbow levels end
+" --------------------------------
 
 " --------------------
 " helm ftdetect & syntax
@@ -880,6 +886,7 @@ function ChangeHighlightVerticalLine()
 endfunction
 
 function s:ColorSharedSettings()
+  :RainbowLevelsOff
   :RainbowToggleOn
   :MarkPalette extended
 
@@ -896,7 +903,8 @@ function! <sid>SetColorScheme()
       " call ColorOneHalfLight()
       call ColorGruvBox()
     else
-      call ColorOff()
+      " call ColorOff()
+      call ColorLunaPercheWRainbowLevels()
     endif
 endfunction
 
@@ -934,6 +942,13 @@ endfunction
 function ColorGruvBox()
     set background=light
     call <sid>SetColor('gruvbox')
+endfunction
+
+function ColorLunaPercheWRainbowLevels()
+    set background=light
+    call <sid>SetColor('lunaperche')
+
+    :RainbowLevelsOn
 endfunction
 
 " set colorscheme END

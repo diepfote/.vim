@@ -25,7 +25,7 @@
   },
 
   "yaml.schemas": {
-     "kubernetes": "/*.yaml"
+    // disable all schemas
   },
 
   "suggest.floatConfig.border": true,

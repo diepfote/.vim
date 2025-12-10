@@ -903,9 +903,11 @@ function! <sid>SetColorScheme()
     if &ft =~? '^rst$\|^copilot_chat$\|^markdown$\|^text$'
       " call ColorOneHalfLight()
       call ColorGruvBox()
-    else
-      " call ColorOff()
+    elseif &ft =~? '^yaml$\|^helm$'
       call ColorLunaPercheWRainbowLevels()
+    else
+      " call ColorOneHalfLight()
+      call ColorOff()
     endif
 endfunction
 

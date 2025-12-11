@@ -683,7 +683,7 @@ Plug 'diepfote/vim-checkbox'
 " GH Copilot plugins
 
 " tpope's official client
-let g:copilot_enterprise_uri = join(readfile('/Users/florian.sorko/.config/personal/github-sso.txt'))
+let g:copilot_enterprise_uri = join(readfile(expand('~/.config/personal/github-sso.txt')))
 Plug 'github/copilot.vim'
 
 " taken from https://github.com/pbrisbin/dotfiles/commit/ed88fcd5c83d05c5afd0ec2ef2ea5dc680fb044c

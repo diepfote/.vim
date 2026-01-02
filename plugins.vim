@@ -694,7 +694,7 @@ let g:copilot_no_tab_map = v:true
 
 
 " copilot chat
-Plug 'danbradbury/copilot-chat.vim'
+Plug 'danbradbury/copilot-chat.vim', { 'commit': '685ed74f4d2349d3f5dec11aa5f89944e91e4a17'}
 nnoremap <leader>cc :CopilotChatOpen<CR>
 xmap <leader>c <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
 

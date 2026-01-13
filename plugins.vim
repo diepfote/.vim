@@ -2,7 +2,6 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')
 "    'github_user/repo_name'
 
-
 " -----------------------------------
 " coc language server BEGIN
 
@@ -200,72 +199,6 @@ set tags=.git/tags
 " :Obsession <path-to-store>
 Plug 'tpope/vim-obsession'
 
-
-" ----------------------------
-" check with `set runtimepath?
-" let &runtimepath = '<path-to-ack.vim>,' . &runtimepath
-  " e.g.
-  " let &runtimepath = '/root/.vim/plugged/ack.vim,' . &runtimepath
-
-Plug 'mileszs/ack.vim'
-
-" Page up/down bindings
-let g:ack_mappings = {
-      \ 'H': '<c-b>',
-      \ 'L': '<c-f>' }
-
-" replace ack by the silverlight seacher
-" let g:ackprg = 'ag --exclude -f -a --vimgrep'
-let g:ackprg = 'ag -f --vimgrep
-                  \ --ignore-dir .git
-                  \ --ignore-dir .helm
-                  \ --ignore-dir .tox
-                  \ --ignore-dir .pulumi
-                  \ --ignore-dir .cache
-                  \ --ignore-dir .mypy_cache
-                  \ --ignore-dir .eggs
-                  \ --ignore-dir *.egg-info
-                  \ --ignore-dir *venv*
-                  \ --ignore-dir _build
-                  \ --ignore-dir __pycache__
-                  \ --ignore-dir .ruff_cache
-                  \ --ignore "*.pyc"
-                  \ --ignore-dir .pytest_cache
-                  \ --ignore poetry.lock
-                  \ --ignore-dir htmlcov
-                  \ --ignore "*.html"
-                  \ --ignore build.*trace
-                  \ --ignore Session.vim'
-" if only grep available
-" let g:ackprg = 'grep -n
-                  " \ --exclude-dir=.git
-                  " \ --exclude-dir=.helm
-                  " \ --exclude-dir=.tox
-                  " \ --exclude-dir=.pulumi
-                  " \ --exclude-dir=.cache
-                  " \ --exclude-dir=.mypy_cache
-                  " \ --exclude-dir=.eggs
-                  " \ --exclude-dir=*.egg-info
-                  " \ --exclude-dir=*venv*
-                  " \ --exclude-dir=_build
-                  " \ --exclude-dir=__pycache__
-                  " \ --exclude-dir=.ruff_cache
-                  " \ --exclude="*.pyc"
-                  " \ --exclude-dir=.pytest_cache
-                  " \ --exclude=poetry.lock
-                  " \ --exclude-dir=htmlcov
-                  " \ --exclude="*.html"
-                  " \ --exclude=build.*trace
-                  " \ --exclude=Session.vim
-"
-
-" close quickfix window mapping
-augroup quickfix_close
-  autocmd!
-
-  execute 'autocmd BufEnter,FocusGained * nnoremap <silent><nowait>  <BackSpace><Space>  :ccl<cr>'
-augroup END
-" ----------------------------
 
 
 Plug 'airblade/vim-gitgutter'

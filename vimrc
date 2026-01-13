@@ -291,6 +291,14 @@ command! FormatPython :%!black -q -
 " ---------
 
 
+augroup quickfix_close
+  autocmd!
+  execute 'autocmd BufEnter,FocusGained * nnoremap <silent><nowait>  <BackSpace><Space>  :ccl<cr>'
+augroup END
+
+" snatched from https://www.perplexity.ai/search/vim-plugin-for-grep-from-vim-w-ib1dhl50TGaquWiF6W_IMQ#1
+command! -nargs=+ Grep execute 'silent grep! <args>' | copen
+
 
 if exists('loaded_less')  " make vim behave like less
   set nonumber

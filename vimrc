@@ -11,8 +11,11 @@ let os=substitute(system('uname'), '\n', '', '')
 "
 let mapleader = "\<space>"
 
-
 set hidden  " do not require buffer writes before switching buffers
+
+" Stop at `_` characters if in insert mode and we <ctrl-w>
+set iskeyword-=_
+set iskeyword+=#
 
 
 " do not write backup files
@@ -849,4 +852,5 @@ nnoremap '<C-s> :<C-u>call <SID>ctrl_s(v:count, v:false, v:true)<CR>
 " -----------------------
 
 source ~/plugins.vim
+
 

@@ -898,11 +898,11 @@ endfunction
 " -------------
 " Abbreviations
 
-cabbrev __commit cheatsheets_commit_and_push
-cabbrev __pull cheatsheets_pull
-cabbrev __wc no-color_work-checked-in
+cabbrev #commit cheatsheets_commit_and_push
+cabbrev #pull cheatsheets_pull
+cabbrev #wc no-color_work-checked-in
 
 
-cabbrev __rezepte rezepte_commit_and_push
+cabbrev #rezepte rezepte_commit_and_push
 
 " -------------

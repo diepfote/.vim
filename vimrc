@@ -17,6 +17,31 @@ set hidden  " do not require buffer writes before switching buffers
 set iskeyword-=_
 set iskeyword+=#
 
+"
+" neovim now sets this to `ripgrep ...` if it can be found in $PATH
+"
+let &grepprg = 'grep -r -n
+  \ --exclude-dir=.git
+  \ --exclude-dir=.helm
+  \ --exclude-dir=.tox
+  \ --exclude-dir=.pulumi
+  \ --exclude-dir=.cache
+  \ --exclude-dir=.mypy_cache
+  \ --exclude-dir=.eggs
+  \ --exclude-dir=*.egg-info
+  \ --exclude-dir=*venv*
+  \ --exclude-dir=_build
+  \ --exclude-dir=__pycache__
+  \ --exclude-dir=.ruff_cache
+  \ --exclude="*.pyc"
+  \ --exclude-dir=.pytest_cache
+  \ --exclude=poetry.lock
+  \ --exclude-dir=htmlcov
+  \ --exclude="*.html"
+  \ --exclude=build.*trace
+  \ --exclude=Session.vim'
+set grepformat=%f:%l:%m
+
 
 " do not write backup files
 set nobackup

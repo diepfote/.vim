@@ -37,17 +37,31 @@ elseif os ==# 'Linux'
   let g:coc_buffers_to_apply_to = '' . g:coc_buffers_to_apply_to
 endif
 
-" " disable autostart
-" let g:coc_start_at_startup = 0
-" " Map keys to start/stop CoC (Node process)
-" " nnoremap <leader>cc :CocStart<CR>
-" " nnoremap <leader>cC :call coc#rpc#stop()<CR>
-" augroup coc_autostart
-"   autocmd!
-"   " @TODO only apply to files not matched by g:coc_buffers_to_apply_to
-"   " autocmd BufEnter * :call coc#rpc#stop()<CR>
-"   execute 'autocmd BufEnter ' . g:coc_buffers_to_apply_to . ' :CocStart<cr>'
-" augroup END
+function ToggleCoc()
+  let cur_ext = '.' . expand('%:e')
+  for pat in split(g:coc_buffers_to_apply_to, ',')
+    let regex = glob2regpat(pat)
+
+    if match(cur_ext, regex) == 0
+      " match
+      :CocStart
+      return
+    endif
+  endfor
+
+  " no match
+  :call coc#rpc#stop()
+endfunction
+
+" disable autostart
+let g:coc_start_at_startup = 0
+" Map keys to start/stop CoC (Node process)
+" nnoremap <leader>cc :CocStart<CR>
+" nnoremap <leader>cC :call coc#rpc#stop()<CR>
+augroup coc_autostart
+  autocmd!
+  autocmd BufEnter,FocusGained * :call ToggleCoc()
+augroup END
 
 function! CocDiagnosticsReopen()
     :lcl

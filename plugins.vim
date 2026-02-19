@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-jedi', 'coc-diagnostic', 'coc-clangd', 'coc-markdownlint']
 let g:coc_buffers_to_apply_to = '*.c,*.py,*.json,*.yaml,*.rs'
 
@@ -36,6 +37,17 @@ elseif os ==# 'Linux'
   let g:coc_buffers_to_apply_to = '' . g:coc_buffers_to_apply_to
 endif
 
+" " disable autostart
+" let g:coc_start_at_startup = 0
+" " Map keys to start/stop CoC (Node process)
+" " nnoremap <leader>cc :CocStart<CR>
+" " nnoremap <leader>cC :call coc#rpc#stop()<CR>
+" augroup coc_autostart
+"   autocmd!
+"   " @TODO only apply to files not matched by g:coc_buffers_to_apply_to
+"   " autocmd BufEnter * :call coc#rpc#stop()<CR>
+"   execute 'autocmd BufEnter ' . g:coc_buffers_to_apply_to . ' :CocStart<cr>'
+" augroup END
 
 function! CocDiagnosticsReopen()
     :lcl
@@ -705,10 +717,12 @@ augroup END
 function! ToggleGhCopilot()
   let l:current_dir = expand('%:p:h')
   if l:current_dir =~# '.*/deploy-*/*'
-     :Copilot enable
-     return
+    :Copilot restart
+    :Copilot enable
+    return
   endif
   :Copilot disable
+  :call copilot#client#New().Close()
 endfunction
 
 let g:copilot_enabled = v:false

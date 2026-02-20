@@ -727,6 +727,7 @@ augroup END
 
 " -----------------------------------
 " settings for tpope's gh copilot plugin
+"
 
 function! ToggleGhCopilot()
   let l:current_dir = expand('%:p:h')
@@ -735,8 +736,7 @@ function! ToggleGhCopilot()
     :Copilot enable
     return
   endif
-  :Copilot disable
-  :call copilot#client#New().Close()
+  :call copilot#Client().Close()
 endfunction
 
 let g:copilot_enabled = v:false

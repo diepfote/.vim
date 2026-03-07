@@ -353,11 +353,14 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-speeddating'
 
  " e.g. ds" to delete surrounding quotes ; ysTEXTOBJECT'  to surround TEXTOBJECT with ' ; cs"' to change " to '
+" @TODO replace by numEricL/cyclops.vim
 Plug 'tpope/vim-surround'
+" @TODO replace by numEricL/cyclops.vim
 Plug 'tpope/vim-repeat'  " support native repeat operation '.' for plugins that implement tpope/vim-repeat
 
 
 Plug 'inkarkat/vim-ingo-library'  " dependency for vim-mark and vim-ReplaceWithRegister and vim-SmartCase
+" @TODO replace by numEricL/cyclops.vim
 Plug 'inkarkat/vim-visualrepeat'  " dependency for vim-ReplaceWithRegister
 
 " -----------------

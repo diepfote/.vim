@@ -49,8 +49,8 @@ function ToggleCoc()
     endif
   endfor
 
-  " no match
-  :call coc#rpc#stop()
+"   " no match
+"   :call coc#rpc#stop()
 endfunction
 
 " disable autostart
@@ -139,17 +139,17 @@ endfunction
 " :'<,>'Join! '\n'
 " :'<,>'Join '\n'
 "
-Plug 'sk1418/Join'
+Plug 'sk1418/Join', {'commit': 'f48e7a785321ef7ecda6e401ccea8f44dde891d3'}
 
 
 " re-evaluated on 2024-03-06. keeping this in case I ever want to
 " convert a binary plist file
-Plug 'tpope/vim-afterimage'  " edit ICO, PNG, and GIF, PDFs and macos plists
+Plug 'tpope/vim-afterimage', {'commit': '9d890b437dcab6472ced3c4b140d0f499ab58f14'}  " edit ICO, PNG, and GIF, PDFs and macos plists
 
 " --------------------
 " vim-commentary START
 
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
 
 " custom comment strings
 augroup custom_comment_strings
@@ -179,7 +179,7 @@ command! PrependSeparator  :call <SID>PrependSeparator()
 
 
 " netrw replacement
-Plug 'justinmk/vim-dirvish'
+Plug 'justinmk/vim-dirvish', {'commit': '6be56227a4207c93cd8b607f52f567a1e13dddb1'}
 " improve vim's netrw
 " Plug 'tpope/vim-vinegar'
 "
@@ -188,7 +188,7 @@ Plug 'justinmk/vim-dirvish'
 " -----------------------
 " justinmk/vim-sneak
 " f / t command improved
-Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-sneak', {'commit': 'feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb'}
 noremap f <Plug>Sneak_f
 noremap F <Plug>Sneak_F
 noremap t <Plug>Sneak_t
@@ -210,7 +210,7 @@ let g:sneak#label = 1
 " tagbar
 "
 
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'commit': '7bfffca1f121afb7a9e38747500bf5270e006bb1'}
 let g:tagbar_left = 1
 
 " set shorcut for tagbar plugin
@@ -223,11 +223,11 @@ set tags=.git/tags
 
 " tmux-resurrect dependency (do :mksession automatically...)
 " :Obsession <path-to-store>
-Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession', { 'commit': 'ed9dfc7c2cc917ace8b24f4f9f80a91e05614b63' }
 
 
 
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'commit': '0acb772e76064cc406664ab595b58b3fac76488a' }
 
 
 " ---------------------
@@ -244,13 +244,13 @@ let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
 
 " how to use it? the easiest way
 " vim -b <filename>
-Plug 'rootkiter/vim-hexedit'
+Plug 'rootkiter/vim-hexedit', { 'commit': '174dd836d49b0bd785647f0730ad4f98ad101377' }
 
 " --------------------------------
 " rainbow parentheses start
-"
+ "
 
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow', { 'commit': '76ca1a20aa42edb5c65c19029968aad4625790dc' }
 " highlight corresponding parentheses
 " :RainbowToggle
 let g:rainbow_active = 1  " enabled
@@ -297,14 +297,14 @@ nnoremap <f4> :exec 'syn list '.synIDattr(synID(line('.'), col('.'), 0), 'name')
 " --------------------------------
 "  rainbow levels start
 
-Plug 'thiagoalessio/rainbow_levels.vim'
+Plug 'thiagoalessio/rainbow_levels.vim', { 'commit': 'e8badb7906b63d3639b840484e4370194de2b857' }
 
 "  rainbow levels end
 " --------------------------------
 
 " --------------------
 " helm ftdetect & syntax
-Plug 'towolf/vim-helm'
+Plug 'towolf/vim-helm', { 'commit': '2c8525fd98e57472769d137317bca83e477858ce' }
 
 augroup helm_values
   " do not duplicate autocmds on reload
@@ -324,14 +324,14 @@ augroup END
 " --------------------------------
 " colorscheme onehalf
 
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'sonph/onehalf', { 'rtp': 'vim', 'commit': '75eb2e97acd74660779fed8380989ee7891eec56' }
 
 " --------------------------------
 
 " --------------------------------
 " colorscheme almost without color
 "
-Plug 'pbrisbin/vim-colors-off'
+Plug 'pbrisbin/vim-colors-off', { 'commit': '2879dc5d358a4856873ca708399b34a436a0f3ec' }
 
 " ! On mac we cannot call this in the plugin section
 "   it won't find the colorscheme that way.
@@ -340,13 +340,9 @@ Plug 'pbrisbin/vim-colors-off'
 
 "------------------------------
 " gruvbox color scheme
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox', { 'commit': '697c00291db857ca0af00ec154e5bd514a79191f' }
 "------------------------------
 
-
-Plug 'vim-syntastic/syntastic'
-let g:syntastic_vim_checkers = ['vint']
-let g:syntastic_python_checkers = ['']  " disable syntastic for python
 
 " helps to end certain structures automatically
 " e.g. adds "endfunction" if you start a function in vimscript
@@ -472,7 +468,7 @@ let g:mwDefaultHighlightingPalette = 'extended'
 " ---------
 " ShellCheck config
 
-Plug 'itspriddle/vim-shellcheck'
+Plug 'itspriddle/vim-shellcheck', {'commit': 'adbc2f422b44ad9a0ec5bae9995db1901769d1c9' }
 
 function! ShellCheckReopen()
     :ccl
@@ -489,7 +485,7 @@ augroup end
 
 " ----------
 
-Plug 'diepfote/vim-primitive-yamlsort'
+Plug 'diepfote/vim-primitive-yamlsort', {'commit': 'f34d40a3f7e99785fcb4bb89e569e2d401a4aede'}
 
 
 
@@ -499,7 +495,7 @@ Plug 'diepfote/vim-primitive-yamlsort'
 "
 " e.g.
 " "{{ sources[0]}}"
-Plug 'stephpy/vim-yaml'
+Plug 'stephpy/vim-yaml', {'commit': 'dce19542d5ec1663183b0f6844ec663b5d1f3d24' }
 
 " ---
 " improve yaml file movement
@@ -515,8 +511,7 @@ Plug 'stephpy/vim-yaml'
 " ]- : Move to next line of lesser indent than the current line.
 " ]+ : Move to next line of greater indent than the current line.
 " ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
-Plug 'jeetsukumaran/vim-indentwise'
-
+Plug 'jeetsukumaran/vim-indentwise', {'commit': '608bd6876d3b56d469e0e615eb774a6e06095dbf'}
 map K <Plug>(IndentWisePreviousEqualIndent)
 map J <Plug>(IndentWiseNextEqualIndent)
 
@@ -524,13 +519,8 @@ map J <Plug>(IndentWiseNextEqualIndent)
 
 
 " narrow range plugin / NarrowRange plugin
-Plug 'chrisbra/NrrwRgn'
+Plug 'chrisbra/NrrwRgn', {'commit': '6a3f40bff37fcff7d4245932b47118f071b925f9' }
 
-
-
-" tmux integration
-" re-evaluated on 2024-03-06
-Plug 'tpope/vim-tbone'  " select text, then do :Twrite pane-id/alias
 
 
 " ---------------------------------------
@@ -554,21 +544,6 @@ augroup fugitiveVim
 augroup end
 " ---------------------------------------
 
-
-" -----------------------------------
-" zig-vim
-
-Plug 'ziglang/zig.vim'
-
-augroup zig-vim-autocommands
-  " do not duplicate autocmds on reload
-  autocmd!
-
-  " Symbol renaming.
-  au FileType zig :compiler zig_build_exe
-augroup END
-
-" -----------------------------------
 
 " -----------------------------------
 "  vim-go settings start
@@ -598,35 +573,35 @@ augroup END
 " cnoremap W! w !sudo tee % >/dev/null
 " ```
 " thus:
-Plug 'lambdalisue/suda.vim'
+Plug 'lambdalisue/suda.vim', {'commit': 'c492741b4679b3cdd4d9e34138209784e061d916' }
 
 
 " When pasting, it compresses all blank
 " lines that result from the paste to a
 " single one
 " (or none, at the top and bottom of the file).
-Plug 'AndrewRadev/whitespaste.vim'
+Plug 'AndrewRadev/whitespaste.vim', {'commit': '0d9c523197ad6ca687de42cd3ee109741e875bdc'}
 
 " check `vimrc` for `@Disabled 2024-02-15` and `lessspace`
 " trim whitespace on modified lines
-Plug 'thirtythreeforty/lessspace.vim'
+Plug 'thirtythreeforty/lessspace.vim', {'commit': '2f3e60d79501026b78b593e8a12749ef1220dd61'}
 let g:lessspace_blacklist = ['diff', 'markdown']
 
 
 " The plugin is designed to automatically rename closing
 " HTML/XML tags when editing opening ones (or the other way around)
-Plug 'AndrewRadev/tagalong.vim'
+Plug 'AndrewRadev/tagalong.vim', {'commit': '5a2bbf2b1d5b657685a49d48d98a4aa921c1fde3'}
 
 
 " add filetype bpftrace
-Plug 'mmarchini/bpftrace.vim'
+Plug 'mmarchini/bpftrace.vim', {'commit': 'b8a25a142195521b383337c087b71f1605260a44'}
 
 " ------------------------------
 "  bufferize BEGIN
 
 " I previously used 'sjl/clam.vim' which only bufferizes shell commands.
 "
-Plug 'AndrewRadev/bufferize.vim'
+Plug 'AndrewRadev/bufferize.vim', { 'commit': 'ec7c4445a97f19e5784a6fb6ad3c3d4a8ff505ac' }
 nnoremap ! :Bufferize<space>!<space>source<space>~/.vim/source-me;<space>
 
 "  bufferize END
@@ -635,7 +610,7 @@ nnoremap ! :Bufferize<space>!<space>source<space>~/.vim/source-me;<space>
 
 " toggle markdown checkboxes
 " <leader>tt will either insert `[ ]` or toggle it
-Plug 'diepfote/vim-checkbox'
+Plug 'diepfote/vim-checkbox', { 'commit': '5ef2172f07a3aaf82cabf8540d2eef6de6225242' }
 
 
 " ------------
@@ -653,7 +628,8 @@ let g:copilot_no_tab_map = v:true
 
 
 " copilot chat
-Plug 'danbradbury/copilot-chat.vim', { 'commit': '685ed74f4d2349d3f5dec11aa5f89944e91e4a17'}
+" @TODO fix
+Plug 'danbradbury/copilot-chat.vim'
 nnoremap <leader>cc :CopilotChatOpen<CR>
 xmap <leader>c <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
 

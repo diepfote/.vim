@@ -629,18 +629,18 @@ let g:copilot_no_tab_map = v:true
 
 " copilot chat
 " @TODO fix
-Plug 'danbradbury/copilot-chat.vim'
-nnoremap <leader>cc :CopilotChatOpen<CR>
-xmap <leader>c <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
+" Plug 'danbradbury/copilot-chat.vim'
+" nnoremap <leader>cc :CopilotChatOpen<CR>
+" xmap <leader>c <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
 
-function! CopilotChatOpenOnly()
-  :CopilotChatOpen
+" function! CopilotChatOpenOnly()
+"   :CopilotChatOpen
 
-  " win_execute() requires the unique id
-  " win_getid() takes the window number
-  "
-  :call win_execute(win_getid(winnr('#')), 'close')
-endfunction
+"   " win_execute() requires the unique id
+"   " win_getid() takes the window number
+"   "
+"   :call win_execute(win_getid(winnr('#')), 'close')
+" endfunction
 
 " ------------
 

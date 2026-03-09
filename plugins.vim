@@ -696,9 +696,19 @@ augroup END
 " settings for tpope's gh copilot plugin
 "
 
+" example supposes that you have 3 parent folders for projects
+" that should use copilot: abc, cde and fgh
+" ~/Repos/abc/execute/src/main.rs
+" ~/Repos/cde/file-uploader/bin/do-it
+" ...
+"
+" $ cat ~/.config/personal/gh-copilot-vim-enabled-dirs.txt
+" \v.*/Repos/(abc|cde|fgh)/.*
+"
+let g:copilot_enabled_directories = join(readfile(expand('~/.config/personal/gh-copilot-vim-enabled-dirs.txt')))
 function! ToggleGhCopilot()
   let l:current_dir = expand('%:p:h')
-  if l:current_dir =~# '.*/deploy-*/*'
+  if l:current_dir =~# g:copilot_enabled_directories
     :Copilot restart
     :Copilot enable
     return

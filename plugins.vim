@@ -1,4 +1,3 @@
-filetype plugin on
 call plug#begin('~/.vim/plugged')
 "    'github_user/repo_name'
 
@@ -630,21 +629,9 @@ inoremap <expr> <C-c> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
 
-
-" copilot chat
-" @TODO fix
-" Plug 'danbradbury/copilot-chat.vim'
-" nnoremap <leader>cc :CopilotChatOpen<CR>
-" xmap <leader>c <Plug>CopilotChatAddSelection  " Add visual selection to copilot window
-
-" function! CopilotChatOpenOnly()
-"   :CopilotChatOpen
-
-"   " win_execute() requires the unique id
-"   " win_getid() takes the window number
-"   "
-"   :call win_execute(win_getid(winnr('#')), 'close')
-" endfunction
+" @TODO 2026-03-09 try to replace https://github.com/DanBradbury/copilot-chat.vim/tree/v2.1.0
+" with https://github.com/CopilotC-Nvim/CopilotChat.nvim/tree/v4.7.4
+"
 
 " ------------
 
@@ -663,7 +650,7 @@ Plug 'frankroeder/parrot.nvim'
 
 
 call plug#end()
-
+filetype plugin indent on
 
 
 " ------------------

@@ -661,6 +661,10 @@ Plug 'tenxsoydev/tabs-vs-spaces.nvim', { 'commit': '4fbc894fa11b282a0dd5d5a67092
 
 " ----------------------
 
+
+Plug 'tenxsoydev/karen-yank.nvim', { 'commit': '817f50c9464ce557c8f7f8f4d4c8d2f7b81fc40c' }
+
+
 call plug#end()
 filetype plugin indent on
 
@@ -703,6 +707,9 @@ augroup parrot.nvim
 augroup END
 
 " ------------------
+
+
+
 
 " -----------------------------------
 " settings for tpope's gh copilot plugin

@@ -648,6 +648,18 @@ Plug 'frankroeder/parrot.nvim'
 " ----------------------------
 
 
+" ----------------------
+"  tabs-vs-spaces
+
+" :TabsVsSpacesToggle optional args on | buf_on | off | buff_off
+" :TabsVsSpacesStandardize works for current buffer or selected range :'<,'>TabsVsSpacesStandardize
+" :TabsVsSpacesConvert args spaces_to_tabs | tabs_to_spaces for current buffer or range.
+Plug 'tenxsoydev/tabs-vs-spaces.nvim', { 'commit': '4fbc894fa11b282a0dd5d5a670922abd185ae527' }
+
+
+" Note: we need to call setup after loading plugins
+
+" ----------------------
 
 call plug#end()
 filetype plugin indent on
@@ -728,6 +740,11 @@ augroup END
 
 
 
+" ----------------------------------
+"  tabs-vs-spaces load/settings
+lua require("tabs-vs-spaces").setup()
+
+" ----------------------------------
 
 
 

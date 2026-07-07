@@ -665,6 +665,12 @@ Plug 'tenxsoydev/tabs-vs-spaces.nvim', { 'commit': '4fbc894fa11b282a0dd5d5a67092
 Plug 'tenxsoydev/karen-yank.nvim', { 'commit': '817f50c9464ce557c8f7f8f4d4c8d2f7b81fc40c' }
 
 
+" :colorscheme github
+Plug 'cormacrelf/vim-colors-github'
+" :coloscheme monokai-pro-light
+Plug 'loctvl842/monokai-pro.nvim'
+
+
 call plug#end()
 filetype plugin indent on
 
@@ -866,7 +872,9 @@ function! <sid>SetColorScheme()
       " call ColorOneHalfLight()
       call ColorGruvBox()
     elseif &ft =~? '^yaml$\|^helm$'
-      call ColorLunaPercheWRainbowLevels()
+      " call ColorLunaPercheWRainbowLevels()
+      call ColorGithub()
+      " call ColorMonokaiProLight()
     else
       " call ColorOneHalfLight()
       call ColorOff()
@@ -880,7 +888,7 @@ augroup set_colorscheme_for_yaml_files
   autocmd FocusGained,BufEnter * :call <sid>SetColorScheme()
 augroup END
 
-function s:SetColor(color)
+function SetColor(color)
   if exists('g:colors_name')
     if g:colors_name ==# a:color
       return
@@ -893,25 +901,39 @@ function s:SetColor(color)
 endfunction
 
 function ColorOneHalfLight()
-    call <sid>SetColor('onehalflight')
+    call SetColor('onehalflight')
 endfunction
 
 function ColorOff()
     set background=light
-    call <sid>SetColor('off')
+    call SetColor('off')
 
     " background color for coc-rust-analyzer type hints
     hi CocInlayHint guifg=black guibg=lightred
 endfunction
 
+function ColorGithub()
+    set background=light
+    call SetColor('github')
+
+    :RainbowLevelsOn
+endfunction
+
+function ColorMonokaiProLight()
+    set background=light
+    call SetColor('monokai-pro-light')
+
+    :RainbowLevelsOn
+endfunction
+
 function ColorGruvBox()
     set background=light
-    call <sid>SetColor('gruvbox')
+    call SetColor('gruvbox')
 endfunction
 
 function ColorLunaPercheWRainbowLevels()
     set background=light
-    call <sid>SetColor('lunaperche')
+    call SetColor('lunaperche')
 
     :RainbowLevelsOn
 endfunction

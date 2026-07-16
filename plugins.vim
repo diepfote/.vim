@@ -873,8 +873,8 @@ function! <sid>SetColorScheme()
       call ColorGruvBox()
     elseif &ft =~? '^yaml$\|^helm$'
       " call ColorLunaPercheWRainbowLevels()
-      call ColorGithub()
-      " call ColorMonokaiProLight()
+      " call ColorGithub()
+      call ColorMonokaiProLight()
     else
       " call ColorOneHalfLight()
       call ColorOff()

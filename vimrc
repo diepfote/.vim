@@ -380,26 +380,40 @@ function! DefaultTabSettings()
     " TODO use files in ~/.vim/ftplugin/. e.g. https://github.com/AndrewRadev/Vimfiles/tree/main/ftplugin
     if &ft =~? 'python\|^c$\|haskell\|^go$\|^zig$\|^rust$'
       " Do not set custom tab settings!
-        set tabstop=4 shiftwidth=4
+        setlocal tabstop=4 shiftwidth=4
     elseif &ft =~? '^gitconfig$'
-        set tabstop=2 shiftwidth=2
-    elseif &ft =~? 'asm\|markdown\|text'
-        set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-    elseif &ft =~? 'java'
-        set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+        setlocal tabstop=2 shiftwidth=2
+    elseif &ft =~? 'asm\|text'
+        setlocal tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+    elseif &ft =~? 'java\|markdown'
+        setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
     elseif &ft =~? 'fstab\|make'
-        set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab
+        setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 nosmarttab
     else"
-      set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+      setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
       endif
 endfunction
 augroup default_tab_settings
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd BufEnter,FocusGained * call DefaultTabSettings()
+  autocmd BufEnter * call DefaultTabSettings()
 augroup END
 
+let g:toggle_markdown_tab_width = 0
+function! s:ToggleMarkdownTabWidth()
+  if g:toggle_markdown_tab_width
+     let g:toggle_markdown_tab_width = 0
+     setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+  else
+    let g:toggle_markdown_tab_width = 1
+     setlocal tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
+  endif
+
+endfunction
+
+nnoremap <silent><leader><Tab>  :call <SID>ToggleMarkdownTabWidth()<cr>
+" -----------------------
 
 " end custom tab settings
 " ------------------------

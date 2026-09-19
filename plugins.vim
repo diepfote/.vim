@@ -27,9 +27,9 @@ if os ==# 'Darwin' || os ==# 'Mac'
   " augroup playbooks
   "   autocmd!
 
-  "   autocmd BufNewFile,BufRead */playbooks/*.yaml  set ft=yaml.ansible
-  "   autocmd BufNewFile,BufRead */tests/*.yaml      set ft=yaml.ansible
-  "   autocmd BufNewFile,BufRead */roles/*/*.yaml    set ft=yaml.ansible
+  "   autocmd BufNewFile,BufRead */playbooks/*.yaml  setlocal ft=yaml.ansible
+  "   autocmd BufNewFile,BufRead */tests/*.yaml      setlocal ft=yaml.ansible
+  "   autocmd BufNewFile,BufRead */roles/*/*.yaml    setlocal ft=yaml.ansible
   " augroup END
 
 elseif os ==# 'Linux'
@@ -310,10 +310,10 @@ augroup helm_values
   " do not duplicate autocmds on reload
   autocmd!
 
-  autocmd BufRead,BufNewFile values*.yaml set ft=helm
-  autocmd BufRead,BufNewFile */values/*.yaml set ft=helm
-  autocmd BufRead,BufNewFile */charts/*.yaml set ft=helm
-  autocmd BufRead,BufNewFile *prometheus*.yaml set ft=helm
+  autocmd BufRead,BufNewFile values*.yaml setlocal ft=helm
+  autocmd BufRead,BufNewFile */values/*.yaml setlocal ft=helm
+  autocmd BufRead,BufNewFile */charts/*.yaml setlocal ft=helm
+  autocmd BufRead,BufNewFile *prometheus*.yaml setlocal ft=helm
 augroup END
 
 
@@ -821,11 +821,11 @@ nnoremap <leader>sA <plug>AppendCharAtEndOfLine
 " set colorscheme START
 
 function ChangeHighlightSearch()
-  " set search highlight color
+  " setlocal search highlight color
   " hi Search cterm=NONE ctermfg=black ctermbg=white
   "
-  set hlsearch  "to highlight in cterm
-  set incsearch
+  setlocal hlsearch  "to highlight in cterm
+  setlocal incsearch
   "
   highlight Search gui=bold guifg=black guibg=yellow cterm=bold term=NONE ctermfg=black ctermbg=yellow
   highlight IncSearch gui=underline,bold guifg=white guibg=red cterm=underline,bold term=NONE ctermfg=white ctermbg=DarkRed
@@ -905,7 +905,7 @@ function ColorOneHalfLight()
 endfunction
 
 function ColorOff()
-    set background=light
+    setlocal background=light
     call SetColor('off')
 
     " background color for coc-rust-analyzer type hints
@@ -913,26 +913,26 @@ function ColorOff()
 endfunction
 
 function ColorGithub()
-    set background=light
+    setlocal background=light
     call SetColor('github')
 
     :RainbowLevelsOn
 endfunction
 
 function ColorMonokaiProLight()
-    set background=light
+    setlocal background=light
     call SetColor('monokai-pro-light')
 
     :RainbowLevelsOn
 endfunction
 
 function ColorGruvBox()
-    set background=light
+    setlocal background=light
     call SetColor('gruvbox')
 endfunction
 
 function ColorLunaPercheWRainbowLevels()
-    set background=light
+    setlocal background=light
     call SetColor('lunaperche')
 
     :RainbowLevelsOn

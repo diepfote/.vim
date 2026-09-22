@@ -19,9 +19,14 @@
   },
 
   "markdownlint.config": {
-    "default": true,
-    "line_length": false,
-    "blank_lines": false,
+    "default": true,                    // all rules on by default
+    "line-length": false,               // MD013
+    "no-multiple-blanks": false,        // MD012
+    "blanks-around-headings": false,    // MD022
+    "blanks-around-fences": false,      // MD031
+    "blanks-around-lists": false,       // MD032
+    "emphasis-style": false,            // MD049
+    "strong-style": false               // MD050
   },
 
   "yaml.schemas": {

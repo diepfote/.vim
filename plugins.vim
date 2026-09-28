@@ -671,6 +671,12 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'loctvl842/monokai-pro.nvim'
 
 
+" Works with https://chromewebstore.google.com/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf
+"
+" Requires https://chromewebstore.google.com/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca
+"
+Plug 'subnut/nvim-ghost.nvim'
+
 call plug#end()
 filetype plugin indent on
 

@@ -18,29 +18,22 @@ set iskeyword-=_
 set iskeyword+=#
 
 "
-" neovim now sets this to `ripgrep ...` if it can be found in $PATH
+" default:  respects .gitignore/.ignore/.rgignore/global gitignore, skips hidden, skips binary
+" -u    ... --no-ignore
+" -uu   ... --no-ignore --hidden
+" -uuu  ... --no-ignore --hidden --binary
 "
-let &grepprg = 'grep -r -n
-  \ --exclude-dir=.git
-  \ --exclude-dir=.helm
-  \ --exclude-dir=.tox
-  \ --exclude-dir=.pulumi
-  \ --exclude-dir=.cache
-  \ --exclude-dir=.mypy_cache
-  \ --exclude-dir=.eggs
-  \ --exclude-dir=*.egg-info
-  \ --exclude-dir=*venv*
-  \ --exclude-dir=_build
-  \ --exclude-dir=__pycache__
-  \ --exclude-dir=.ruff_cache
-  \ --exclude="*.pyc"
-  \ --exclude-dir=.pytest_cache
-  \ --exclude=poetry.lock
-  \ --exclude-dir=htmlcov
-  \ --exclude="*.html"
-  \ --exclude=build.*trace
-  \ --exclude=Session.vim'
-set grepformat=%f:%l:%m
+" --no-ignore-vcs — ignore .gitignore but still honor .ignore/.rgignore
+" --no-ignore-dot — opposite: honor .gitignore, drop .ignore
+" --no-ignore-parent — stop walking up to parent dirs for ignore files
+" --no-ignore-global — drop ~/.config/git/ignore
+" --no-require-git — apply gitignore rules even outside a git repo
+"
+" --binary vs --text/-a: --binary searches binaries but stops at the first NUL-ish report;
+"                        -a treats them as text and prints the bytes
+"
+set grepprg=rg\ --vimgrep\ -u
+set grepformat=%f:%l:%c:%m
 
 
 " do not write backup files

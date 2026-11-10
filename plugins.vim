@@ -636,18 +636,6 @@ let g:copilot_no_tab_map = v:true
 " ------------
 
 
-" ----------------------------
-" parrot.nvim
-
-" dependencies
-Plug 'nvim-lua/plenary.nvim'
-Plug 'MunifTanjim/nui.nvim'
-
-Plug 'frankroeder/parrot.nvim'
-
-" ----------------------------
-
-
 " ----------------------
 "  tabs-vs-spaces
 
@@ -679,48 +667,6 @@ Plug 'subnut/nvim-ghost.nvim'
 
 call plug#end()
 filetype plugin indent on
-
-
-" ------------------
-" settings for parrot.nvim
-lua << EOF
-require('parrot').setup({
-    providers = {
-      perplexity = {
-        name = "perplexity",
-        api_key = os.getenv("PERPLEXITY_API_KEY"),
-        endpoint = "https://api.perplexity.ai/chat/completions",
-        topic = {
-          model = "sonar",
-          params = {
-            max_tokens = 64,
-          },
-        },
-        models = {
-          "sonar",
-          "sonar-pro",
-          "sonar-deep-research",
-          "sonar-reasoning",
-          "sonar-reasoning-pro",
-        },
-      },
-    }
-})
-EOF
-
-nnoremap <leader>cp :PrtChatNew<CR>
-" paste selection to current chat
-xmap <leader>p  :PrtChatPaste<cr>
-
-augroup parrot.nvim
-  autocmd!
-
-  autocmd BufRead,BufNewFile */parrot/chats/*.md nnoremap <buffer> <CR> :PrtChatResponde<CR>
-augroup END
-
-" ------------------
-
-
 
 
 " -----------------------------------

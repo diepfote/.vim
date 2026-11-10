@@ -619,19 +619,21 @@ Plug 'diepfote/vim-checkbox', { 'commit': '5ef2172f07a3aaf82cabf8540d2eef6de6225
 " ------------
 " GH Copilot plugins
 
-" tpope's official client
-let g:copilot_enterprise_uri = join(readfile(expand('~/.config/personal/github-sso.txt')))
-Plug 'github/copilot.vim'
+if os ==# 'Darwin' || os ==# 'Mac'
+  " tpope's official client
+  let g:copilot_enterprise_uri = join(readfile(expand('~/.config/personal/github-sso.txt')))
+  Plug 'github/copilot.vim'
 
-" taken from https://github.com/pbrisbin/dotfiles/commit/ed88fcd5c83d05c5afd0ec2ef2ea5dc680fb044c
-" Tell copilot to use ctrl+c instead of <Tab>
-inoremap <expr> <C-c> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
+  " taken from https://github.com/pbrisbin/dotfiles/commit/ed88fcd5c83d05c5afd0ec2ef2ea5dc680fb044c
+  " Tell copilot to use ctrl+c instead of <Tab>
+  inoremap <expr> <C-c> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
 
 
-" @TODO 2026-03-09 try to replace https://github.com/DanBradbury/copilot-chat.vim/tree/v2.1.0
-" with https://github.com/CopilotC-Nvim/CopilotChat.nvim/tree/v4.7.4
-"
+  " @TODO 2026-03-09 try to replace https://github.com/DanBradbury/copilot-chat.vim/tree/v2.1.0
+  " with https://github.com/CopilotC-Nvim/CopilotChat.nvim/tree/v4.7.4
+  "
+endif
 
 " ------------
 
@@ -682,24 +684,28 @@ filetype plugin indent on
 " $ cat ~/.config/personal/gh-copilot-vim-enabled-dirs.txt
 " \v.*/Repos/(abc|cde|fgh)/.*
 "
-let g:copilot_enabled_directories = join(readfile(expand('~/.config/personal/gh-copilot-vim-enabled-dirs.txt')))
-function! ToggleGhCopilot()
-  let l:current_dir = expand('%:p:h')
-  if l:current_dir =~# g:copilot_enabled_directories
-    :Copilot restart
-    :Copilot enable
-    return
-  endif
-  :call copilot#Client().Close()
-endfunction
 
-let g:copilot_enabled = v:false
-augroup gh_copilot
-  " do not duplicate autocmds on reload
-  autocmd!
+if os ==# 'Darwin' || os ==# 'Mac'
+  let g:copilot_enabled_directories = join(readfile(expand('~/.config/personal/gh-copilot-vim-enabled-dirs.txt')))
+  function! ToggleGhCopilot()
+    let l:current_dir = expand('%:p:h')
+    if l:current_dir =~# g:copilot_enabled_directories
+      :Copilot restart
+      :Copilot enable
+      return
+    endif
+    :call copilot#Client().Close()
+  endfunction
 
-  autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
-augroup END
+  let g:copilot_enabled = v:false
+  augroup gh_copilot
+    " do not duplicate autocmds on reload
+    autocmd!
+
+    autocmd BufEnter,FocusGained *  :call ToggleGhCopilot()
+  augroup END
+endif
+
 " -----------------------------------
 
 

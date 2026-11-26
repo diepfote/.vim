@@ -538,8 +538,10 @@ augroup END
 "
 
 " map next/previous misspelled word
-noremap <C-t> [s
-noremap <C-z> ]s
+" IMPORTANT: do not use noremap, it would ignore the preexisting mappings
+" set by neovim itself
+nmap <C-t> [s
+nmap <C-z> ]s
 
 
 " enable spell checking globally in nvim (vim keeps the filetype-scoped

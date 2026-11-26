@@ -541,17 +541,33 @@ augroup END
 noremap <C-t> [s
 noremap <C-z> ]s
 
-function! s:SetSpell()
-  " setlocal spell spelllang=en_us,en_uk,de_at,medical
-  setlocal spell spelllang=en_us
-endfunction
 
-augroup spell_lang
-  " do not duplicate autocmds on reload
-  autocmd!
+" enable spell checking globally in nvim (vim keeps the filetype-scoped
+" behavior from the augroup above)
+if has('nvim')
+  set spell
+  set spelllang=en_us
 
-  autocmd Filetype markdown,tex,rst call s:SetSpell()
-augroup END
+  " ... except in buffers where it would only be noise
+  augroup spell_exceptions
+    " do not duplicate autocmds on reload
+    autocmd!
+
+    autocmd FileType help,netrw,terminal,quickfix setlocal nospell
+    autocmd FileType gitcommit,,text,markdown,rst,tex setlocal spell
+  augroup END
+
+  " toggle spell checking for the current buffer
+  function! s:ToggleSpell()
+    if &l:spell
+      setlocal nospell
+    else
+      setlocal spell
+    endif
+  endfunction
+
+  nnoremap <silent><leader>s :call <SID>ToggleSpell()<cr>
+endif
 " -----------------
 
 " remap PageUp to C-a
